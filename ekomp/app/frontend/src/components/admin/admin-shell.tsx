@@ -1,0 +1,110 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState, type ReactNode } from "react";
+import { adminFetch, clearToken, getToken } from "@/lib/admin-api";
+
+const MENU = [
+  { href: "/admin", label: "Özet", icon: "dashboard" },
+  { href: "/admin/rezervasyonlar", label: "Rezervasyon Talepleri", icon: "event_available" },
+  { href: "/admin/geri-bildirimler", label: "Geri Bildirimler", icon: "rate_review" },
+  { href: "/admin/tesisler", label: "Tesisler", icon: "stadium" },
+  { href: "/admin/haberler", label: "Haberler", icon: "newspaper" },
+  { href: "/admin/ayarlar", label: "Hesap Ayarları", icon: "manage_accounts" },
+];
+
+/** Giriş kontrolü + yan menü. Giriş sayfası kabuksuz gösterilir. */
+export function AdminShell({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const [username, setUsername] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const isLogin = pathname === "/admin/login";
+
+  useEffect(() => {
+    if (isLogin) return;
+    if (!getToken()) {
+      router.replace("/admin/login");
+      return;
+    }
+    adminFetch<{ username: string }>("/admin/me")
+      .then((me) => setUsername(me.username))
+      .catch(() => undefined);
+  }, [isLogin, router]);
+
+  if (isLogin) return <>{children}</>;
+  if (!username) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-surface-container-low text-on-surface-variant">
+        Yükleniyor...
+      </div>
+    );
+  }
+
+  function logout() {
+    clearToken();
+    router.replace("/admin/login");
+  }
+
+  return (
+    <div className="min-h-screen bg-surface-container-low lg:flex">
+      <aside
+        className={`${menuOpen ? "block" : "hidden"} w-full shrink-0 bg-[#222222] text-white lg:sticky lg:top-0 lg:block lg:h-screen lg:w-64 lg:overflow-y-auto`}
+      >
+        <div className="px-space-lg py-space-lg">
+          <p className="font-headline-md text-headline-md leading-tight">Yönetim Paneli</p>
+          <p className="mt-1 text-xs text-white/60">Erzurum Yüksek İrtifa Kamp Merkezi</p>
+        </div>
+        <nav className="flex flex-col" aria-label="Yönetim menüsü">
+          {MENU.map((item) => {
+            const active =
+              item.href === "/admin" ? pathname === "/admin" : pathname.startsWith(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                aria-current={active ? "page" : undefined}
+                className={`flex items-center gap-space-sm border-l-4 px-space-lg py-space-md text-sm font-semibold transition-colors ${
+                  active
+                    ? "border-white bg-primary-container text-on-primary-container"
+                    : "border-transparent text-white/80 hover:bg-white/10"
+                }`}
+              >
+                <span className="material-symbols-outlined text-xl">{item.icon}</span>
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="mt-space-lg border-t border-white/10 px-space-lg py-space-md text-sm">
+          <p className="text-white/60">Giriş yapan: {username}</p>
+          <div className="mt-space-sm flex gap-space-md">
+            <Link href="/" target="_blank" className="text-white/80 underline">
+              Siteyi aç
+            </Link>
+            <button type="button" onClick={logout} className="text-white/80 underline">
+              Çıkış yap
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center justify-between bg-[#222222] px-space-md py-space-sm text-white lg:hidden">
+          <span className="font-semibold">Yönetim Paneli</span>
+          <button
+            type="button"
+            aria-label="Menüyü aç/kapat"
+            onClick={() => setMenuOpen((v) => !v)}
+            className="flex h-10 w-10 items-center justify-center"
+          >
+            <span className="material-symbols-outlined">{menuOpen ? "close" : "menu"}</span>
+          </button>
+        </div>
+        <main className="mx-auto w-full max-w-6xl p-space-md md:p-space-xl">{children}</main>
+      </div>
+    </div>
+  );
+}

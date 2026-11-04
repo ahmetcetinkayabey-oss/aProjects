@@ -11,8 +11,18 @@ npm-debug.log*
 .env
 .env.*.local
 
+# dev database (SQLite)
+/data
+*.sqlite
+
 # coverage
 /coverage
 
 # misc
 .DS_Store
+
+# ts incremental build info
+*.tsbuildinfo
+
+# yüklenen görseller
+/uploads

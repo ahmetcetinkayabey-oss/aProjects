@@ -1,4 +1,10 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { isProductionDatabase } from '../common/database-driver.js';
 
 export enum ReservationStatus {
   PENDING = 'PENDING',
@@ -39,8 +45,15 @@ export class Reservation {
   @Column({ type: 'text', nullable: true })
   message?: string;
 
-  @Column({ type: 'enum', enum: ReservationStatus, default: ReservationStatus.PENDING })
+  @Column({
+    type: isProductionDatabase ? 'enum' : 'simple-enum',
+    enum: ReservationStatus,
+    default: ReservationStatus.PENDING,
+  })
   status!: ReservationStatus;
+
+  @Column({ type: 'text', nullable: true })
+  adminNote?: string | null;
 
   @CreateDateColumn()
   createdAt!: Date;

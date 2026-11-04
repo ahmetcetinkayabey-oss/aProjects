@@ -8,5 +8,6 @@ import { FacilitiesController } from './facilities.controller.js';
   imports: [TypeOrmModule.forFeature([Facility])],
   controllers: [FacilitiesController],
   providers: [FacilitiesService],
+  exports: [FacilitiesService],
 })
 export class FacilitiesModule {}

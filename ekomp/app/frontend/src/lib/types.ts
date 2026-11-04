@@ -10,38 +10,14 @@ export interface Facility {
   footerLeft: string;
   footerRight: string;
   stats?: { label: string; value: string }[] | null;
-  sortOrder: number;
-}
-
-export interface BenchmarkCenter {
-  id: string;
-  name: string;
-  countryCode: string;
-  location: string;
-  altitudeLabel: string;
-  swimming: string;
-  football: string;
-  athletics: string;
-  combatSports: string;
-  iceAndCurling: string;
-  indoorSports: string;
-  sportsScienceLab: string;
-  facilityScore: number;
-  isHighlighted: boolean;
-  sortOrder: number;
-}
-
-export interface DigitalScore {
-  id: string;
-  centerName: string;
-  countryCode: string;
-  description: string;
-  totalScore: number;
-  uxScore: number;
-  reservationScore: number;
-  thirdMetricLabel: string;
-  thirdMetricScore: number;
-  isVision: boolean;
+  /** İngilizce metinler (yönetim panelinden, isteğe bağlı). */
+  categoryEn?: string | null;
+  titleEn?: string | null;
+  descriptionEn?: string | null;
+  badgeEn?: string | null;
+  footerLeftEn?: string | null;
+  footerRightEn?: string | null;
+  statsEn?: { label: string; value: string }[] | null;
   sortOrder: number;
 }
 

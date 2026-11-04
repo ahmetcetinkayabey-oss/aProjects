@@ -1,0 +1,50 @@
+# Render Blueprint: backend (NestJS). Frontend Vercel'de, veritabanı + görseller Supabase'de.
+services:
+  - type: web
+    name: erzurum-kamp-api
+    runtime: node
+    rootDir: backend
+    plan: free # uyumayan servis için "starter" yapın
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start:prod
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY
+        value: "1"
+      - key: NODE_VERSION
+        value: "22"
+      - key: DB_SYNCHRONIZE # ilk deploy'dan sonra false yapın veya silin
+        value: "true"
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_TOKEN_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        sync: false
+      - key: FORUM_PUBLIC_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: SUPABASE_BUCKET
+        value: uploads
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: NOTIFY_FROM
+        sync: false
+      - key: NOTIFY_TO
+        sync: false
