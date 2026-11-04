@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #061426;
+  --color-surface-dim: #061426;
+  --color-surface-bright: #2d3a4e;
+  --color-surface-container-lowest: #020e21;
+  --color-surface-container-low: #0e1c2f;
+  --color-surface-container: #132033;
+  --color-surface-container-high: #1d2a3e;
+  --color-surface-container-highest: #28354a;
+  --color-on-surface: #d6e3fe;
+  --color-on-surface-variant: #e3bfb1;
+  --color-inverse-surface: #d6e3fe;
+  --color-inverse-on-surface: #243145;
+  --color-outline: #aa8a7d;
+  --color-outline-variant: #5a4136;
+  --color-surface-tint: #ffb596;
+  --color-primary: #ffb596;
+  --color-on-primary: #581e00;
+  --color-primary-container: #ff6500;
+  --color-on-primary-container: #551d00;
+  --color-inverse-primary: #a33e00;
+  --color-secondary: #45edee;
+  --color-on-secondary: #003737;
+  --color-secondary-container: #00d0d1;
+  --color-on-secondary-container: #005455;
+  --color-tertiary: #aac9f4;
+  --color-on-tertiary: #0e3255;
+  --color-tertiary-container: #7a98c1;
+  --color-on-tertiary-container: #0c3053;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+  --color-primary-fixed: #ffdbcd;
+  --color-primary-fixed-dim: #ffb596;
+  --color-on-primary-fixed: #360f00;
+  --color-on-primary-fixed-variant: #7d2d00;
+  --color-secondary-fixed: #56f9f9;
+  --color-secondary-fixed-dim: #26dcdd;
+  --color-on-secondary-fixed: #002020;
+  --color-on-secondary-fixed-variant: #004f50;
+  --color-tertiary-fixed: #d3e4ff;
+  --color-tertiary-fixed-dim: #aac9f4;
+  --color-on-tertiary-fixed: #001c38;
+  --color-on-tertiary-fixed-variant: #29486d;
+  --color-background: #061426;
+  --color-on-background: #d6e3fe;
+  --color-surface-variant: #28354a;
+
+  --radius-sm: 0.125rem;
+  --radius-DEFAULT: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  --spacing-gutter: 1.5rem;
+  --spacing-gutter-mobile: 1rem;
+  --spacing-margin: 2.5rem;
+  --spacing-margin-mobile: 1.25rem;
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2.5rem;
+
+  --font-display-xl: var(--font-space-grotesk);
+  --font-display-xl-mobile: var(--font-space-grotesk);
+  --font-headline-lg: var(--font-space-grotesk);
+  --font-headline-lg-mobile: var(--font-space-grotesk);
+  --font-headline-md: var(--font-space-grotesk);
+  --font-metric-display: var(--font-space-grotesk);
+  --font-metric-display-mobile: var(--font-space-grotesk);
+  --font-title-md: var(--font-space-grotesk);
+  --font-label-caps: var(--font-space-grotesk);
+  --font-body-lg: var(--font-hanken-grotesk);
+  --font-body-md: var(--font-hanken-grotesk);
+  --font-label-md: var(--font-hanken-grotesk);
+
+  --text-display-xl: 56px;
+  --text-display-xl--line-height: 64px;
+  --text-display-xl--letter-spacing: -0.03em;
+  --text-display-xl--font-weight: 700;
+
+  --text-display-xl-mobile: 38px;
+  --text-display-xl-mobile--line-height: 44px;
+  --text-display-xl-mobile--letter-spacing: -0.02em;
+  --text-display-xl-mobile--font-weight: 700;
+
+  --text-headline-lg: 36px;
+  --text-headline-lg--line-height: 44px;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 700;
+
+  --text-headline-lg-mobile: 28px;
+  --text-headline-lg-mobile--line-height: 36px;
+  --text-headline-lg-mobile--letter-spacing: -0.01em;
+  --text-headline-lg-mobile--font-weight: 700;
+
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--letter-spacing: -0.01em;
+  --text-headline-md--font-weight: 600;
+
+  --text-metric-display: 48px;
+  --text-metric-display--line-height: 52px;
+  --text-metric-display--letter-spacing: -0.03em;
+  --text-metric-display--font-weight: 700;
+
+  --text-metric-display-mobile: 36px;
+  --text-metric-display-mobile--line-height: 40px;
+  --text-metric-display-mobile--letter-spacing: -0.02em;
+  --text-metric-display-mobile--font-weight: 700;
+
+  --text-title-md: 18px;
+  --text-title-md--line-height: 26px;
+  --text-title-md--letter-spacing: 0em;
+  --text-title-md--font-weight: 600;
+
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 24px;
+  --text-body-lg--letter-spacing: 0em;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 14px;
+  --text-body-md--line-height: 20px;
+  --text-body-md--letter-spacing: 0.01em;
+  --text-body-md--font-weight: 400;
+
+  --text-label-caps: 11px;
+  --text-label-caps--line-height: 14px;
+  --text-label-caps--letter-spacing: 0.12em;
+  --text-label-caps--font-weight: 700;
+
+  --text-label-md: 12px;
+  --text-label-md--line-height: 16px;
+  --text-label-md--letter-spacing: 0.02em;
+  --text-label-md--font-weight: 600;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
