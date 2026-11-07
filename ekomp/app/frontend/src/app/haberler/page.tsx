@@ -9,7 +9,7 @@ export default function NewsPage() {
     <main className="w-full bg-surface">
       <PageTitleL
         title={["Haberler", "News"]}
-        subtitle={["Merkezimizden güncel gelişmeler.", "Latest developments from our centre."]}
+        subtitle="news.page.subtitle"
       />
       <NewsList />
     </main>

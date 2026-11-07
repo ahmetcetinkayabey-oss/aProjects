@@ -4,30 +4,35 @@
   --color-surface: #ffffff;
   --color-surface-bright: #ffffff;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f6f6f6;
-  --color-surface-container: #efefef;
-  --color-surface-container-high: #e2e3e8;
-  --color-surface-container-highest: #d3d4d9;
-  --color-on-surface: #222222;
-  --color-on-surface-variant: #4a4a50;
-  --color-outline: #8c8989;
-  --color-primary: #8a6d00;
+  --color-surface-container-low: #f4f8fc;
+  --color-surface-container: #eaf1f8;
+  --color-surface-container-high: #dce6f0;
+  --color-surface-container-highest: #cbd8e6;
+  --color-on-surface: #0B132B;
+  --color-on-surface-variant: #3A506B;
+  --color-outline: #8a9bb0;
+  --color-primary: #1F6FA8;
   --color-on-primary: #ffffff;
-  --color-primary-container: #ffd21f;
-  --color-on-primary-container: #222222;
-  --color-inverse-primary: #ffe680;
-  --color-secondary: #222222;
+  --color-primary-container: #4CC9F0;
+  --color-on-primary-container: #0B132B;
+  --color-inverse-primary: #bde9fa;
+  --color-secondary: #1C2E4A;
   --color-on-secondary: #ffffff;
-  --color-secondary-container: #e2e3e8;
-  --color-on-secondary-container: #222222;
-  --color-tertiary: #8c8989;
-  --color-secondary-fixed: #e2e3e8;
-  --color-secondary-fixed-dim: #c9cad0;
+  --color-secondary-container: #dce6f0;
+  --color-on-secondary-container: #0B132B;
+  --color-tertiary: #8a9bb0;
+  --color-secondary-fixed: #dce6f0;
+  --color-secondary-fixed-dim: #c3d2e2;
   --color-background: #ffffff;
-  --color-on-background: #222222;
-  --color-surface-variant: #e2e3e8;
-  --color-ink: #14161a;
-  --color-ink-soft: #1d2025;
+  --color-on-background: #0B132B;
+  --color-surface-variant: #dce6f0;
+  --color-ink: #0B132B;
+  --color-ink-soft: #1C2E4A;
+  --color-ejder-dark: #0B132B;
+  --color-ejder: #1C2E4A;
+  --color-ejder-accent: #23395D;
+  --color-ejder-light: #3A506B;
+  --color-ejder-sky: #4CC9F0;
 
   --radius-sm: 0.125rem;
   --radius-DEFAULT: 0.25rem;
@@ -274,7 +279,7 @@ html {
   button:focus-visible,
   a:focus-visible,
   summary:focus-visible {
-    outline: 3px solid rgb(255 210 31 / 0.7);
+    outline: 3px solid rgb(76 201 240 / 0.7);
     outline-offset: 3px;
   }
 }

@@ -3,7 +3,7 @@
 import { useLocale } from "@/lib/i18n";
 import Link from "next/link";
 
-import { L } from "./t";
+import { C, L } from "./t";
 import { OptImg } from "@/components/opt-img";
 
 const INCLUDED = [
@@ -14,7 +14,7 @@ const INCLUDED = [
 ];
 
 export function StayCta() {
-  const { locale } = useLocale();
+  const { c } = useLocale();
   return (
     <section className="w-full bg-surface px-margin-mobile py-12 md:px-margin md:py-20">
       <div className="reveal-zoom relative mx-auto max-w-[1400px] overflow-hidden rounded-3xl bg-ink">
@@ -28,16 +28,16 @@ export function StayCta() {
         <div className="relative grid gap-10 p-8 md:p-14 lg:grid-cols-[1.2fr_1fr] lg:items-center">
           <div>
             <h2 className="font-headline-lg text-[32px] leading-tight font-extrabold tracking-tight text-white md:text-5xl">
-              <L tr="Kampınızı " en="Let us " /><span className="text-primary-container"><L tr="planlayalım" en="plan" /></span>{locale === "en" ? " your camp" : null}
+              <C k="stay.title1" />{" "}<span className="text-primary-container"><C k="stay.title2" /></span>{c("stay.title3") ? ` ${c("stay.title3")}` : null}
             </h2>
             <p className="mt-4 max-w-xl font-body-lg text-lg text-white/75">
-              <L tr="Tarih, branş ve kafile bilgisini iletin; ekibimiz size dönsün." en="Send us your dates, sport and group details, and our team will get back to you." />
+              <C k="stay.text" />
             </p>
             <Link
-              href="/iletisim#rezervasyon"
+              href="/rezervasyon#rezervasyon"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary-container px-8 py-4 font-label-caps text-label-caps text-on-primary-container uppercase transition-colors hover:bg-white"
             >
-              <L tr="Talep oluştur" en="Submit a request" />
+              <C k="stay.button" />
               <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
             </Link>
           </div>

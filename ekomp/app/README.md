@@ -51,9 +51,12 @@ Adres: `http://localhost:3000/admin` (arama motorlarına kapalıdır, sitede lin
 
 - Giriş bilgileri `backend/.env` içindeki `ADMIN_USERNAME` / `ADMIN_PASSWORD` değerleridir. Hesap yalnızca **ilk açılışta** (admin tablosu boşken) bu değerlerle oluşturulur; sonrasında şifre panelden (Hesap Ayarları) değiştirilir ve `.env`'deki şifre artık kullanılmaz.
 - `ADMIN_TOKEN_SECRET` oturum anahtarını imzalar; production'da en az 32 karakterlik benzersiz bir değer verin. Değiştirilirse açık oturumlar kapanır.
-- Bölümler: Özet, Rezervasyon Talepleri (durum, not, silme), Tesisler, Haberler, Hesap Ayarları.
+- Bölümler: Özet, Rezervasyon Talepleri (arama, tür/durum filtresi, durum, not, Excel'e aktarma, silme), Geri Bildirimler, **Sayfa İçerikleri**, Tesisler, Haberler, Hesap Ayarları.
+- **Sayfa İçerikleri:** Sitedeki başlık ve yazılar (ana sayfa, rezervasyon, otel sayfaları, alt bilgi vb.) buradan Türkçe/İngilizce değiştirilir; kaydedilen metin sitede hemen yayına girer, "Varsayılana dön" ile eskisine dönülür. Düzenlenebilen metinlerin listesi `frontend/src/lib/content-registry.ts` (ve otel sayfaları için `content-hotels.ts`) içindedir; yeni bir metni düzenlenebilir yapmak için oraya alan ekleyip bileşende `<C k="anahtar" />` kullanın.
+- **E-posta (Brevo/SMTP):** Hesap Ayarları > E-posta bildirimleri bölümünden sunucu, kullanıcı, SMTP anahtarı, gönderen ve bildirim adresi girilir; test e-postası gönderilebilir. Panelde girilen ayarlar `.env`'deki `SMTP_*` değerlerinin önüne geçer; SMTP anahtarı veritabanında şifreli saklanır (`ADMIN_TOKEN_SECRET`'tan türetilen anahtarla; bu değer değişirse anahtar yeniden girilmelidir).
+- **Otel detay sayfaları:** `/rezervasyon/oteller/<otel>`; oda, olanak ve fotoğraf verileri `frontend/src/lib/hotels.ts`, fotoğraflar `frontend/public/images/oteller/<otel>/` altındadır.
 - Yüklenen görseller `backend/uploads/` altında saklanır ve `/uploads/...` adresinden servis edilir (git'e girmez, yedeklenmelidir).
-- Yönetim API'si `/api/admin/*` altındadır ve `Authorization: Bearer <token>` ister. Herkese açık tek yazma ucu `POST /api/reservations`'tır.
+- Yönetim API'si `/api/admin/*` altındadır ve `Authorization: Bearer <token>` ister. Herkese açık yazma uçları yalnızca form gönderimleridir: `POST /api/reservations`, `POST /api/feedback` (ve forum kayıt/giriş uçları).
 
 ## Yayına alma
 

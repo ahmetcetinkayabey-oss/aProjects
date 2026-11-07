@@ -26,12 +26,12 @@ const SUB_TITLES: Record<string, string | DictKey> = {
   "/gizlilik": "privacy.title",
   "/tesisler": "nav.facilities",
   "/haberler": "nav.news",
-  "/iletisim": "nav.contact",
+  "/rezervasyon": "nav.reserve",
 };
 
 export function TopBanner() {
   const pathname = usePathname();
-  const { t, locale } = useLocale();
+  const { t, c, locale } = useLocale();
   const isHome = pathname === "/";
   const [active, setActive] = useState(0);
   const [extraSlides, setExtraSlides] = useState(false);
@@ -80,28 +80,28 @@ export function TopBanner() {
           <div className="animate-fade-up max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-primary-container px-4 py-1.5 font-label-caps text-label-caps text-on-primary-container uppercase">
               <span className="material-symbols-outlined text-[16px]">landscape</span>
-              Palandöken, Erzurum
+              {c("home.hero.badge")}
             </span>
             <h1 className="mt-space-md font-display-xl text-[44px] leading-[1.02] font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
-              {pick(locale, "Şampiyonların ", "Home of ")}
-              <span className="text-primary-container">{pick(locale, "evi", "champions")}</span>
+              {c("home.hero.title1")}{" "}
+              <span className="text-primary-container">{c("home.hero.title2")}</span>
             </h1>
             <p className="mt-space-md max-w-xl font-body-lg text-lg text-white/85">
-              {pick(locale, "2.100 metrede, takımlar için yıl boyu açık çok branşlı kamp merkezi.", "A year-round, multi-sport camp centre for teams at 2,100 metres.")}
+              {c("home.hero.text")}
             </p>
             <div className="mt-space-lg flex flex-wrap gap-space-sm">
               <Link
-                href="/iletisim#rezervasyon"
+                href="/rezervasyon#rezervasyon"
                 className="inline-flex items-center gap-2 rounded-full bg-primary-container px-8 py-4 font-label-caps text-label-caps text-on-primary-container uppercase transition-colors hover:bg-white"
               >
-                {pick(locale, "Kamp planla", "Plan your camp")}
+                {c("home.hero.btn1")}
                 <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
               </Link>
               <Link
                 href="/tesisler"
                 className="inline-flex items-center rounded-full border border-white/60 px-8 py-4 font-label-caps text-label-caps text-white uppercase backdrop-blur transition-colors hover:bg-white hover:text-ink"
               >
-                {pick(locale, "Tesisler", "Facilities")}
+                {c("home.hero.btn2")}
               </Link>
             </div>
           </div>

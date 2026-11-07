@@ -1,4 +1,4 @@
-import { IsEnum, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
+import { IsEmail, IsEnum, IsOptional, IsString, Matches, MaxLength, MinLength, ValidateIf } from 'class-validator';
 import { ReservationStatus } from '../reservations/reservation.entity.js';
 
 export class LoginDto {
@@ -23,4 +23,28 @@ export class UpdateReservationDto {
   @IsString()
   @MaxLength(2000)
   adminNote?: string | null;
+}
+
+export class MailTestDto {
+  @IsEmail({}, { message: 'Geçerli bir e-posta adresi girin.' })
+  to!: string;
+}
+
+export class MailSettingsDto {
+  @IsOptional() @IsString() @MaxLength(200) smtpHost?: string;
+
+  @IsOptional()
+  @Matches(/^\d{0,5}$/,{ message: 'Port yalnızca rakam olmalı.' })
+  smtpPort?: string;
+
+  @IsOptional() @IsString() @MaxLength(200) smtpUser?: string;
+
+  @IsOptional() @IsString() @MaxLength(500) smtpPass?: string;
+
+  @IsOptional() @IsString() @MaxLength(200) notifyFrom?: string;
+
+  @IsOptional()
+  @ValidateIf((o: MailSettingsDto) => !!o.notifyTo)
+  @IsEmail({}, { message: 'Bildirim adresi geçerli bir e-posta olmalı.' })
+  notifyTo?: string;
 }

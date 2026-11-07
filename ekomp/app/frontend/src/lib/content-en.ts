@@ -187,21 +187,3 @@ export const NEWS_EN: Record<string, NewsEn> = {
   },
 };
 
-/** IMAGE_CREDITS (facility-images.ts) ile aynı sırada İngilizce karşılıkları. */
-export const IMAGE_CREDITS_EN: string[] = [
-  "Swimming pool: WikiFix2007, Melbourne Sports and Aquatic Centre (CC BY-SA 4.0)",
-  "Wrestling: Gastón Cuello, Youth Olympic Games 2018 (CC BY-SA 4.0)",
-  "Athletics track: Neukoln (CC BY-SA 3.0)",
-  "Universiade statue: Zeynel Cebeci (CC BY-SA 4.0)",
-  "Indoor sports: Aysinpir, Bilkent Erzurum Sports Hall (CC BY-SA 3.0)",
-  "Skiing: hüseyin yeşil, Palandöken Ski Centre (CC BY 3.0)",
-  "Ski slope (news image): Eric Miller (CC0)",
-  "Curling Hall, Ski Jumping Towers: Eğitmen Mahmut (CC BY-SA 3.0)",
-  "Ice arena: Kkr1122, GSIM Ice Arena, Erzurum (CC BY-SA 4.0)",
-  "Judo: Korea.net / Korean Culture and Information Service (CC BY-SA 2.0)",
-  "Swimming pool building: E-92, DPÜ Olympic Swimming Pool (CC BY-SA 4.0)",
-  "Palandöken landscape: Bjørn Christian Tørrissen (CC BY-SA 3.0)",
-  "Ski jumping towers: Mehrdad Sarhangi (CC BY 3.0)",
-  "Football pitches: Erzurum High Altitude Camp Centre archive",
-  "Photographs are taken from Wikimedia Commons; facility images are representative.",
-];

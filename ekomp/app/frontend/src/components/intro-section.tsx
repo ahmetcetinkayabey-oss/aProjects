@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SectionHeading } from "./section-heading";
-import { L } from "./t";
+import { C, L } from "./t";
 import { OptImg } from "@/components/opt-img";
 
 const POINTS = [
@@ -24,22 +24,19 @@ export function IntroSection() {
           />
           <div className="absolute -right-3 -bottom-6 rounded-2xl bg-primary-container px-6 py-5 shadow-xl md:right-8">
             <div className="font-display-xl text-4xl leading-none font-extrabold text-on-primary-container">
-              <L tr="2.100 m" en="2,100 m" />
+              <C k="intro.badge.value" />
             </div>
             <div className="mt-1 font-label-caps text-label-caps text-on-primary-container uppercase">
-              <L tr="Yüksek irtifa" en="High altitude" />
+              <C k="intro.badge.label" />
             </div>
           </div>
         </div>
 
         <div className="reveal-right">
           <SectionHeading
-            eyebrow={<L tr="Hakkımızda" en="About us" />}
-            title={<L tr="Tek merkez, çok branş" en="One centre, many sports" />}
-            text={<L
-                tr="Palandöken eteklerinde kurulu merkezimiz; kulüplere ve milli takımlara futbol, yüzme, kış sporları ve dövüş sporlarında kamp imkânı sunar."
-                en="Set on the slopes of Palandöken, our centre offers clubs and national teams camp facilities for football, swimming, winter sports and combat sports."
-              />}
+            eyebrow={<C k="intro.eyebrow" />}
+            title={<C k="intro.title" />}
+            text={<C k="intro.text" />}
           />
           <ul className="mt-8 grid grid-cols-2 gap-3">
             {POINTS.map((p) => (
@@ -56,7 +53,7 @@ export function IntroSection() {
             href="/tesisler"
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-bold text-white transition-colors hover:bg-primary-container hover:text-on-primary-container"
           >
-            <L tr="Tesisleri gör" en="View facilities" />
+            <C k="intro.button" />
             <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
           </Link>
         </div>

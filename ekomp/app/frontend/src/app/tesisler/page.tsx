@@ -13,7 +13,7 @@ export default async function FacilitiesPage() {
     <main className="w-full bg-surface">
       <PageTitleL
         title={["Tesisler", "Facilities"]}
-        subtitle={["Branşlara göre kamp tesislerimiz.", "Our camp facilities by discipline."]}
+        subtitle="facilities.page.subtitle"
       />
       <FacilitiesShowcase facilities={facilities} />
       <FacilityGallery />

@@ -1,12 +1,12 @@
-import fs from "node:fs";
-import path from "node:path";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { OptImg } from "@/components/opt-img";
 import { PageTitle } from "@/components/page-title";
+import { LocationSection } from "@/components/location-section";
 import { ReservationCta } from "@/components/reservation-cta";
-import { L } from "@/components/t";
+import { C, L } from "@/components/t";
+import { HOTELS, hotelCover } from "@/lib/hotels";
 
 export const metadata: Metadata = {
   title: "Rezervasyon | Erzurum Yüksek İrtifa Kamp Merkezi",
@@ -14,45 +14,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/rezervasyon" },
 };
 
-/** Otel fotoğrafı: public/images/oteller/<slug>.jpg varsa o, yoksa Palandöken otelleri panoraması (temsili). */
-const FALLBACK_HOTEL_IMAGE = "/images/kayak-merkezi.jpg";
-function hotelImage(slug: string): { src: string; own: boolean } {
-  const file = path.join(process.cwd(), "public", "images", "oteller", `${slug}.jpg`);
-  return fs.existsSync(file)
-    ? { src: `/images/oteller/${slug}.jpg`, own: true }
-    : { src: FALLBACK_HOTEL_IMAGE, own: false };
-}
-
-const HOTELS = [
-  {
-    slug: "palan-hotel",
-    name: "Palan Hotel Palandöken",
-    tag: { tr: "Pist çevresi", en: "Near the slopes" },
-    tr: "Palandöken Kayak Merkezi çevresinde yer alan, fitness ve antrenman olanakları sunan anlaşmalı otel.",
-    en: "A partner hotel in the Palandöken Ski Resort area offering fitness and training facilities.",
-  },
-  {
-    slug: "sway-hotels",
-    name: "Sway Hotels Palandöken",
-    tag: { tr: "Spa ve rejenerasyon", en: "Spa and recovery" },
-    tr: "Spa ve rejenerasyon olanaklarıyla antrenman sonrası toparlanmaya uygun anlaşmalı otel.",
-    en: "A partner hotel with spa and recovery facilities, suited to post-training recovery.",
-  },
-  {
-    slug: "polat-erzurum-resort",
-    name: "Polat Erzurum Resort Hotel",
-    tag: { tr: "Takım kampları", en: "Team camps" },
-    tr: "Toplantı salonları ve grup konaklama imkânlarıyla takım kamplarına uygun anlaşmalı otel.",
-    en: "A partner hotel with meeting rooms and group accommodation, suited to team camps.",
-  },
-  {
-    slug: "snowdora-hotel",
-    name: "Snowdora Hotel Palandöken",
-    tag: { tr: "Bireysel sporcular ve küçük gruplar", en: "Individual athletes and small groups" },
-    tr: "Pist alanlarına yakın konumuyla bireysel sporcular ve küçük gruplar için uygun anlaşmalı otel.",
-    en: "A partner hotel close to the slopes, suited to individual athletes and small groups.",
-  },
-];
 
 const EQUIPMENT = [
   { icon: "downhill_skiing", tr: "Kayak takımı", en: "Ski set" },
@@ -73,8 +34,22 @@ const BRANCHES = [
 const DINING = [
   {
     icon: "restaurant",
-    tr: "Küre Kafe ve Restoran",
-    en: "Küre Café and Restaurant",
+    tr: "Palandöken Restoran",
+    en: "Palandöken Restaurant",
+    trText: "Kafileniz için toplu yemek ve masa ayırtma; sporcu beslenmesine uygun menü seçenekleri için talebinizi iletin.",
+    enText: "Group meals and table bookings for your team; send a request for menu options suited to athlete nutrition.",
+  },
+  {
+    icon: "local_cafe",
+    tr: "Kapsül Kafe",
+    en: "Kapsül Café",
+    trText: "Antrenman arasında sıcak içecek ve hafif yiyecek için kafile masası ayırtın.",
+    enText: "Reserve a group table for hot drinks and light meals between training sessions.",
+  },
+  {
+    icon: "restaurant",
+    tr: "Küre Kafe",
+    en: "Küre Café",
     trText: "Palandöken'in yüksek kesimlerinde, manzaralı alanda kafile masası ayırtma ve sporcu beslenmesine uygun menü seçenekleri.",
     enText: "Group table bookings with a view in the upper part of Palandöken, with menu options suited to athlete nutrition.",
   },
@@ -92,6 +67,7 @@ const ANCHORS = [
   { id: "ekipman", icon: "downhill_skiing", tr: "Ekipman kiralama", en: "Equipment rental" },
   { id: "brans", icon: "sports", tr: "Branş kampı", en: "Sport camp" },
   { id: "masa", icon: "restaurant", tr: "Masa", en: "Tables" },
+  { id: "test", icon: "monitor_heart", tr: "Performans testi", en: "Performance tests" },
 ];
 
 const q = (params: Record<string, string>) => `/rezervasyon?${new URLSearchParams(params).toString()}#rezervasyon`;
@@ -110,12 +86,7 @@ export default function ReservationPage() {
     <main className="w-full bg-surface">
       <PageTitle
         title={<L tr="Rezervasyon" en="Reservation" />}
-        subtitle={
-          <L
-            tr="Konaklama, ekipman kiralama, branş kampı ve masa rezervasyonu için talebinizi iletin."
-            en="Send your request for accommodation, equipment rental, sport camps and table bookings."
-          />
-        }
+        subtitle={<C k="rez.subtitle" />}
       />
 
       <nav aria-label="Rezervasyon bölümleri" className="px-margin-mobile pt-8 md:px-margin">
@@ -136,78 +107,103 @@ export default function ReservationPage() {
 
       <section id="oteller" className="scroll-mt-6 px-margin-mobile py-12 md:px-margin md:py-16">
         <div className="mx-auto max-w-[1400px]">
-          <SectionTitle
-            title={<L tr="Anlaşmalı oteller" en="Partner hotels" />}
-            text={
-              <L
-                tr="Palandöken'de bulunan anlaşmalı otellerimizde kafile büyüklüğüne ve branşa uygun konaklama için talep oluşturun."
-                en="Request accommodation suited to your group size and sport at our partner hotels in Palandöken."
-              />
-            }
-          />
+          <SectionTitle title={<C k="rez.hotels.title" />} text={<C k="rez.hotels.text" />} />
           <div className="stagger mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {HOTELS.map((h) => {
-              const img = hotelImage(h.slug);
+              const img = hotelCover(h.slug);
               return (
                 <article
                   key={h.slug}
-                  className="reveal flex flex-col overflow-hidden rounded-3xl border border-surface-container-high bg-white shadow-sm"
+                  className="reveal group flex flex-col overflow-hidden rounded-3xl border border-surface-container-high bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
                 >
-                  <div className="relative h-48 overflow-hidden bg-surface-container">
+                  <Link href={`/rezervasyon/oteller/${h.slug}`} aria-label={h.name} className="relative block h-56 overflow-hidden bg-surface-container">
                     <OptImg
                       sizes="(min-width:1280px) 25vw, (min-width:768px) 50vw, 100vw"
-                      src={img.src}
+                      src={img}
                       alt={h.name}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      style={h.focus ? { objectPosition: h.focus } : undefined}
                     />
-                    <span className="absolute top-3 left-3 rounded-full bg-primary-container px-3 py-1 font-label-caps text-label-caps text-on-primary-container uppercase">
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                    <span className="absolute top-4 left-4 inline-flex items-center gap-1 rounded-full bg-primary-container px-3 py-1 font-label-caps text-label-caps text-on-primary-container uppercase">
+                      <span className="material-symbols-outlined text-[14px]">verified</span>
                       <L tr="Anlaşmalı" en="Partner" />
                     </span>
-                    {img.own ? null : (
-                      <span className="absolute right-3 bottom-3 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-semibold text-white">
-                        <L tr="Temsili görsel" en="Representative image" />
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <span className="font-label-caps text-label-caps text-primary uppercase">
-                      <L tr={h.tag.tr} en={h.tag.en} />
-                    </span>
-                    <h3 className="mt-1 font-headline-md text-lg font-bold text-on-surface">{h.name}</h3>
-                    <p className="mt-2 flex-1 text-sm text-on-surface-variant">
-                      <L tr={h.tr} en={h.en} />
-                    </p>
+                    <h3 className="absolute right-4 bottom-4 left-4 font-headline-md text-xl leading-tight font-extrabold text-white drop-shadow">{h.name}</h3>
+                  </Link>
+                  <div className="flex flex-1 flex-col gap-3 p-5">
                     <Link
-                      href={q({ brans: "Konaklama", konu: h.name })}
-                      className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-primary hover:underline"
+                      href={`/rezervasyon/oteller/${h.slug}`}
+                      className="mt-auto inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3.5 text-center text-sm font-bold text-white transition-colors hover:bg-primary-container hover:text-on-primary-container"
                     >
-                      <L tr="Konaklama talebi" en="Accommodation request" />
+                      <L tr="Detay" en="Details" />
                       <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                     </Link>
+                    <Link
+                      href={q({ brans: "Konaklama", konu: `${h.name} – fiyat ve doluluk bilgisi` })}
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-on-surface px-5 py-3 text-center text-sm font-bold text-on-surface transition-colors hover:bg-on-surface hover:text-white"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">event_available</span>
+                      <L tr="Rezervasyon talebi" en="Request a booking" />
+                    </Link>
+                    <div className="flex items-center justify-between border-t border-surface-container-high pt-3 text-xs font-bold text-on-surface-variant">
+                      <a href={h.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-primary">
+                        <span className="material-symbols-outlined text-[16px]">language</span>
+                        <L tr="Otel sitesi" en="Hotel website" />
+                      </a>
+                      <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(h.mapQuery)}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-primary">
+                        <span className="material-symbols-outlined text-[16px]">location_on</span>
+                        <L tr="Haritada gör" en="View on map" />
+                      </a>
+                    </div>
                   </div>
                 </article>
               );
             })}
           </div>
+
+          <ol className="mt-10 grid gap-4 md:grid-cols-3">
+            {[
+              { tr: "Talep gönderin", en: "Send a request", trText: "Otel, kafile büyüklüğü ve tarihleri formda belirtin.", enText: "Tell us the hotel, group size and dates in the form." },
+              { tr: "Teklif alın", en: "Get an offer", trText: "Ekibimiz fiyat ve doluluk bilgisini size iletir.", enText: "Our team sends you prices and availability." },
+              { tr: "Kampınızı planlayın", en: "Plan your camp", trText: "Konaklama, tesis kullanımı ve ekipman tek yerden planlanır.", enText: "Accommodation, facility use and equipment are planned in one place." },
+            ].map((step, i) => (
+              <li key={step.tr} className="flex gap-4 rounded-2xl border border-surface-container-high bg-surface-container-low p-5">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary-container font-bold text-on-primary-container">{i + 1}</span>
+                <div>
+                  <h3 className="font-bold text-on-surface"><L tr={step.tr} en={step.en} /></h3>
+                  <p className="mt-1 text-sm text-on-surface-variant"><L tr={step.trText} en={step.enText} /></p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": HOTELS.map((h) => ({
+                  "@type": "Hotel",
+                  name: h.name,
+                  url: h.url,
+                  image: hotelCover(h.slug),
+                  address: { "@type": "PostalAddress", addressLocality: "Palandöken, Erzurum", addressCountry: "TR" },
+                })),
+              }).replace(/</g, "\\u003c"),
+            }}
+          />
         </div>
       </section>
 
       <section id="ekipman" className="scroll-mt-6 bg-surface-container-low px-margin-mobile py-12 md:px-margin md:py-16">
         <div className="mx-auto max-w-[1400px]">
-          <SectionTitle
-            title={<L tr="Ekipman kiralama" en="Equipment rental" />}
-            text={
-              <L
-                tr="İhtiyaç duyduğunuz ekipmanı ve adedini iletin; uygunluk ve koşullar hakkında size dönüş yapılır."
-                en="Tell us which equipment you need and how many; we will get back to you on availability and terms."
-              />
-            }
-          />
+          <SectionTitle title={<C k="rez.equip.title" />} text={<C k="rez.equip.text" />} />
           <ul className="stagger mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {EQUIPMENT.map((e) => (
               <li key={e.icon + e.tr}>
                 <Link
-                  href={q({ brans: "Ekipman kiralama", konu: e.tr })}
+                  href={q({ brans: "Ekipman kiralama", konu: `${e.tr} – fiyat ve uygunluk bilgisi` })}
                   className="reveal flex h-full flex-col items-center gap-3 rounded-2xl border border-surface-container-high bg-white p-6 text-center transition hover:-translate-y-1 hover:shadow-lg"
                 >
                   <span className="material-symbols-outlined text-[36px] text-primary">{e.icon}</span>
@@ -215,7 +211,7 @@ export default function ReservationPage() {
                     <L tr={e.tr} en={e.en} />
                   </span>
                   <span className="text-xs font-bold text-primary">
-                    <L tr="Kiralama talebi" en="Rental request" />
+                    <L tr="Fiyat için iletişime geçin" en="Contact us for prices" />
                   </span>
                 </Link>
               </li>
@@ -226,15 +222,7 @@ export default function ReservationPage() {
 
       <section id="brans" className="scroll-mt-6 px-margin-mobile py-12 md:px-margin md:py-16">
         <div className="mx-auto max-w-[1400px]">
-          <SectionTitle
-            title={<L tr="Hangi branş için kamp planlıyorsunuz?" en="Which sport are you planning a camp for?" />}
-            text={
-              <L
-                tr="Branşınızı seçin; saha, salon ve fizyoterapi ihtiyaçlarınızı birlikte planlayalım."
-                en="Choose your sport and we will plan the pitches, halls and physiotherapy you need together."
-              />
-            }
-          />
+          <SectionTitle title={<C k="rez.branch.title" />} text={<C k="rez.branch.text" />} />
           <ul className="stagger mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {BRANCHES.map((b) => (
               <li key={b.value}>
@@ -255,13 +243,10 @@ export default function ReservationPage() {
 
       <section id="masa" className="scroll-mt-6 bg-surface-container-low px-margin-mobile py-12 md:px-margin md:py-16">
         <div className="mx-auto max-w-[1400px]">
-          <SectionTitle
-            title={<L tr="Masa rezervasyonu" en="Table bookings" />}
-            text={<L tr="Kafileniz için yemek ve dinlenme alanlarında yer ayırtın." en="Reserve a place for your group in our dining and rest areas." />}
-          />
+          <SectionTitle title={<C k="rez.tables.title" />} text={<C k="rez.tables.text" />} />
           <div className="stagger mt-8 grid gap-6 md:grid-cols-2">
             {DINING.map((d) => (
-              <article key={d.tr} className="reveal rounded-3xl border border-surface-container-high bg-white p-6 shadow-sm md:p-8">
+              <article key={d.tr} className="reveal rounded-3xl border border-surface-container-high bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:p-8">
                 <span className="material-symbols-outlined text-[32px] text-primary">{d.icon}</span>
                 <h3 className="mt-3 font-headline-md text-xl font-bold text-on-surface">
                   <L tr={d.tr} en={d.en} />
@@ -270,10 +255,10 @@ export default function ReservationPage() {
                   <L tr={d.trText} en={d.enText} />
                 </p>
                 <Link
-                  href={q({ brans: "Konaklama", konu: `Masa rezervasyonu – ${d.tr}` })}
+                  href={q({ brans: "Masa rezervasyonu", konu: `Masa rezervasyonu – ${d.tr}` })}
                   className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-primary hover:underline"
                 >
-                  <L tr="Masa talebi" en="Table request" />
+                  <L tr="Doluluk için iletişime geçin" en="Contact us for availability" />
                   <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                 </Link>
               </article>
@@ -282,7 +267,32 @@ export default function ReservationPage() {
         </div>
       </section>
 
+      <section id="test" className="scroll-mt-6 px-margin-mobile py-12 md:px-margin md:py-16">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="reveal relative overflow-hidden rounded-3xl bg-ink p-8 text-white md:p-12">
+            <span className="material-symbols-outlined pointer-events-none absolute -right-4 -bottom-6 text-[200px] text-white/5">monitor_heart</span>
+            <span className="inline-flex rounded-full bg-primary-container px-3 py-1 font-label-caps text-label-caps text-on-primary-container uppercase">
+              <C k="rez.test.badge" />
+            </span>
+            <h2 className="mt-4 max-w-2xl font-headline-lg text-[28px] font-extrabold tracking-tight md:text-4xl">
+              <C k="rez.test.title" />
+            </h2>
+            <p className="mt-3 max-w-2xl text-white/75">
+              <C k="rez.test.text" />
+            </p>
+            <Link
+              href={q({ brans: "Performans testi", konu: "Performans testi randevusu" })}
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary-container px-7 py-3.5 text-sm font-bold text-on-primary-container transition-colors hover:bg-white"
+            >
+              <C k="rez.test.button" />
+              <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <ReservationCta />
+      <LocationSection />
     </main>
   );
 }

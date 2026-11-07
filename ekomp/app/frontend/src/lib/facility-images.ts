@@ -40,24 +40,6 @@ const GALLERY_BY_SLUG: Record<string, string[]> = {
   ],
 };
 
-export const IMAGE_CREDITS = [
-  "Yüzme havuzu: WikiFix2007, Melbourne Sports and Aquatic Centre (CC BY-SA 4.0)",
-  "Güreş: Gastón Cuello, Gençlik Olimpiyatları 2018 (CC BY-SA 4.0)",
-  "Atletizm pisti: Neukoln (CC BY-SA 3.0)",
-  "Üniversiade heykeli: Zeynel Cebeci (CC BY-SA 4.0)",
-  "Salon sporları: Aysinpir, Bilkent Erzurum Spor Salonu (CC BY-SA 3.0)",
-  "Kayak: hüseyin yeşil, Palandöken Kayak Merkezi (CC BY 3.0)",
-  "Kayak pisti (haber görseli): Eric Miller (CC0)",
-  "Curling Salonu, Kayakla Atlama Kuleleri: Eğitmen Mahmut (CC BY-SA 3.0)",
-  "Buz arenası: Kkr1122, GSIM Buz Arenası, Erzurum (CC BY-SA 4.0)",
-  "Judo: Korea.net / Korean Culture and Information Service (CC BY-SA 2.0)",
-  "Yüzme havuzu binası: E-92, DPÜ Olimpik Yüzme Havuzu (CC BY-SA 4.0)",
-  "Palandöken manzarası: Bjørn Christian Tørrissen (CC BY-SA 3.0)",
-  "Kayakla atlama kuleleri: Mehrdad Sarhangi (CC BY 3.0)",
-  "Futbol sahaları: Erzurum Yüksek İrtifa Kamp Merkezi arşivi",
-  "Fotoğraflar Wikimedia Commons'tan alınmıştır; tesis görselleri temsilidir.",
-];
-
 export function facilityImage(facility: Facility): string | undefined {
   return assetUrl(facility.imageUrl) ?? IMAGE_BY_SLUG[facility.slug];
 }

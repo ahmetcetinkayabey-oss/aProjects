@@ -5,11 +5,14 @@ import {
   Delete,
   Get,
   HttpCode,
+  Injectable,
   Ip,
   Param,
   ParseUUIDPipe,
   Patch,
+  PipeTransform,
   Post,
+  Put,
   Req,
   UploadedFile,
   UseGuards,
@@ -22,6 +25,8 @@ import { AdminGuard } from './admin.guard.js';
 import {
   ChangePasswordDto,
   LoginDto,
+  MailSettingsDto,
+  MailTestDto,
   UpdateReservationDto,
 } from './admin.dto.js';
 import { FacilitiesService } from '../facilities/facilities.service.js';
@@ -32,6 +37,9 @@ import {
 import { NewsService } from '../news/news.service.js';
 import { CreateNewsDto, UpdateNewsDto } from '../news/news.dto.js';
 import { ReservationsService } from '../reservations/reservations.service.js';
+import { NotificationsService } from '../notifications/notifications.service.js';
+import { ContentService } from '../content/content.service.js';
+import { UpsertContentDto } from '../content/content.dto.js';
 import { FeedbackService } from '../feedback/feedback.service.js';
 import { UpdateFeedbackDto } from '../feedback/feedback.dto.js';
 import {
@@ -39,6 +47,16 @@ import {
   hasImageSignature,
   storeImage,
 } from './image-storage.js';
+
+const KEY_PATTERN = /^[a-z0-9][a-z0-9._-]{0,118}$/;
+
+@Injectable()
+class ContentKeyPipe implements PipeTransform<string, string> {
+  transform(value: string): string {
+    if (!KEY_PATTERN.test(value)) throw new BadRequestException('Geçersiz metin anahtarı.');
+    return value;
+  }
+}
 
 type AdminRequest = { adminUser: string };
 
@@ -50,6 +68,8 @@ export class AdminController {
     private readonly facilities: FacilitiesService,
     private readonly news: NewsService,
     private readonly feedback: FeedbackService,
+    private readonly content: ContentService,
+    private readonly notifications: NotificationsService,
   ) {}
 
   @Post('login')
@@ -131,6 +151,52 @@ export class AdminController {
   @HttpCode(204)
   removeFeedback(@Param('id', ParseUUIDPipe) id: string) {
     return this.feedback.remove(id);
+  }
+
+  // --- E-posta (SMTP) durumu ve testi ---
+  @Get('mail-status')
+  @UseGuards(AdminGuard)
+  mailStatus() {
+    return this.notifications.status();
+  }
+
+  @Put('mail-settings')
+  @UseGuards(AdminGuard)
+  saveMailSettings(@Body() dto: MailSettingsDto) {
+    return this.notifications.saveSettings(dto);
+  }
+
+  @Delete('mail-settings/password')
+  @UseGuards(AdminGuard)
+  clearMailPassword() {
+    return this.notifications.clearPassword();
+  }
+
+  @Post('mail-test')
+  @UseGuards(AdminGuard)
+  @HttpCode(200)
+  mailTest(@Body() dto: MailTestDto) {
+    return this.notifications.sendTest(dto.to);
+  }
+
+  // --- Site metinleri ---
+  @Get('content')
+  @UseGuards(AdminGuard)
+  listContent() {
+    return this.content.asMap();
+  }
+
+  @Put('content/:key')
+  @UseGuards(AdminGuard)
+  saveContent(@Param('key', ContentKeyPipe) key: string, @Body() dto: UpsertContentDto) {
+    return this.content.upsert(key, dto);
+  }
+
+  @Delete('content/:key')
+  @UseGuards(AdminGuard)
+  @HttpCode(204)
+  resetContent(@Param('key', ContentKeyPipe) key: string) {
+    return this.content.reset(key);
   }
 
   // --- Tesisler ---

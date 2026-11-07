@@ -48,6 +48,31 @@ export default function AdminDashboardPage() {
         ))}
       </div>
 
+      <section className="mt-space-xl">
+        <h2 className="mb-space-sm font-headline-md text-headline-md text-on-surface">Hızlı işlemler</h2>
+        <div className="grid gap-space-sm sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { href: "/admin/rezervasyonlar", icon: "event_available", title: "Talepleri incele", text: "Gelen talepleri görüntüle, ara, durumunu güncelle." },
+            { href: "/admin/icerik", icon: "edit_note", title: "Sayfa metinlerini düzenle", text: "Başlık ve yazıları değiştir." },
+            { href: "/admin/haberler", icon: "newspaper", title: "Haber ekle", text: "Yeni haber yayınla veya düzenle." },
+            { href: "/rezervasyon", icon: "open_in_new", title: "Siteyi görüntüle", text: "Rezervasyon sayfasını yeni sekmede aç.", external: true },
+          ].map((a) => (
+            <Link
+              key={a.href}
+              href={a.href}
+              target={a.external ? "_blank" : undefined}
+              className="flex gap-space-sm border border-surface-container-highest bg-white p-space-md transition-colors hover:border-primary hover:bg-surface-container-low"
+            >
+              <span className="material-symbols-outlined text-primary">{a.icon}</span>
+              <span>
+                <span className="block font-semibold text-on-surface">{a.title}</span>
+                <span className="block text-sm text-on-surface-variant">{a.text}</span>
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="mt-space-xl border border-surface-container-highest bg-white p-space-lg">
         <h2 className="font-headline-md text-headline-md text-on-surface">Taleplerin durumu</h2>
         <ul className="mt-space-md grid gap-space-sm sm:grid-cols-2 lg:grid-cols-4">

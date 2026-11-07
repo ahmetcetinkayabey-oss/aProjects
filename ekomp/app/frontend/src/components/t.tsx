@@ -9,6 +9,17 @@ export function T({ k }: { k: DictKey }) {
   return <>{t(k)}</>;
 }
 
+/** Yönetim panelinden değiştirilebilen metin (lib/content-registry.ts). Düz metin döndürür; stil kapsayıcıdan gelir. */
+export function C({ k, vars, fallback }: { k: string; vars?: Record<string, string | number>; fallback?: { tr: string; en: string } }) {
+  const { c } = useLocale();
+  return <>{c(k, vars, fallback)}</>;
+}
+
+/** İstemci bileşenlerinde alt, placeholder gibi yerlerde yönetilebilir metin: const c = useC(); c("anahtar") */
+export function useC(): (key: string, vars?: Record<string, string | number>, fallback?: { tr: string; en: string }) => string {
+  return useLocale().c;
+}
+
 /**
  * Satır içi çeviri: sunucu bileşenlerinde sabit bir metnin iki dilini yan yana yazmak için.
  * İngilizce boşsa Türkçe gösterilir (örn. yöneticinin girdiği ve çevirisi olmayan içerik).

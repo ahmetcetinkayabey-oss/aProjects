@@ -35,7 +35,7 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#222222] p-space-md">
+    <div className="flex min-h-screen items-center justify-center bg-[#0B132B] p-space-md">
       <form onSubmit={onSubmit} className="w-full max-w-sm space-y-space-md bg-white p-space-xl">
         <div className="text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}

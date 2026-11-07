@@ -8,7 +8,7 @@ export const inputClass =
   "w-full border border-surface-container-highest bg-white px-space-md py-space-sm font-body-md text-body-md text-on-surface outline-none focus:border-primary";
 
 export const btnPrimary =
-  "bg-primary-container px-space-lg py-space-sm font-label-caps text-label-caps text-on-primary-container uppercase transition-colors hover:bg-[#222222] hover:text-white disabled:opacity-60";
+  "bg-primary-container px-space-lg py-space-sm font-label-caps text-label-caps text-on-primary-container uppercase transition-colors hover:bg-[#0B132B] hover:text-white disabled:opacity-60";
 
 // Ghost ve danger aynı ölçülerde: yan yana durduklarında hizası bozulmaz.
 export const btnGhost =

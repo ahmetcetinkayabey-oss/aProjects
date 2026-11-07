@@ -2,7 +2,7 @@
 
 import { Suspense, useState, type FormEvent } from "react";
 import { createReservation } from "@/lib/api";
-import { useL } from "./t";
+import { useC, useL } from "./t";
 import { OptImg } from "@/components/opt-img";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -15,6 +15,8 @@ const SPORT_BRANCHES = [
   { value: "Dövüş Sporları", en: "Combat Sports" },
   { value: "Ekipman kiralama", en: "Equipment rental" },
   { value: "Konaklama", en: "Accommodation" },
+  { value: "Performans testi", en: "Performance test" },
+  { value: "Masa rezervasyonu", en: "Table booking" },
   { value: "Salon Sporları", en: "Indoor Sports" },
   { value: "Diğer", en: "Other" },
 ];
@@ -48,6 +50,7 @@ function ReservationFormLoader() {
 
 function ReservationForm({ brans, konu }: { brans: string; konu: string }) {
   const l = useL();
+  const c = useC();
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
   const [startDate, setStartDate] = useState("");
@@ -105,13 +108,13 @@ function ReservationForm({ brans, konu }: { brans: string; konu: string }) {
           <div className="relative">
             <span className="inline-flex items-center gap-2 rounded-full bg-primary-container px-4 py-1.5 font-label-caps text-label-caps text-on-primary-container uppercase">
               <span className="material-symbols-outlined text-[16px]">event_available</span>
-              {l("Kamp talebi", "Camp request")}
+              {c("cta.badge")}
             </span>
             <h2 className="mt-5 font-headline-lg text-[32px] leading-tight font-extrabold tracking-tight text-white md:text-5xl">
-              {l("Kampınızı birlikte planlayalım", "Let us plan your camp together")}
+              {c("cta.title")}
             </h2>
             <p className="mt-4 font-body-lg text-lg text-white/75">
-              {l("Formu doldurun, ekibimiz sizi arasın.", "Fill in the form and our team will call you.")}
+              {c("cta.text")}
             </p>
           </div>
           <ul className="relative grid gap-3">
@@ -196,7 +199,7 @@ function ReservationForm({ brans, konu }: { brans: string; konu: string }) {
 
           {status === "success" ? (
             <p className="rounded-xl bg-green-50 px-4 py-3 text-sm font-semibold text-green-800 sm:col-span-2">
-              {l("Talebiniz alındı. Ekibimiz en kısa sürede sizinle iletişime geçecek.", "Your request has been received. Our team will contact you shortly.")}
+              {c("cta.success")}
             </p>
           ) : null}
           {status === "error" ? (

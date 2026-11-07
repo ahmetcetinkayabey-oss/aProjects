@@ -1,5 +1,5 @@
 import { SectionHeading } from "./section-heading";
-import { L } from "./t";
+import { C, L } from "./t";
 import { OptImg } from "@/components/opt-img";
 
 const GALLERY_ITEMS = [
@@ -15,7 +15,7 @@ export function FacilityGallery() {
   return (
     <section id="galeri" className="w-full bg-surface px-margin-mobile py-20 md:px-margin md:py-28">
       <div className="mx-auto max-w-[1400px]">
-        <SectionHeading eyebrow={<L tr="Galeri" en="Gallery" />} title={<L tr="Sahadan kareler" en="Moments from the pitch" />} />
+        <SectionHeading eyebrow={<C k="gallery.eyebrow" />} title={<C k="gallery.title" />} />
         <div className="mt-12 grid auto-rows-[160px] grid-cols-2 gap-3 md:auto-rows-[240px] md:grid-cols-4 md:gap-4">
           {GALLERY_ITEMS.map((item) => (
             <figure

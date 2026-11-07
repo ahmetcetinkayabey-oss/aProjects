@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { IMAGE_CREDITS, facilityImage } from "@/lib/facility-images";
+import { facilityImage } from "@/lib/facility-images";
 import type { Facility } from "@/lib/types";
-import { FACILITIES_EN, IMAGE_CREDITS_EN } from "@/lib/content-en";
+import { FACILITIES_EN } from "@/lib/content-en";
 import { SectionHeadingL } from "./i18n-headings";
 import { L } from "./t";
 import { OptImg } from "@/components/opt-img";
@@ -84,14 +84,7 @@ export function FacilitiesShowcase({
       className="w-full bg-surface-container-low px-margin-mobile py-20 md:px-margin md:py-28"
     >
       <div className="mx-auto max-w-[1400px]">
-        <SectionHeadingL
-          eyebrow={["Tesisler", "Facilities"]}
-          title={["Her branşa bir tesis", "A facility for every discipline"]}
-          text={[
-            `Palandöken eteklerinde ${facilities.length} ana tesis.`,
-            `${facilities.length} main facilities at the foot of Palandöken.`,
-          ]}
-        />
+        <SectionHeadingL eyebrow="facilities.eyebrow" title="facilities.title" text="facilities.text" vars={{ count: facilities.length }} />
         <div className="stagger mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {shown.map((facility) => (
             <FacilityCard key={facility.id} facility={facility} />
@@ -108,15 +101,6 @@ export function FacilitiesShowcase({
             </Link>
           </div>
         ) : null}
-        {limit ? null : (
-          <p className="mt-12 text-sm text-on-surface-variant">
-            <L tr="Görsel kaynakları:" en="Image credits:" />{" "}
-            <L
-              tr={IMAGE_CREDITS.join(" · ")}
-              en={IMAGE_CREDITS_EN.length === IMAGE_CREDITS.length ? IMAGE_CREDITS_EN.join(" · ") : null}
-            />
-          </p>
-        )}
       </div>
     </section>
   );

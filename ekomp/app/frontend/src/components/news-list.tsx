@@ -4,7 +4,7 @@ import type { NewsItem } from "@/lib/site";
 import type { ReactNode } from "react";
 import { NEWS_EN } from "@/lib/content-en";
 import { SectionHeadingL } from "./i18n-headings";
-import { L } from "./t";
+import { C, L } from "./t";
 import { OptImg } from "@/components/opt-img";
 
 /** İçerik uzunluğundan tahmini okuma süresi (dakika). İçerik yoksa özetten hesaplanır. */
@@ -68,20 +68,13 @@ export async function NewsList({ limit }: { limit?: number }) {
     <section className="w-full bg-surface-container-low px-margin-mobile py-20 md:px-margin md:py-28">
       <div className="mx-auto max-w-[1400px]">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeadingL
-            eyebrow={["Haberler", "News"]}
-            title={["Güncel gelişmeler", "Latest developments"]}
-            text={[
-              "Kamp merkezinden, Erzurum'un kış ve yaz sporlarından haberler ve rehberler.",
-              "News and guides from the camp centre and from winter and summer sports in Erzurum.",
-            ]}
-          />
+          <SectionHeadingL eyebrow="news.eyebrow" title="news.title" text="news.text" />
           {limit ? (
             <Link
               href="/haberler"
               className="inline-flex items-center gap-1 rounded-full border border-on-surface px-5 py-2.5 text-sm font-bold text-on-surface transition-colors hover:bg-on-surface hover:text-white"
             >
-              <L tr="Tümü" en="View all" />
+              <C k="news.all" />
               <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
             </Link>
           ) : null}

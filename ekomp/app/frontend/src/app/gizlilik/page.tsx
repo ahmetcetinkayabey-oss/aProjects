@@ -81,8 +81,8 @@ const SECTIONS: Section[] = [
         en: "The site does not use advertising or tracking cookies. Your browser only stores your language preference and, if you log in to a Forum account, your session token.",
       },
       {
-        tr: "İletişim sayfasındaki harita Google Haritalar’dan, simge yazı tipi ise Google Fonts’tan yüklenir; bu sırada IP adresiniz bu hizmet sağlayıcılara iletilir. Ana sayfadaki hava durumu bilgisi sunucumuz tarafından Open-Meteo’dan alınır; ziyaretçi bilgisi bu hizmete iletilmez.",
-        en: "The map on the Contact page is loaded from Google Maps and the icon font from Google Fonts; your IP address is transmitted to these providers when they load. The weather information on the home page is fetched by our server from Open-Meteo; no visitor data is sent to that service.",
+        tr: "Rezervasyon sayfasındaki harita Google Haritalar’dan, simge yazı tipi ise Google Fonts’tan yüklenir; bu sırada IP adresiniz bu hizmet sağlayıcılara iletilir. Ana sayfadaki hava durumu bilgisi sunucumuz tarafından Open-Meteo’dan alınır; ziyaretçi bilgisi bu hizmete iletilmez.",
+        en: "The map on the Reservation page is loaded from Google Maps and the icon font from Google Fonts; your IP address is transmitted to these providers when they load. The weather information on the home page is fetched by our server from Open-Meteo; no visitor data is sent to that service.",
       },
       {
         tr: "Güvenlik amacıyla formlara ve yönetici girişine yönelik hatalı veya aşırı denemeler IP adresine göre geçici olarak (bellekte) sınırlandırılır; bu bilgi kalıcı olarak saklanmaz.",

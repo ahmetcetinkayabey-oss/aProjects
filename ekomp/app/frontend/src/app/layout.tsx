@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Raleway } from "next/font/google";
 import { SiteChrome } from "@/components/site-chrome";
+import { getContent } from "@/lib/api";
 import { LocaleProvider } from "@/lib/i18n";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site-url";
 import { ICON_FONT_HREF } from "@/lib/icons";
@@ -44,7 +45,8 @@ const JSON_LD = {
   address: { "@type": "PostalAddress", addressLocality: "Palandöken, Erzurum", addressCountry: "TR" },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const content = await getContent();
   return (
     <html
       lang="tr"
@@ -67,7 +69,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="min-h-full bg-surface font-body-md text-on-surface selection:bg-primary-container selection:text-on-background">
-        <LocaleProvider>
+        <LocaleProvider content={content}>
           <SiteChrome>{children}</SiteChrome>
         </LocaleProvider>
       </body>

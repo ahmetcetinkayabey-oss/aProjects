@@ -137,7 +137,7 @@ export const FALLBACK_FACILITIES: Facility[] = [
     id: "kayakla-atlama",
     slug: "kayakla-atlama",
     category: "KAYAKLA ATLAMA",
-    icon: "ski_jumping",
+    icon: "terrain",
     title: "Kayakla Atlama Kuleleri",
     description: "Palandöken'deki atlama kuleleri, Erzurum'un uluslararası kış organizasyonlarında kullanılan sembol tesislerinden biridir. Kayakla atlama ve nordik branşlar için kamp imkânı.",
     badge: "KIŞ OYUNLARI TESİSİ",

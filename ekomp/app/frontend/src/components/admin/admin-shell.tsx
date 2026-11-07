@@ -9,6 +9,7 @@ const MENU = [
   { href: "/admin", label: "Özet", icon: "dashboard" },
   { href: "/admin/rezervasyonlar", label: "Rezervasyon Talepleri", icon: "event_available" },
   { href: "/admin/geri-bildirimler", label: "Geri Bildirimler", icon: "rate_review" },
+  { href: "/admin/icerik", label: "Sayfa İçerikleri", icon: "edit_note" },
   { href: "/admin/tesisler", label: "Tesisler", icon: "stadium" },
   { href: "/admin/haberler", label: "Haberler", icon: "newspaper" },
   { href: "/admin/ayarlar", label: "Hesap Ayarları", icon: "manage_accounts" },
@@ -50,7 +51,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-surface-container-low lg:flex">
       <aside
-        className={`${menuOpen ? "block" : "hidden"} w-full shrink-0 bg-[#222222] text-white lg:sticky lg:top-0 lg:block lg:h-screen lg:w-64 lg:overflow-y-auto`}
+        className={`${menuOpen ? "block" : "hidden"} w-full shrink-0 bg-[#0B132B] text-white lg:sticky lg:top-0 lg:block lg:h-screen lg:w-64 lg:overflow-y-auto`}
       >
         <div className="px-space-lg py-space-lg">
           <p className="font-headline-md text-headline-md leading-tight">Yönetim Paneli</p>
@@ -92,7 +93,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
       </aside>
 
       <div className="min-w-0 flex-1">
-        <div className="flex items-center justify-between bg-[#222222] px-space-md py-space-sm text-white lg:hidden">
+        <div className="flex items-center justify-between bg-[#0B132B] px-space-md py-space-sm text-white lg:hidden">
           <span className="font-semibold">Yönetim Paneli</span>
           <button
             type="button"

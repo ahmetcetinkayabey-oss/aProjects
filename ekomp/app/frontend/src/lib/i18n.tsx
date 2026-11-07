@@ -2,6 +2,10 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { DICTIONARY, type DictKey, type Locale } from "./dictionary";
+import { CONTENT_FIELDS } from "./content-registry";
+
+/** Yönetim panelinden değiştirilmiş metinler: anahtar -> { tr, en }. */
+export type ContentOverrides = Record<string, { tr: string; en: string | null }>;
 
 const STORAGE_KEY = "ekomp_locale";
 
@@ -9,6 +13,8 @@ interface LocaleContextValue {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: (key: DictKey) => string;
+  /** Yönetilebilir metin (content-registry.ts): panelde değiştirilmişse o, yoksa varsayılan. {ad} yer tutucuları vars ile değişir. */
+  c: (key: string, vars?: Record<string, string | number>, fallback?: { tr: string; en: string }) => string;
 }
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
@@ -27,7 +33,7 @@ function readStored(): Locale | null {
  * ilk ziyarette tarayıcı dili "tr" ise Türkçe, değilse İngilizce açılır.
  * Dil değişimi yalnızca bağlamı günceller; sayfa yeniden yüklenmez, form/oturum bozulmaz.
  */
-export function LocaleProvider({ children }: { children: ReactNode }) {
+export function LocaleProvider({ children, content = {} }: { children: ReactNode; content?: ContentOverrides }) {
   const [locale, setLocaleState] = useState<Locale>("tr");
 
   useEffect(() => {
@@ -50,8 +56,29 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo<LocaleContextValue>(
-    () => ({ locale, setLocale, t: (key) => DICTIONARY[locale][key] ?? DICTIONARY.tr[key] }),
-    [locale, setLocale],
+    () => {
+      const resolve = (key: string, vars?: Record<string, string | number>, fallback?: { tr: string; en: string }): string => {
+        const field = CONTENT_FIELDS[key];
+        const override = content[key];
+        let text: string;
+        if (override) text = pickOverride(locale, override);
+        else if (field?.dict) text = DICTIONARY[locale][field.dict] ?? DICTIONARY.tr[field.dict];
+        else if (field) text = (locale === "tr" ? field.tr : field.en) ?? field.tr ?? "";
+        else if (fallback) text = locale === "tr" ? fallback.tr : fallback.en || fallback.tr;
+        else text = "";
+        return vars ? text.replace(/\{(\w+)\}/g, (m, name: string) => (name in vars ? String(vars[name]) : m)) : text;
+      };
+      return {
+        locale,
+        setLocale,
+        t: (key) => {
+          const override = content[key];
+          return override ? pickOverride(locale, override) : (DICTIONARY[locale][key] ?? DICTIONARY.tr[key]);
+        },
+        c: resolve,
+      };
+    },
+    [locale, setLocale, content],
   );
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
@@ -61,6 +88,11 @@ export function useLocale(): LocaleContextValue {
   const ctx = useContext(LocaleContext);
   if (!ctx) throw new Error("useLocale, LocaleProvider içinde kullanılmalı.");
   return ctx;
+}
+
+/** Panelden değiştirilmiş metin: Türkçe birebir kullanılır (boş olabilir); İngilizce boşsa Türkçe gösterilir. */
+function pickOverride(locale: Locale, o: { tr: string; en: string | null }): string {
+  return locale === "tr" ? o.tr : o.en?.trim() ? o.en : o.tr;
 }
 
 /** Yönetilebilir içerik: seçili dil boşsa kontrollü olarak diğer dile döner. */

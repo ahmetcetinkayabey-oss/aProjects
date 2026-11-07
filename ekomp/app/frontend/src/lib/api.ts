@@ -1,5 +1,6 @@
 import { FALLBACK_FACILITIES } from "./fallback-data";
 import { NEWS_ITEMS, type NewsItem } from "./site";
+import type { ContentOverrides } from "./i18n";
 import type { CreateReservationInput, Facility } from "./types";
 
 if (process.env.NODE_ENV === "production" && !process.env.NEXT_PUBLIC_API_URL) {
@@ -14,14 +15,19 @@ export function assetUrl(url?: string | null): string | undefined {
   return url.startsWith("/uploads/") ? `${API_ORIGIN}${url}` : url;
 }
 
-async function getJson<T>(path: string, fallback: T): Promise<T> {
+async function getJson<T>(path: string, fallback: T, tags?: string[]): Promise<T> {
   try {
-    const res = await fetch(`${API_URL}${path}`, { next: { revalidate: 60 } });
+    const res = await fetch(`${API_URL}${path}`, { next: { revalidate: 60, tags } });
     if (!res.ok) return fallback;
     return (await res.json()) as T;
   } catch {
     return fallback;
   }
+}
+
+/** Yönetim panelinden değiştirilmiş site metinleri (panel kaydedince önbellek "content" etiketiyle hemen yenilenir). */
+export function getContent(): Promise<ContentOverrides> {
+  return getJson<ContentOverrides>("/content", {}, ["content"]);
 }
 
 export function getFacilities(): Promise<Facility[]> {

@@ -107,7 +107,7 @@ export default async function FacilityDetailPage({ params }: Props) {
             </dl>
 
             <Link
-              href="/iletisim#rezervasyon"
+              href="/rezervasyon#rezervasyon"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary-container px-8 py-4 font-label-caps text-label-caps text-on-primary-container uppercase transition-colors hover:bg-ink hover:text-white"
             >
               <L tr="Bu tesis için talep oluştur" en="Request this facility" />
