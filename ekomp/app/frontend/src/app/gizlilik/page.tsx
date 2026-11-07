@@ -37,7 +37,7 @@ const SECTIONS: Section[] = [
         en: "Camp request form: organisation name, contact name, email, phone, sport, group size, preferred dates and your note. Purpose: to assess your request, contact you and prepare a camp plan.",
       },
       {
-        tr: "Geri bildirim formu: adınız, (isteğe bağlı) e-posta adresiniz, kategori, memnuniyet puanı ve mesajınız. Amaç: öneri ve şikayetlerinizi değerlendirip hizmet kalitesini artırmak.",
+        tr: "Geri bildirim formu: adınız, (isteğe bağlı) e-posta adresiniz, kategori, memnuniyet puanı ve mesajınız. Amaç: öneri ve şikâyetlerinizi değerlendirip hizmet kalitesini artırmak.",
         en: "Feedback form: your name, (optional) email address, category, satisfaction rating and message. Purpose: to review your suggestions and complaints and improve our service.",
       },
       {

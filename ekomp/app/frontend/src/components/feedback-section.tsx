@@ -21,7 +21,7 @@ const FIELD =
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-/** Ana sayfadaki geri bildirim alanı: ziyaretçiler öneri, şikayet veya teşekkürlerini iletir. */
+/** Ana sayfadaki geri bildirim alanı: ziyaretçiler öneri, şikâyet veya teşekkürlerini iletir. */
 export function FeedbackSection({ dark = false }: { dark?: boolean }) {
   const l = useL();
   const c = useC();
@@ -72,7 +72,7 @@ export function FeedbackSection({ dark = false }: { dark?: boolean }) {
           <ul className={`mt-8 grid gap-3 ${dark ? "text-white/75" : "text-on-surface-variant"}`}>
             {[
               { icon: "lightbulb", text: l("Önerileriniz hizmetimizi geliştirir", "Your suggestions help us improve our service") },
-              { icon: "support_agent", text: l("Şikayetleriniz dikkate alınır", "Your complaints are taken seriously") },
+              { icon: "support_agent", text: l("Şikâyetleriniz dikkate alınır", "Your complaints are taken seriously") },
               { icon: "lock", text: l("E-posta adresiniz isteğe bağlıdır ve paylaşılmaz", "Your email address is optional and will not be shared") },
             ].map((item) => (
               <li key={item.text} className="flex items-center gap-3">

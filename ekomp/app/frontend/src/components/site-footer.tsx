@@ -16,7 +16,7 @@ const RESERVATION_LINKS = [
 
 const HELP_LINKS = [
   { href: "/rezervasyon#rezervasyon", icon: "edit_calendar", tr: "Talep formu", en: "Request form" },
-  { href: "#geri-bildirim", icon: "forum", tr: "Dilek ve şikayetler", en: "Feedback and complaints" },
+  { href: "#geri-bildirim", icon: "forum", tr: "Dilek ve şikâyetler", en: "Feedback and complaints" },
   { href: "/rezervasyon#konum", icon: "directions", tr: "Yol tarifi ve harita", en: "Directions and map" },
   { href: "/gizlilik", icon: "shield", tr: "Gizlilik ve KVKK", en: "Privacy & data protection" },
 ];

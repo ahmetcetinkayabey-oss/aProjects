@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FaqList } from "@/components/faq-list";
 import { OptImg } from "@/components/opt-img";
 import { PageTitle } from "@/components/page-title";
 import { LocationSection } from "@/components/location-section";
@@ -68,6 +69,7 @@ const ANCHORS = [
   { id: "brans", icon: "sports", tr: "Branş kampı", en: "Sport camp" },
   { id: "masa", icon: "restaurant", tr: "Masa", en: "Tables" },
   { id: "test", icon: "monitor_heart", tr: "Performans testi", en: "Performance tests" },
+  { id: "sss", icon: "help", tr: "Sık sorulan sorular", en: "FAQ" },
 ];
 
 const q = (params: Record<string, string>) => `/rezervasyon?${new URLSearchParams(params).toString()}#rezervasyon`;
@@ -287,6 +289,20 @@ export default function ReservationPage() {
               <C k="rez.test.button" />
               <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section id="sss" className="scroll-mt-6 bg-surface-container-low px-margin-mobile py-12 md:px-margin md:py-16">
+        <div className="mx-auto max-w-[1400px]">
+          <SectionTitle title={<C k="rez.faq.title" />} text={<C k="rez.faq.text" />} />
+          <div className="mt-8 max-w-3xl">
+            <FaqList
+              items={[1, 2, 3, 4, 5].map((n) => ({
+                q: <C k={`rez.faq.${n}.q`} />,
+                a: <C k={`rez.faq.${n}.a`} />,
+              }))}
+            />
           </div>
         </div>
       </section>

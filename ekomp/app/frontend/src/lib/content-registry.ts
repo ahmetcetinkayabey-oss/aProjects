@@ -173,6 +173,26 @@ export const CONTENT_GROUPS: ContentGroup[] = [
     ],
   },
   {
+    id: "reservation-faq",
+    title: "Rezervasyon sayfası · Sık sorulan sorular",
+    description: "Rezervasyon sayfasındaki açılır soru-cevap listesi. Soru ve cevapları ihtiyacınıza göre değiştirebilirsiniz.",
+    path: "/rezervasyon#sss",
+    fields: [
+      { key: "rez.faq.title", label: "Bölüm başlığı", tr: "Sık sorulan sorular", en: "Frequently asked questions" },
+      { key: "rez.faq.text", label: "Bölüm açıklaması", tr: "Talep göndermeden önce en çok merak edilenler.", en: "What people most often ask before sending a request." },
+      { key: "rez.faq.1.q", label: "Soru 1", tr: "Fiyat ve doluluk bilgisini nasıl öğrenirim?", en: "How do I find out prices and availability?" },
+      { key: "rez.faq.1.a", label: "Cevap 1", tr: "Fiyat ve doluluk tarihe, kafile büyüklüğüne ve branşa göre değişir. Formu doldurmanız yeterli; ekibimiz size güncel teklifi iletir.", en: "Prices and availability depend on the dates, group size and sport. Just fill in the form and our team will send you a current offer.", multiline: true },
+      { key: "rez.faq.2.q", label: "Soru 2", tr: "Talep gönderdikten sonra ne olur?", en: "What happens after I send a request?" },
+      { key: "rez.faq.2.a", label: "Cevap 2", tr: "Talebiniz ekibimize ulaşır. Yazdığınız telefon veya e-posta üzerinden size dönüş yapılır; talep, ekibimizce takip edilir.", en: "Your request reaches our team, who will get back to you by the phone number or e-mail you provided and follow your request up.", multiline: true },
+      { key: "rez.faq.3.q", label: "Soru 3", tr: "Hangi kafile büyüklükleri için talep verebilirim?", en: "What group sizes can I request for?" },
+      { key: "rez.faq.3.a", label: "Cevap 3", tr: "Kulüp, takım ve milli takım kafileleri için talep alıyoruz. Kişi sayısını ve tarihleri formda belirtmeniz planlama için yeterlidir.", en: "We take requests for clubs, teams and national-team groups. The number of people and the dates in the form are enough to start planning.", multiline: true },
+      { key: "rez.faq.4.q", label: "Soru 4", tr: "Konaklama, tesis ve ekipmanı tek formdan isteyebilir miyim?", en: "Can I request accommodation, facilities and equipment in one form?" },
+      { key: "rez.faq.4.a", label: "Cevap 4", tr: "Evet. Konu ve not alanına ihtiyaçlarınızı yazın: otel, saha veya salon kullanımı, ekipman kiralama ve yemek tek talepte birlikte planlanabilir.", en: "Yes. Describe what you need in the subject and notes: hotel, pitch or hall use, equipment rental and meals can be planned together in one request.", multiline: true },
+      { key: "rez.faq.5.q", label: "Soru 5", tr: "Gönderdiğim talebi nasıl değiştirebilirim?", en: "How can I change a request I have sent?" },
+      { key: "rez.faq.5.a", label: "Cevap 5", tr: "Değişiklik için formu güncel bilgilerinizle yeniden gönderin ve notlara önceki talebinizi belirtin; ekibimiz iki talebi birleştirir.", en: "To change it, send the form again with your updated details and mention your earlier request in the notes; our team will merge the two.", multiline: true },
+    ],
+  },
+  {
     id: "request-form",
     title: "Talep formu (sayfa altı)",
     description: "Rezervasyon sayfasındaki kamp talep formunun sol paneli.",
@@ -198,7 +218,7 @@ export const CONTENT_GROUPS: ContentGroup[] = [
   },
   {
     id: "feedback",
-    title: "Dilek ve şikayet formu",
+    title: "Dilek ve şikâyet formu",
     description: "Alt bilgi alanının üstündeki geri bildirim bölümü.",
     path: "/#geri-bildirim",
     fields: [

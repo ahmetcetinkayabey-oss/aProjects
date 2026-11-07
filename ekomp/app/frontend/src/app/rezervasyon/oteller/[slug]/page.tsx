@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FaqList } from "@/components/faq-list";
 import { OptImg } from "@/components/opt-img";
 import { C, L } from "@/components/t";
 import { hotelKey } from "@/lib/content-hotels";
@@ -61,6 +62,7 @@ export default async function HotelDetailPage({ params }: Props) {
     { id: "olanaklar", tr: "Olanaklar", en: "Facilities" },
     ...hotel.sections.map((s) => ({ id: s.id, tr: s.title.tr, en: s.title.en })),
     { id: "galeri", tr: "Galeri", en: "Gallery" },
+    { id: "sss", tr: "Sık sorulanlar", en: "FAQ" },
     { id: "iletisim", tr: "İletişim", en: "Contact" },
   ];
 
@@ -305,6 +307,56 @@ export default async function HotelDetailPage({ params }: Props) {
                 />
               </a>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="sss" className="scroll-mt-48 px-margin-mobile py-12 md:px-margin md:py-16">
+        <div className="mx-auto max-w-[1400px]">
+          <h2 className={H2}>
+            <L tr="Sık sorulan sorular" en="Frequently asked questions" />
+          </h2>
+          <div className="mt-8 max-w-3xl">
+            <FaqList
+              items={[
+                {
+                  q: <L tr="Fiyat ve doluluk bilgisini nasıl alırım?" en="How do I get prices and availability?" />,
+                  a: (
+                    <L
+                      tr="Bu sayfadaki “Rezervasyon talebi” düğmesiyle formu doldurun. Fiyat ve doluluk tarihe ve kafile büyüklüğüne göre değiştiği için ekibimiz size güncel teklifi iletir."
+                      en="Use the “Request a booking” button and fill in the form. Because prices and availability depend on dates and group size, our team will send you a current offer."
+                    />
+                  ),
+                },
+                {
+                  q: <L tr="Kafile olarak konaklayabilir miyiz?" en="Can our group stay here?" />,
+                  a: (
+                    <L
+                      tr="Takım ve kulüp kafileleri için talep alıyoruz. Kişi sayısını, branşı ve tarihleri formda belirtin; oda dağılımı ve koşullar için size dönüş yapılır."
+                      en="We take requests for team and club groups. Give the number of people, the sport and the dates in the form, and we will come back to you about room allocation and terms."
+                    />
+                  ),
+                },
+                {
+                  q: <L tr="Sayfadaki bilgiler güncel mi?" en="Is the information on this page up to date?" />,
+                  a: (
+                    <L
+                      tr="Bilgiler otelin resmî internet sitesinden derlenmiştir. Oda sayıları, saatler ve olanaklar zamanla değişebilir; kesin bilgi için talep oluşturun veya otelle iletişime geçin."
+                      en="The information is compiled from the hotel's official website. Room counts, opening hours and facilities may change; for exact details send a request or contact the hotel."
+                    />
+                  ),
+                },
+                {
+                  q: <L tr="Konaklama dışında neleri birlikte isteyebilirim?" en="What else can I request alongside accommodation?" />,
+                  a: (
+                    <L
+                      tr="Aynı talepte ekipman kiralama, saha ve salon kullanımı, masa rezervasyonu ve performans testi için de not bırakabilirsiniz."
+                      en="In the same request you can also leave notes on equipment rental, pitch and hall use, table bookings and performance tests."
+                    />
+                  ),
+                },
+              ]}
+            />
           </div>
         </div>
       </section>

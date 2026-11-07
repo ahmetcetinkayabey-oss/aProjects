@@ -112,7 +112,7 @@ export const HOTELS: Hotel[] = [
         image: img(PALAN, "standart-oda"),
       },
       {
-        name: b("Suite Oda", "Suite"),
+        name: b("Süit Oda", "Suite"),
         text: b(
           "Şehir ve Palandöken Dağı manzarası sunan, ayrı yatak odası ve oturma alanına sahip geniş yaşam alanları.",
           "Spacious suites with city and mountain views, a separate bedroom and a sitting area.",
@@ -121,7 +121,7 @@ export const HOTELS: Hotel[] = [
         image: img(PALAN, "suite-oda"),
       },
       {
-        name: b("King Suite Oda", "King Suite"),
+        name: b("King Süit Oda", "King Suite"),
         text: b(
           "Ayrı oturma ve yemek alanıyla üst düzey konfor ve mahremiyet arayan misafirler için; çam ağaçları ve şehir manzarası eşliğinde.",
           "For guests seeking top comfort and privacy, with a separate living and dining area and views of pine trees and the city.",
@@ -136,7 +136,7 @@ export const HOTELS: Hotel[] = [
         icon: "restaurant",
         title: b("Restoran ve barlar", "Dining and bars"),
         text: b(
-          "500 kişilik ana restoran; Tam Pansiyon Plus, Yarım Pansiyon ve Oda & Kahvaltı konseptlerinde uluslararası ve yöresel lezzetler sunar. Lobi Bar, Teras Bar ve ana bina dışındaki Palan Cafe de misafirlere açıktır.",
+          "500 kişilik ana restoran; Tam Pansiyon Plus, Yarım Pansiyon ve Oda & Kahvaltı konseptlerinde uluslararası ve yöresel lezzetler sunar. Lobi Bar, Teras Bar ve ana bina dışındaki Palan Kafe de misafirlere açıktır.",
           "The 500-seat main restaurant serves international and regional dishes on full board plus, half board and bed & breakfast plans. The Lobby Bar, Terrace Bar and the Palan Cafe outside the main building are also open to guests.",
         ),
         items: [
@@ -249,7 +249,7 @@ export const HOTELS: Hotel[] = [
         image: img(SWAY, "standart-oda-2"),
       },
       {
-        name: b("Delüks Oda", "Deluxe Room"),
+        name: b("Deluxe Oda", "Deluxe Room"),
         size: "52 m²",
         capacity: b("2+1 kişi", "2+1 persons"),
         text: b("Özel balkonlu; pist ve dağ manzaralı odalar; 14 oda.", "Rooms with private balconies and views of the slope and the mountain; 14 rooms."),
@@ -315,7 +315,7 @@ export const HOTELS: Hotel[] = [
     phoneDisplay: "(0442) 232 00 10",
     address: b("Yunusemre, Kayak Yolu Üzeri, 25070 Palandöken / Erzurum", "Yunusemre, Kayak Yolu Üzeri, 25070 Palandöken / Erzurum"),
     mapQuery: "Polat Palandöken Resort Hotel Erzurum",
-    focus: "72% 60%",
+    focus: "45% 50%",
     tagline: b("Kayak pistlerine yakın, 950 kişiye kadar toplantı kapasitesi ve yüksek irtifa kamplarına yönelik olanaklarla resort otel.", "A resort hotel close to the slopes, with meeting space for up to 950 people and facilities for high-altitude camps."),
     about: [
       b(
@@ -369,28 +369,28 @@ export const HOTELS: Hotel[] = [
         image: img(POLAT, "corner-oda"),
       },
       {
-        name: b("Junior Dubleks Suit", "Junior Duplex Suite"),
+        name: b("Junior Dubleks Süit", "Junior Duplex Suite"),
         size: "75 m²",
-        text: b("Şehir manzarasına hâkim; yatak odası, salon ve banyodan oluşan suit.", "A suite overlooking the city, with a bedroom, living room and bathroom."),
+        text: b("Şehir manzarasına hâkim; yatak odası, salon ve banyodan oluşan süit.", "A suite overlooking the city, with a bedroom, living room and bathroom."),
         features: [b("1 yatak odası + salon + 1 banyo", "1 bedroom + living room + 1 bathroom")],
         image: img(POLAT, "junior-dubleks-suit"),
       },
       {
-        name: b("King Suit", "King Suite"),
+        name: b("King Süit", "King Suite"),
         size: "70 m²",
-        text: b("Konforlu ve lüks konaklama arayanlar için dağ ve şehir manzaralı suit.", "A suite with mountain and city views for guests seeking comfort and luxury."),
+        text: b("Konforlu ve lüks konaklama arayanlar için dağ ve şehir manzaralı süit.", "A suite with mountain and city views for guests seeking comfort and luxury."),
         features: [b("1 yatak odası + 1 salon + 2 banyo", "1 bedroom + 1 living room + 2 bathrooms")],
         image: img(POLAT, "king-suit"),
       },
       {
-        name: b("Dubleks Suit", "Duplex Suite"),
+        name: b("Dubleks Süit", "Duplex Suite"),
         size: "110 m²",
-        text: b("Giriş katında şık salon, üst katta yatak odası ve banyo bulunan iki katlı suit.", "A two-storey suite with a stylish living room downstairs and the bedroom and bathroom upstairs."),
+        text: b("Giriş katında şık salon, üst katta yatak odası ve banyo bulunan iki katlı süit.", "A two-storey suite with a stylish living room downstairs and the bedroom and bathroom upstairs."),
         features: [b("1 yatak odası + 1 banyo + salon", "1 bedroom + 1 bathroom + living room")],
         image: img(POLAT, "dubleks-suit"),
       },
       {
-        name: b("Family Suit", "Family Suite"),
+        name: b("Family Süit", "Family Suite"),
         size: "96 m²",
         capacity: b("4 kişiye kadar", "Up to 4 persons"),
         text: b("İki yatak odası, geniş salon ve iki banyoyla aileler için.", "Two bedrooms, a large living room and two bathrooms for families."),
@@ -467,14 +467,14 @@ export const HOTELS: Hotel[] = [
     email: "info@snowdora.com",
     address: b("Yunus Emre Mah. Palandöken Kayak Merkezi, Snowdora Hotel, Erzurum", "Yunus Emre Mah. Palandöken Ski Resort, Snowdora Hotel, Erzurum"),
     mapQuery: "Snowdora Hotel Palandöken Erzurum",
-    tagline: b("Pistlere 100 metre mesafede; standart oda, suit ve ahşap bungalovlarıyla aile dostu kayak oteli.", "A family-friendly ski hotel 100 metres from the slopes, with standard rooms, suites and wooden bungalows."),
+    tagline: b("Pistlere 100 metre mesafede; standart oda, süit ve ahşap bungalovlarıyla aile dostu kayak oteli.", "A family-friendly ski hotel 100 metres from the slopes, with standard rooms, suites and wooden bungalows."),
     about: [
       b(
         "2016'dan beri hizmet veren Snowdora Otel 2023'te yenilenmiştir. Palandöken kayak merkezinin başlangıç noktasında, pistlere yalnızca 100 metre mesafededir; Erzurum şehir merkezine ise yaklaşık 5 dakikadır. Otel, Erzurum Büyükşehir Belediyesi'nin hizmet vizyonuyla işletilir.",
         "Serving guests since 2016 and renovated in 2023, Snowdora Hotel stands at the start of the Palandöken ski area, only 100 metres from the slopes and about 5 minutes from Erzurum city centre. It is run in line with the service vision of Erzurum Metropolitan Municipality.",
       ),
       b(
-        "71 standart oda, 8 suit ve 8 bungalovdan oluşan toplam 87 odası ve 140 yatak kapasitesi vardır. Konaklamanın yanında düğün, nişan, kına, mezuniyet, balo ve toplantı salonlarıyla organizasyonlara da ev sahipliği yapar.",
+        "71 standart oda, 8 süit ve 8 bungalovdan oluşan toplam 87 odası ve 140 yatak kapasitesi vardır. Konaklamanın yanında düğün, nişan, kına, mezuniyet, balo ve toplantı salonlarıyla organizasyonlara da ev sahipliği yapar.",
         "With 71 standard rooms, 8 suites and 8 bungalows, it has 87 rooms and 140 beds in total. Besides accommodation, it hosts weddings, engagements, graduations, balls and meetings in its halls.",
       ),
     ],
@@ -502,12 +502,12 @@ export const HOTELS: Hotel[] = [
         image: img(SNOW, "standart-oda"),
       },
       {
-        name: b("Suit Oda", "Suite"),
-        text: b("Oturma ve yatak odası olmak üzere iki ayrı alan; 8 suit.", "Two separate areas, a sitting room and a bedroom; 8 suites."),
+        name: b("Süit Oda", "Suite"),
+        text: b("Oturma ve yatak odası olmak üzere iki ayrı alan; 8 süit.", "Two separate areas, a sitting room and a bedroom; 8 suites."),
         image: img(SNOW, "suit-oda"),
       },
       {
-        name: b("Family Suit Oda", "Family Suite"),
+        name: b("Family Süit Oda", "Family Suite"),
         text: b("Oturma ve yatak odasından oluşur; bağlantı kapısıyla bir standart oda eklenerek aileler ve kalabalık gruplar için geniş bir alan elde edilir.", "Made up of a sitting room and a bedroom; a standard room can be added through a connecting door to create a large space for families and groups."),
         image: img(SNOW, "family-suit"),
       },
@@ -527,8 +527,8 @@ export const HOTELS: Hotel[] = [
           "Deneyimli mutfak ekibi dünya ve yöresel mutfakların lezzetlerini sunar. Restoran ve kafe alanları Palandöken manzarası eşliğinde hizmet verir.",
           "An experienced kitchen team serves international and regional dishes. The restaurant and café areas look out over Palandöken.",
         ),
-        items: [b("Küre Kafe & Restorant", "Küre Café & Restaurant"), b("Sultan Sekisi", "Sultan Sekisi"), b("Kapsül Cafe", "Kapsül Cafe"), b("Fanus Cafe", "Fanus Cafe")],
-        images: [img(SNOW, "restoran"), img(SNOW, "kafe"), img(SNOW, "cam-koridor")],
+        items: [b("Küre Kafe & Restoran", "Küre Café & Restaurant"), b("Sultan Sekisi", "Sultan Sekisi"), b("Kapsül Kafe", "Kapsül Café"), b("Fanus Kafe", "Fanus Café")],
+        images: [img(SNOW, "restoran"), img(SNOW, "kafe"), img(SNOW, "cam-koridor"), img(SNOW, "kapsul-evler")],
       },
       {
         id: "organizasyon",
@@ -539,10 +539,10 @@ export const HOTELS: Hotel[] = [
           "Ejder Hall and VIP Hall can be used for weddings, engagements, graduations, balls and meetings.",
         ),
         items: [b("Ejder Salon", "Ejder Hall"), b("VIP Salon", "VIP Hall")],
-        images: [img(SNOW, "balo-salonu"), img(SNOW, "toplanti-salonu")],
+        images: [img(SNOW, "balo-salonu")],
       },
     ],
-    gallery: [img(SNOW, "standart-oda-2"), img(SNOW, "restoran"), img(SNOW, "kafe"), img(SNOW, "cam-koridor"), img(SNOW, "balo-salonu"), img(SNOW, "toplanti-salonu")],
+    gallery: [img(SNOW, "bungalov-gece"), img(SNOW, "kapsul-evler"), img(SNOW, "standart-oda-2"), img(SNOW, "restoran"), img(SNOW, "kafe"), img(SNOW, "cam-koridor"), img(SNOW, "balo-salonu")],
   },
 ];
 

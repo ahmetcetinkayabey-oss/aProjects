@@ -13,9 +13,9 @@
   --color-outline: #8a9bb0;
   --color-primary: #1F6FA8;
   --color-on-primary: #ffffff;
-  --color-primary-container: #4CC9F0;
+  --color-primary-container: #D4AF6A;
   --color-on-primary-container: #0B132B;
-  --color-inverse-primary: #bde9fa;
+  --color-inverse-primary: #efdcae;
   --color-secondary: #1C2E4A;
   --color-on-secondary: #ffffff;
   --color-secondary-container: #dce6f0;
@@ -32,7 +32,7 @@
   --color-ejder: #1C2E4A;
   --color-ejder-accent: #23395D;
   --color-ejder-light: #3A506B;
-  --color-ejder-sky: #4CC9F0;
+  --color-ejder-sky: #8FB4D9;
 
   --radius-sm: 0.125rem;
   --radius-DEFAULT: 0.25rem;
@@ -279,7 +279,7 @@ html {
   button:focus-visible,
   a:focus-visible,
   summary:focus-visible {
-    outline: 3px solid rgb(76 201 240 / 0.7);
+    outline: 3px solid rgb(212 175 106 / 0.85);
     outline-offset: 3px;
   }
 }
