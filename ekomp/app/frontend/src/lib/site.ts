@@ -5,6 +5,7 @@ export const NAV_LINKS: { href: string; label: string; key: DictKey }[] = [
   { href: "/hakkimizda", label: "Hakkımızda", key: "nav.about" },
   { href: "/tesisler", label: "Tesisler", key: "nav.facilities" },
   { href: "/haberler", label: "Haberler", key: "nav.news" },
+  { href: "/forum", label: "Forum 2027", key: "nav.forum" },
   { href: "/rezervasyon", label: "Rezervasyon", key: "nav.reserve" },
 ];
 
