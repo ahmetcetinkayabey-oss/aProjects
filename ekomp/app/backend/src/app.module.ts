@@ -8,6 +8,7 @@ import { ForumModule } from './forum/forum.module.js';
 import { FeedbackModule } from './feedback/feedback.module.js';
 import { ReservationsModule } from './reservations/reservations.module.js';
 import { ContentModule } from './content/content.module.js';
+import { IdentityModule } from './identity/identity.module.js';
 import { HealthController } from './health.controller.js';
 import { MIGRATIONS } from './migrations/index.js';
 
@@ -46,6 +47,7 @@ import { MIGRATIONS } from './migrations/index.js';
     ForumModule,
     FeedbackModule,
     ContentModule,
+    IdentityModule,
     AdminModule,
   ],
   controllers: [HealthController],
