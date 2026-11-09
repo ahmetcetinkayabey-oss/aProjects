@@ -4,11 +4,11 @@ import { OptImg } from "@/components/opt-img";
 
 const GALLERY_ITEMS = [
   { src: "/images/gallery-drone-closeup.jpg", title: "Kamp merkezi", en: "Camp centre", span: "col-span-2 row-span-2" },
-  { src: "/images/gallery-golden-hour-action.jpg", title: "Gün batımı antrenmanı", en: "Sunset training session", span: "" },
-  { src: "/images/gallery-matchday.jpg", title: "Hazırlık maçı", en: "Friendly match", span: "" },
+  { src: "/images/yuzme-havuzu.jpg", title: "Olimpik yüzme havuzu", en: "Olympic swimming pool", span: "" },
+  { src: "/images/buz-arenasi-erzurum.jpg", title: "Buz arenası", en: "Ice arena", span: "" },
   { src: "/images/gallery-mountain-backdrop.jpg", title: "Palandöken zirveleri", en: "Palandöken peaks", span: "col-span-2" },
   { src: "/images/gallery-antreman.jpg", title: "Takım antrenmanı", en: "Team training", span: "col-span-2" },
-  { src: "/images/gallery-antreman-2.jpg", title: "Kale önü çalışması", en: "Goalmouth drills", span: "col-span-2" },
+  { src: "/images/kayakla-atlama.jpg", title: "Kayakla atlama kuleleri", en: "Ski jumping hills", span: "col-span-2" },
 ];
 
 export function FacilityGallery() {

@@ -14,7 +14,7 @@ const ITEMS = [
               />,
   },
   {
-    image: "/images/gallery-matchday.jpg",
+    image: "/images/yuzme-havuzu.jpg",
     alt: "Tesisler",
     icon: "stadium",
     title: <L tr="Tesisler" en="Facilities" />,

@@ -50,7 +50,7 @@ export const NEWS_ITEMS: NewsItem[] = [
       "https://www.aa.com.tr/tr/guncel/erzurum-yuksek-irtifada-guc-depolamak-isteyen-yerli-ve-yabanci-takimlarin-gozdesi/3641773",
     title: "Erzurum yüksek irtifada güç depolamak isteyen takımların gözdesi",
     summary: "Yerli ve yabancı futbol kulüpleri Erzurum'da yeni sezon hazırlıklarını gerçekleştirdi.",
-    image: "/images/gallery-matchday.jpg",
+    image: "/images/gallery-golden-hour-action.jpg",
   },
   {
     slug: "yuksek-irtifa-kamp-merkezinde-ikinci-etap",
