@@ -22,7 +22,9 @@
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
     "test:debug": "vitest --inspect-brk --no-file-parallelism",
-    "test:e2e": "vitest run --config ./vitest.config.e2e.ts"
+    "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
+    "migration:run": "nest build && typeorm migration:run -d dist/data-source.js",
+    "migration:revert": "nest build && typeorm migration:revert -d dist/data-source.js"
   },
   "dependencies": {
     "@nestjs/common": "^12.0.1",
@@ -40,6 +42,7 @@
     "typeorm": "^1.1.1"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.15",
     "@nestjs/cli": "^12.0.0",
     "@nestjs/mau": "^0.2.6",
     "@nestjs/schematics": "^12.0.0",

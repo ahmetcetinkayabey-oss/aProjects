@@ -21,3 +21,9 @@ Faz 1 → Faz 2'nin yalnız hizmet/kaynak yönetimi → Faz 3'ün B2C talep + y�
 
 ## Tahmini büyüklük (kaba, kesin değil)
 Faz 1–3 çekirdek ve en riskli kısım; Faz 4–8 daha öngörülebilir. Süre tahmini vermiyorum: kapsam kararları (Q1–Q10) netleşmeden güvenilir olmaz.
+
+## Uygulama durumu (güncel)
+- **Faz 1-ön ✅** Migration altyapısı: `backend/src/migrations/` (düz SQL + TypeORM sınıfı), `src/data-source.ts`, `npm run migration:run|revert`. Production'da `DB_MIGRATIONS_RUN=true` ile açılır (varsayılan kapalı, mevcut yayın akışı bozulmaz). Testler PGlite (süreç içi PostgreSQL) ile koşar → Docker gerekmez.
+- **Faz 1 kısmen ✅** `001-foundation`: users, roles/permissions (10 rol, 16 izin), organizations (+B2B bayrak tutarlılık kısıtı), organization_users, customers, değiştirilemez audit_logs.
+- **Faz 2/3 çekirdeği ✅ (yalnız veritabanı)** `002-scheduling-core`: resources, resource_blocks, bookings (14 durum), booking_status_history, `next_booking_number()`, `resource_allocations` — kapasite aşımı, çakışma, bakım/kapatma, süresi dolan blokaj kuralları **DB düzeyinde** ve testli.
+- **Henüz YOK:** NestJS servis/uç/ekran katmanı, giriş (users), services/packages, fiyat, teklif, finans, B2B portal. Sıradaki: kimlik + izin guard'ı, audit servisi, kaynak/hizmet yönetim uçları.

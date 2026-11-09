@@ -9,6 +9,7 @@ import { FeedbackModule } from './feedback/feedback.module.js';
 import { ReservationsModule } from './reservations/reservations.module.js';
 import { ContentModule } from './content/content.module.js';
 import { HealthController } from './health.controller.js';
+import { MIGRATIONS } from './migrations/index.js';
 
 @Module({
   imports: [
@@ -24,6 +25,10 @@ import { HealthController } from './health.controller.js';
             autoLoadEntities: true,
             // Boş veritabanında ilk deploy için DB_SYNCHRONIZE=true; tablolar oluşunca kaldırın.
             synchronize: config.get<string>('DB_SYNCHRONIZE') === 'true',
+            // Faz 1+ tabloları migration ile yönetilir. Açmak için DB_MIGRATIONS_RUN=true (btree_gist eklentisi gerekir).
+            migrations: MIGRATIONS,
+            migrationsTableName: 'schema_migrations',
+            migrationsRun: config.get<string>('DB_MIGRATIONS_RUN') === 'true',
             extra: { max: 5 },
           };
         }
