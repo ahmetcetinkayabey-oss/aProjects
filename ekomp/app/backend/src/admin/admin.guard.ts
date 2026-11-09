@@ -17,7 +17,6 @@ export class AdminGuard implements CanActivate {
       throw new UnauthorizedException('Oturum geçersiz veya süresi dolmuş.');
     }
     request.adminUser = payload.sub;
-    request.adminUser = payload.sub;
     return true;
   }
 }
