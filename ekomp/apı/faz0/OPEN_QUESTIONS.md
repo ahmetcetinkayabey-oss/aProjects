@@ -19,4 +19,4 @@ Yüksek etkililer önce. "Öneri" benim varsayımım; onayınız olmadan uygulan
 | Q13 | PDF teklif şablonu (logo, adres, banka IBAN, koşullar) | Orta | Kurumsal şablonu siz verin |
 | Q14 | Yönetim paneli ve portallarda dil: yalnız TR mi, TR/EN mi? | Orta | TR/EN (B2B yabancı kulüpler için) |
 | Q15 | Hosting ve alan adı hesapları (Vercel/Render/Supabase) ve yedekleme sorumlusu | Orta | Faz 9 öncesi netleşsin |
-| Q16 | Yayın öncesi bekleyen eski işler: SMTP bilgileri, admin şifresi (`123456789`), `Palandoken_2027_Forum_Claude_Code_Prompt_TR_EN.docx` dosyasının herkese açık `public/downloads` içinde durması | Yüksek (güvenlik) | Faz 1'den önce temizlensin |
+| Q16 | Yayın öncesi bekleyen eski işler: SMTP bilgileri, zayıf admin şifresi (herkese açık indirilebilen forum .docx dosyası 2026-11-10’da silindi) | Yüksek (güvenlik) | Faz 1'den önce temizlensin |

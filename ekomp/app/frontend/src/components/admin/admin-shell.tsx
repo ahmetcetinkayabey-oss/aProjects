@@ -22,6 +22,8 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [username, setUsername] = useState<string | null>(null);
   const [defaultPassword, setDefaultPassword] = useState(false);
+  // Uyarı, yönetici bilerek aynı şifreyi kullanıyorsa bu oturum boyunca kapatılabilir.
+  const [warningHidden, setWarningHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const isLogin = pathname === "/admin/login";
 
@@ -35,6 +37,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
       .then((me) => {
         setUsername(me.username);
         setDefaultPassword(Boolean(me.defaultPassword));
+        try {
+          setWarningHidden(window.sessionStorage.getItem("ekomp_pw_warning_hidden") === "1");
+        } catch {
+          // sessionStorage kapalıysa uyarı her seferinde gösterilir.
+        }
       })
       .catch(() => undefined);
   }, [isLogin, router]);
@@ -109,12 +116,26 @@ export function AdminShell({ children }: { children: ReactNode }) {
             <span className="material-symbols-outlined">{menuOpen ? "close" : "menu"}</span>
           </button>
         </div>
-        {defaultPassword ? (
+        {defaultPassword && !warningHidden ? (
           <div role="alert" className="flex flex-wrap items-center gap-x-space-md gap-y-1 bg-red-700 px-space-md py-space-sm text-sm text-white">
             <span className="material-symbols-outlined text-[20px]" aria-hidden>warning</span>
             <span className="font-semibold">Yönetici şifreniz tahmin edilmesi kolay (kurulum şifresi veya yaygın bir şifre).</span>
             <Link href="/admin/ayarlar" className="underline">Şifreyi şimdi değiştirin</Link>
             <span className="text-white/80">(site yayına çıkmadan önce mutlaka)</span>
+            <button
+              type="button"
+              className="ml-auto underline"
+              onClick={() => {
+                setWarningHidden(true);
+                try {
+                  window.sessionStorage.setItem("ekomp_pw_warning_hidden", "1");
+                } catch {
+                  // yoksay
+                }
+              }}
+            >
+              Bu oturumda gizle
+            </button>
           </div>
         ) : null}
         <main className="mx-auto w-full max-w-6xl p-space-md md:p-space-xl">{children}</main>
