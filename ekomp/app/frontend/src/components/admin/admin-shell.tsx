@@ -9,6 +9,7 @@ const MENU = [
   { href: "/admin", label: "Özet", icon: "dashboard" },
   { href: "/admin/rezervasyonlar", label: "Rezervasyon Talepleri", icon: "event_available" },
   { href: "/admin/geri-bildirimler", label: "Geri Bildirimler", icon: "rate_review" },
+  { href: "/admin/kaynaklar", label: "Kaynaklar", icon: "event_seat" },
   { href: "/admin/forum", label: "Forum 2027", icon: "event" },
   { href: "/admin/icerik", label: "Sayfa İçerikleri", icon: "edit_note" },
   { href: "/admin/tesisler", label: "Tesisler", icon: "stadium" },
