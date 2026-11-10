@@ -18,6 +18,7 @@ const SPORT_BRANCHES = [
   { value: "Performans testi", en: "Performance test" },
   { value: "Masa rezervasyonu", en: "Table booking" },
   { value: "Salon Sporları", en: "Indoor Sports" },
+  { value: "KVKK başvurusu", en: "KVKK (data protection) request" },
   { value: "Diğer", en: "Other" },
 ];
 

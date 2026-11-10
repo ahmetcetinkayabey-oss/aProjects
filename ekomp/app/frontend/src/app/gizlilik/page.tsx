@@ -98,8 +98,8 @@ const SECTIONS: Section[] = [
         en: "Under KVKK Art. 11 you have the right to learn whether your personal data is processed; request information if it has been processed; learn the purpose of processing and whether it is used accordingly; know the third parties to whom it is transferred in Türkiye or abroad; request correction of incomplete or inaccurate data; request deletion or destruction under KVKK Art. 7; request that these actions be notified to third parties to whom the data was transferred; object to a result against you arising from automated analysis; and claim compensation if you suffer damage due to unlawful processing.",
       },
       {
-        tr: "Başvurularınızı İletişim sayfamızdaki form üzerinden, talebinizin konusunu (“KVKK başvurusu”) belirterek iletebilirsiniz. Başvurular en geç 30 gün içinde yanıtlanır.",
-        en: "You can send your requests through the form on our Contact page, stating the subject (“KVKK request”). Requests are answered within 30 days at the latest.",
+        tr: "Başvurularınızı Rezervasyon sayfamızdaki talep formundan, branş alanında “KVKK başvurusu” seçeneğini işaretleyerek iletebilirsiniz. Başvurular en geç 30 gün içinde yanıtlanır.",
+        en: "You can send your requests through the request form on our Reservation page by choosing “KVKK (data protection) request” in the sport field. Requests are answered within 30 days at the latest.",
       },
     ],
   },

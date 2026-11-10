@@ -5,7 +5,10 @@ import { PageTitleL } from "@/components/i18n-headings";
 import { StayCta } from "@/components/stay-cta";
 import { getFacilities } from "@/lib/api";
 
-export const metadata: Metadata = { title: "Tesisler | Erzurum Yüksek İrtifa Kamp Merkezi", alternates: { canonical: "/tesisler" } };
+export const metadata: Metadata = {
+  title: "Tesisler | Erzurum Yüksek İrtifa Kamp Merkezi",
+  description: "Olimpik kapalı yüzme havuzu, FIFA standardında futbol sahaları, curling ve buz salonları, atletizm pisti, judo ve güreş salonları, kayak ve kayakla atlama tesisleri: Palandöken'de 2.100 m rakımda tek merkez.",
+  alternates: { canonical: "/tesisler" } };
 
 export default async function FacilitiesPage() {
   const facilities = await getFacilities();
