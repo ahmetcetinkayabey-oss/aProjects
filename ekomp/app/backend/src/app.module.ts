@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FacilitiesModule } from './facilities/facilities.module.js';
 import { AdminModule } from './admin/admin.module.js';
+import { AdminSessionModule } from './admin/admin-session.module.js';
 import { NewsModule } from './news/news.module.js';
 import { ForumModule } from './forum/forum.module.js';
 import { FeedbackModule } from './feedback/feedback.module.js';
@@ -47,6 +48,7 @@ import { MIGRATIONS } from './migrations/index.js';
     ForumModule,
     FeedbackModule,
     ContentModule,
+    AdminSessionModule,
     IdentityModule,
     AdminModule,
   ],

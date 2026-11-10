@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { Field, Notice, PageHeading, btnGhost, btnPrimary, inputClass } from "@/components/admin/admin-ui";
-import { adminFetch } from "@/lib/admin-api";
+import { adminFetch, setToken } from "@/lib/admin-api";
 
 interface MailStatus {
   smtpHost: string | null;
@@ -219,10 +219,17 @@ export default function AccountSettingsPage() {
     }
     setBusy(true);
     try {
+      // Parola değişince eski oturumlar kapanır; bu oturumu yeni parolayla yenilemek için kullanıcı adı önceden alınır.
+      const me = await adminFetch<{ username: string }>("/admin/me");
       await adminFetch("/admin/password", {
         method: "POST",
         body: JSON.stringify({ currentPassword: current, newPassword: next }),
       });
+      const fresh = await adminFetch<{ token: string }>("/admin/login", {
+        method: "POST",
+        body: JSON.stringify({ username: me.username, password: next }),
+      });
+      setToken(fresh.token);
       setDone(true);
       setCurrent("");
       setNext("");
@@ -243,11 +250,11 @@ export default function AccountSettingsPage() {
         <Field label="Mevcut şifre">
           <input className={inputClass} type="password" value={current} onChange={(e) => setCurrent(e.target.value)} autoComplete="current-password" required />
         </Field>
-        <Field label="Yeni şifre" hint="En az 8 karakter.">
-          <input className={inputClass} type="password" value={next} onChange={(e) => setNext(e.target.value)} autoComplete="new-password" minLength={8} required />
+        <Field label="Yeni şifre" hint="En az 10 karakter. Değişince diğer cihazlardaki oturumlar kapanır.">
+          <input className={inputClass} type="password" value={next} onChange={(e) => setNext(e.target.value)} autoComplete="new-password" minLength={10} required />
         </Field>
         <Field label="Yeni şifre (tekrar)">
-          <input className={inputClass} type="password" value={again} onChange={(e) => setAgain(e.target.value)} autoComplete="new-password" minLength={8} required />
+          <input className={inputClass} type="password" value={again} onChange={(e) => setAgain(e.target.value)} autoComplete="new-password" minLength={10} required />
         </Field>
         <button type="submit" disabled={busy} className={btnPrimary}>
           {busy ? "Kaydediliyor..." : "Şifreyi değiştir"}

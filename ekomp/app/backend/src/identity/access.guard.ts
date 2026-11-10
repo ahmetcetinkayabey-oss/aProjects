@@ -9,6 +9,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import type { Request } from 'express';
+import { AdminSessionService } from '../admin/admin-session.service.js';
 import { verifyToken } from '../admin/admin-token.js';
 import { IdentityService, Principal } from './identity.service.js';
 import type { PermissionCode } from './rbac-seed.js';
@@ -33,6 +34,7 @@ export class AccessGuard implements CanActivate {
     private readonly reflector: Reflector,
     private readonly config: ConfigService,
     private readonly identity: IdentityService,
+    private readonly adminSessions: AdminSessionService,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -48,7 +50,8 @@ export class AccessGuard implements CanActivate {
       principal = await this.identity.principalFor(userPayload.sub, userPayload.tv);
     } else {
       const admin = verifyToken(token, secret);
-      if (admin) {
+      // Parola değiştirilince eski yönetici oturumları da kapanır.
+      if (admin && (await this.adminSessions.isCurrent(admin.sub, admin.exp))) {
         principal = { kind: 'admin', label: admin.sub, all: true, permissions: new Set() };
       }
     }

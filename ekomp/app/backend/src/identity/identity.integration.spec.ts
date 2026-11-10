@@ -76,7 +76,7 @@ beforeAll(async () => {
     audit,
   );
   await identity.onModuleInit();
-  guard = new AccessGuard(new Reflector(), config, identity);
+  guard = new AccessGuard(new Reflector(), config, identity, { isCurrent: async () => true } as never);
 });
 
 afterAll(async () => {

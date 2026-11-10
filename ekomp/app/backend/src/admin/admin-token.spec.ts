@@ -12,9 +12,10 @@ afterEach(() => vi.useRealTimers());
 
 describe('oturum belirteci', () => {
   it('geçerli belirteci kullanıcı adıyla doğrular', () => {
-    expect(verifyToken(createToken('admin', SECRET), SECRET)).toEqual({
-      sub: 'admin',
-    });
+    const payload = verifyToken(createToken('admin', SECRET), SECRET);
+    expect(payload?.sub).toBe('admin');
+    // Bitiş zamanı da döner (parola değişiminden önce verilmiş oturumları ayırt etmek için).
+    expect(payload?.exp).toBeGreaterThan(Date.now());
   });
 
   it('yanlış anahtarla üretilmiş belirteci reddeder', () => {

@@ -46,6 +46,8 @@ export class AdminAuthService implements OnModuleInit {
       throw new UnauthorizedException('Mevcut şifre hatalı.');
     }
     user.passwordHash = await hashPassword(next);
+    // Bu andan önce açılmış tüm oturumlar (çalınmış olabilecekler dahil) geçersiz olur.
+    user.passwordChangedAt = new Date();
     await this.users.save(user);
   }
 

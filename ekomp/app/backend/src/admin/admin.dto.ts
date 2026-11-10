@@ -10,7 +10,7 @@ export class ChangePasswordDto {
   @IsString() currentPassword!: string;
 
   @IsString()
-  @MinLength(8, { message: 'Yeni şifre en az 8 karakter olmalı.' })
+  @MinLength(10, { message: 'Yeni şifre en az 10 karakter olmalı.' })
   newPassword!: string;
 }
 

@@ -1,6 +1,6 @@
 import { createHmac, randomBytes, scrypt, timingSafeEqual } from 'node:crypto';
 
-const TOKEN_TTL_MS = 12 * 60 * 60 * 1000;
+export const TOKEN_TTL_MS = 12 * 60 * 60 * 1000;
 
 function b64url(input: Buffer | string): string {
   return Buffer.from(input).toString('base64url');
@@ -15,7 +15,10 @@ export function createToken(username: string, secret: string): string {
   return `${payload}.${sign(payload, secret)}`;
 }
 
-export function verifyToken(token: string, secret: string): { sub: string } | null {
+/** Belirtecin düzenlendiği an (exp - süre); parola değişiminden önce alınmış oturumları ayırt etmek için. */
+export const issuedAt = (exp: number): number => exp - TOKEN_TTL_MS;
+
+export function verifyToken(token: string, secret: string): { sub: string; exp: number } | null {
   const [payload, signature] = token.split('.');
   if (!payload || !signature) return null;
   const expected = Buffer.from(sign(payload, secret));
@@ -26,7 +29,7 @@ export function verifyToken(token: string, secret: string): { sub: string } | nu
       sub: string;
       exp: number;
     };
-    return data.exp > Date.now() ? { sub: data.sub } : null;
+    return data.exp > Date.now() ? { sub: data.sub, exp: data.exp } : null;
   } catch {
     return null;
   }
