@@ -7,10 +7,10 @@ import { useC, useL } from "./t";
 import Link from "next/link";
 
 const CATEGORIES = [
-  { value: "Öneri", en: "Suggestion" },
-  { value: "Şikayet", en: "Complaint" },
-  { value: "Teşekkür", en: "Thanks" },
-  { value: "Diğer", en: "Other" },
+  { value: "Öneri", tr: "Öneri", en: "Suggestion" },
+  { value: "Şikayet", tr: "Şikâyet", en: "Complaint" },
+  { value: "Teşekkür", tr: "Teşekkür", en: "Thanks" },
+  { value: "Diğer", tr: "Diğer", en: "Other" },
 ];
 
 const FIELD_DARK =
@@ -94,7 +94,7 @@ export function FeedbackSection({ dark = false }: { dark?: boolean }) {
           <select name="category" required defaultValue="Öneri" className={`${field} sm:col-span-2`} aria-label={l("Konu", "Subject")}>
             {CATEGORIES.map((c) => (
               <option key={c.value} value={c.value}>
-                {l(c.value, c.en)}
+                {l(c.tr, c.en)}
               </option>
             ))}
           </select>

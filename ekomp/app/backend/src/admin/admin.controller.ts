@@ -91,8 +91,11 @@ export class AdminController {
 
   @Get('me')
   @UseGuards(AdminGuard)
-  me(@Req() req: AdminRequest) {
-    return { username: req.adminUser };
+  async me(@Req() req: AdminRequest) {
+    return {
+      username: req.adminUser,
+      defaultPassword: await this.auth.usesDefaultPassword(req.adminUser),
+    };
   }
 
   @Get('stats')

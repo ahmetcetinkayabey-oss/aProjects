@@ -50,13 +50,22 @@ function subjectOf(r: AdminReservation): string {
   return first.length > 0 && first.length <= 120 ? first : "";
 }
 
-function digits(phone: string): string {
-  return phone.replace(/\D/g, "");
+/** wa.me için uluslararası biçim (başında 0 / 00 olmadan, ülke kodlu). Türkiye numaraları (05xx, 5xx) 90 ile tamamlanır. */
+function whatsappNumber(phone: string): string {
+  const d = phone.replace(/\D/g, "");
+  if (d.startsWith("00")) return d.slice(2);
+  if (d.startsWith("0") && d.length === 11) return "90" + d.slice(1);
+  if (d.length === 10 && d.startsWith("5")) return "90" + d;
+  return d;
 }
 
 function csvCell(value: unknown): string {
   const text = value == null ? "" : String(value);
-  return `"${text.replace(/"/g, '""')}"`;
+  // Formdan gelen metin Excel'de formül olarak çalışmasın (= + - @ ile başlayan hücreler).
+  // Düz telefon numaraları (+90 555…) formül olamayacağı için olduğu gibi bırakılır.
+  const isPlainPhone = /^\+?\d[\d\s()-]*$/.test(text);
+  const safe = /^[=+\-@\t\r]/.test(text) && !isPlainPhone ? "'" + text : text;
+  return `"${safe.replace(/"/g, '""')}"`;
 }
 
 function exportCsv(rows: AdminReservation[]) {
@@ -104,7 +113,7 @@ function Detail({
   onSaveNote: () => void;
   onRemove: () => void;
 }) {
-  const wa = digits(r.phone);
+  const wa = whatsappNumber(r.phone);
   return (
     <div className="grid gap-space-lg border-t border-surface-container bg-surface-container-low p-space-md md:grid-cols-2">
       <div className="space-y-space-md">
@@ -200,7 +209,13 @@ function TableRow({
       <tr
         className={`cursor-pointer border-t border-surface-container hover:bg-surface-container-low ${open ? "bg-surface-container-low" : ""}`}
         onClick={onToggle}
-        aria-expanded={open}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onToggle();
+          }
+        }}
+        tabIndex={0}
       >
         {children}
       </tr>

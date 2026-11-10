@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import {
   IsDateString,
   IsEmail,
@@ -10,6 +11,21 @@ import {
   Min,
   MinLength,
 } from 'class-validator';
+
+/**
+ * Yazım biçimi ne olursa olsun (0555 111 22 33, 555 111 22 33, 0 (555) 111-22-33, 0090…, +44…) uluslararası
+ * biçime (+90…) çevirir; doğrulama ve yönetici panelindeki WhatsApp/arama bağlantıları bu biçimle çalışır.
+ */
+export function normalizePhone({ value }: { value: unknown }): unknown {
+  if (typeof value !== 'string') return value;
+  const raw = value.trim();
+  const digits = raw.replace(/\D/g, '');
+  if (raw.startsWith('+')) return '+' + digits;
+  if (digits.startsWith('00')) return '+' + digits.slice(2);
+  if (digits.startsWith('0') && digits.length === 11) return '+90' + digits.slice(1);
+  if (digits.length === 10 && digits.startsWith('5')) return '+90' + digits;
+  return raw;
+}
 
 export class CreateReservationDto {
   @IsString()
@@ -26,7 +42,8 @@ export class CreateReservationDto {
   @MaxLength(200)
   email!: string;
 
-  @IsPhoneNumber()
+  @Transform(normalizePhone)
+  @IsPhoneNumber(undefined, { message: 'Geçerli bir telefon numarası girin (örn. 0555 111 22 33 veya +44 7911 123456).' })
   @MaxLength(30)
   phone!: string;
 

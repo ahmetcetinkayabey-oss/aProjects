@@ -16,6 +16,7 @@ import {
   ForumSession,
   ForumSpeaker,
   ForumSponsor,
+  ForumToken,
 } from './forum.entities.js';
 
 const ORDER = { sortOrder: 'ASC' } as const;
@@ -35,6 +36,8 @@ export class ForumService {
     private readonly announcements: Repository<ForumAnnouncement>,
     @InjectRepository(ForumSponsor)
     private readonly sponsors: Repository<ForumSponsor>,
+    @InjectRepository(ForumToken)
+    private readonly tokens: Repository<ForumToken>,
   ) {}
 
   // --- Herkese açık ---
@@ -130,6 +133,14 @@ export class ForumService {
     if (dto.verifyEmail && !row.emailVerifiedAt)
       row.emailVerifiedAt = new Date();
     return this.participants.save(row);
+  }
+
+  /** KVKK silme talebi: başvuru sahibi ve ona ait tüm doğrulama/sıfırlama jetonları kalıcı olarak silinir. */
+  async removeParticipant(id: string): Promise<void> {
+    const row = await this.participants.findOneBy({ id });
+    if (!row) throw new NotFoundException('Katılımcı bulunamadı.');
+    await this.tokens.delete({ participantId: id });
+    await this.participants.delete(id);
   }
 
   async stats() {

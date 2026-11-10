@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { AdminUser } from './admin-user.entity.js';
 import { createToken, hashPassword, verifyPassword } from './admin-token.js';
 
+const COMMON_PASSWORDS = ['123456789', '12345678', '1234567890', 'password', 'admin123', 'qwerty123', '11111111', 'ekomp123'];
 const MAX_ATTEMPTS = 5;
 const WINDOW_MS = 15 * 60 * 1000;
 
@@ -12,6 +13,7 @@ const WINDOW_MS = 15 * 60 * 1000;
 export class AdminAuthService implements OnModuleInit {
   private readonly logger = new Logger(AdminAuthService.name);
   private readonly attempts = new Map<string, { count: number; first: number }>();
+  private readonly weakCache = new Map<string, boolean>();
 
   constructor(
     @InjectRepository(AdminUser) private readonly users: Repository<AdminUser>,
@@ -45,6 +47,29 @@ export class AdminAuthService implements OnModuleInit {
     }
     user.passwordHash = await hashPassword(next);
     await this.users.save(user);
+  }
+
+  /**
+   * Hesap hâlâ ilk kurulumdaki (.env ADMIN_PASSWORD) ya da çok yaygın/tahmin edilebilir bir şifre kullanıyorsa true.
+   * Panel bu durumda şifreyi değiştirmeyi hatırlatır; yayına çıkmadan önce unutulmasın diye.
+   * Sonuç şifre özeti (hash) başına önbelleğe alınır; böylece her istekte pahalı doğrulama yapılmaz.
+   */
+  async usesDefaultPassword(username: string): Promise<boolean> {
+    const user = await this.users.findOneBy({ username });
+    if (!user) return false;
+    const cached = this.weakCache.get(user.passwordHash);
+    if (cached !== undefined) return cached;
+    const candidates = new Set([...COMMON_PASSWORDS, this.config.get<string>('ADMIN_PASSWORD') ?? '', username]);
+    candidates.delete('');
+    let weak = false;
+    for (const candidate of candidates) {
+      if (await verifyPassword(candidate, user.passwordHash)) {
+        weak = true;
+        break;
+      }
+    }
+    this.weakCache.set(user.passwordHash, weak);
+    return weak;
   }
 
   private assertNotLocked(ip: string): void {

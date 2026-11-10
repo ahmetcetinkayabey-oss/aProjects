@@ -9,6 +9,7 @@ const MENU = [
   { href: "/admin", label: "Özet", icon: "dashboard" },
   { href: "/admin/rezervasyonlar", label: "Rezervasyon Talepleri", icon: "event_available" },
   { href: "/admin/geri-bildirimler", label: "Geri Bildirimler", icon: "rate_review" },
+  { href: "/admin/forum", label: "Forum 2027", icon: "event" },
   { href: "/admin/icerik", label: "Sayfa İçerikleri", icon: "edit_note" },
   { href: "/admin/tesisler", label: "Tesisler", icon: "stadium" },
   { href: "/admin/haberler", label: "Haberler", icon: "newspaper" },
@@ -20,6 +21,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [username, setUsername] = useState<string | null>(null);
+  const [defaultPassword, setDefaultPassword] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const isLogin = pathname === "/admin/login";
 
@@ -29,8 +31,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
       router.replace("/admin/login");
       return;
     }
-    adminFetch<{ username: string }>("/admin/me")
-      .then((me) => setUsername(me.username))
+    adminFetch<{ username: string; defaultPassword?: boolean }>("/admin/me")
+      .then((me) => {
+        setUsername(me.username);
+        setDefaultPassword(Boolean(me.defaultPassword));
+      })
       .catch(() => undefined);
   }, [isLogin, router]);
 
@@ -104,6 +109,14 @@ export function AdminShell({ children }: { children: ReactNode }) {
             <span className="material-symbols-outlined">{menuOpen ? "close" : "menu"}</span>
           </button>
         </div>
+        {defaultPassword ? (
+          <div role="alert" className="flex flex-wrap items-center gap-x-space-md gap-y-1 bg-red-700 px-space-md py-space-sm text-sm text-white">
+            <span className="material-symbols-outlined text-[20px]" aria-hidden>warning</span>
+            <span className="font-semibold">Yönetici şifreniz tahmin edilmesi kolay (kurulum şifresi veya yaygın bir şifre).</span>
+            <Link href="/admin/ayarlar" className="underline">Şifreyi şimdi değiştirin</Link>
+            <span className="text-white/80">(site yayına çıkmadan önce mutlaka)</span>
+          </div>
+        ) : null}
         <main className="mx-auto w-full max-w-6xl p-space-md md:p-space-xl">{children}</main>
       </div>
     </div>

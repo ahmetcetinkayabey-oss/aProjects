@@ -40,6 +40,12 @@ describe('CreateReservationDto', () => {
     ).toEqual(['email', 'phone']);
   });
 
+  it('Türkiye’de yaygın yazım biçimlerini ve yurt dışı numaralarını kabul eder', async () => {
+    for (const phone of ['0555 111 22 33', '555 111 22 33', '0 (555) 111-22-33', '+44 7911 123456', '0090 555 111 22 33']) {
+      expect(await errorsOf({ ...valid, phone }), phone).toEqual([]);
+    }
+  });
+
   it('aşırı uzun metinleri reddeder', async () => {
     expect(await errorsOf({ ...valid, message: 'a'.repeat(2001) })).toEqual([
       'message',

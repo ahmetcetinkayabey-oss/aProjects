@@ -58,3 +58,33 @@ describe('AdminAuthService.login', () => {
     ).toContain('.');
   });
 });
+
+describe('AdminAuthService.usesDefaultPassword', () => {
+  async function serviceWithPassword(password: string) {
+    const user = { username: 'admin', passwordHash: await hashPassword(password) };
+    const users = { findOneBy: vi.fn(async () => user) };
+    const config = {
+      getOrThrow: vi.fn(() => 'test-secret-test-secret-test-secret-1234'),
+      get: vi.fn((key: string) => (key === 'ADMIN_PASSWORD' ? 'kurulum-sifresi-77' : undefined)),
+    };
+    // @ts-expect-error: yalnızca test için gereken üyeleri taklit eden sahte nesneler
+    return { service: new AdminAuthService(users, config), users };
+  }
+
+  it('yaygın şifreyi ve kurulum şifresini yakalar', async () => {
+    expect(await (await serviceWithPassword('123456789')).service.usesDefaultPassword('admin')).toBe(true);
+    expect(await (await serviceWithPassword('kurulum-sifresi-77')).service.usesDefaultPassword('admin')).toBe(true);
+  });
+
+  it('özgün şifrede false döner ve sonucu önbelleğe alır', async () => {
+    const { service } = await serviceWithPassword('cok-ozgun-bir-sifre-4821');
+    expect(await service.usesDefaultPassword('admin')).toBe(false);
+    expect(await service.usesDefaultPassword('admin')).toBe(false);
+  });
+
+  it('kullanıcı yoksa false', async () => {
+    const { service, users } = await serviceWithPassword('123456789');
+    users.findOneBy.mockResolvedValueOnce(null as never);
+    expect(await service.usesDefaultPassword('yok')).toBe(false);
+  });
+});

@@ -52,6 +52,12 @@ export class ForumAdminController {
     return this.forum.updateParticipant(id, dto);
   }
 
+  @Delete('participants/:id')
+  @HttpCode(204)
+  removeParticipant(@Param('id', ParseUUIDPipe) id: string) {
+    return this.forum.removeParticipant(id);
+  }
+
   // --- Program ---
   @Get('sessions')
   sessions() {
