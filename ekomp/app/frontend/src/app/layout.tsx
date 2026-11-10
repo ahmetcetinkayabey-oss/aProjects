@@ -55,7 +55,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD).replace(/</g, "\\u003c") }}
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

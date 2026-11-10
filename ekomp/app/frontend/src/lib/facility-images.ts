@@ -31,7 +31,7 @@ const GALLERY_BY_SLUG: Record<string, string[]> = {
   "salon-sporlari": ["/images/salon-voleybol.jpg"],
   "buz-hokeyi-pateni": ["/images/buz-pateni.jpg"],
   "judo-salonu": ["/images/guresler-minder.jpg"],
-  "kayak-snowboard": ["/images/kayak-merkezi.jpg", "/images/kayak-pist.jpg", "/images/palandoken-dag-yaz.jpg", "/images/palandoken-zirve.jpg"],
+  "kayak-snowboard": ["/images/kayak-merkezi.jpg", "/images/kayak-pist.jpg", "/images/palandoken-dag-yaz.jpg"],
   "kayakla-atlama": [
     "/images/atlama-kule-cikis.jpg",
     "/images/atlama-kuleleri-3.jpg",

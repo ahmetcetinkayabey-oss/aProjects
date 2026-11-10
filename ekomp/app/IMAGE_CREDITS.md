@@ -6,6 +6,5 @@ Bu dosyadaki görseller lisans gereği kaynak ve yazar bilgisiyle saklanır. Lis
 | Dosya (`frontend/public/images/`) | Eser | Yazar | Kaynak |
 |---|---|---|---|
 | `palandoken-dag-yaz.jpg` | Palandöken Mt. Erzurum 09 | Zeynel Cebeci | https://commons.wikimedia.org/wiki/File:Paland%C3%B6ken_Mt._Erzurum_09.jpg |
-| `palandoken-zirve.jpg` | Palandöken Mt. Erzurum 01 | Zeynel Cebeci | https://commons.wikimedia.org/wiki/File:Paland%C3%B6ken_Mt._Erzurum_01.jpg |
 
 Not: CC BY-SA, atıf ister. Sitede görünür bir kaynak satırı yoktur (site sahibinin isteği); atıf yükümlülüğü sahibine aittir.
