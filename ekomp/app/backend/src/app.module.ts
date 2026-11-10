@@ -10,6 +10,8 @@ import { FeedbackModule } from './feedback/feedback.module.js';
 import { ReservationsModule } from './reservations/reservations.module.js';
 import { ContentModule } from './content/content.module.js';
 import { IdentityModule } from './identity/identity.module.js';
+import { SchedulingModule } from './scheduling/scheduling.module.js';
+import { isProductionDatabase } from './common/database-driver.js';
 import { HealthController } from './health.controller.js';
 import { MIGRATIONS } from './migrations/index.js';
 
@@ -50,6 +52,8 @@ import { MIGRATIONS } from './migrations/index.js';
     ContentModule,
     AdminSessionModule,
     IdentityModule,
+    // Kaynak/müsaitlik uçları PostgreSQL'e özgüdür (tstzrange, trigger); geliştirme SQLite'ında kaydedilmez.
+    ...(isProductionDatabase ? [SchedulingModule] : []),
     AdminModule,
   ],
   controllers: [HealthController],
