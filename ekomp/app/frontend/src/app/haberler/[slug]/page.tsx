@@ -66,11 +66,21 @@ export default async function NewsDetailPage({ params }: Props) {
 
         {paragraphs.length > 0 ? (
           <div className="mx-auto mt-10 max-w-3xl space-y-5">
-            {paragraphs.map((p, i) => (
-              <p key={i} className="reveal font-body-lg text-lg leading-8 text-on-surface">
-                <L tr={p} en={enParagraphs.length === paragraphs.length ? enParagraphs[i] : null} />
-              </p>
-            ))}
+            {paragraphs.map((p, i) => {
+              // "## " ile başlayan satır ara başlıktır (İngilizce karşılığı aynı sırada).
+              const isHeading = p.startsWith("## ");
+              const en = enParagraphs.length === paragraphs.length ? enParagraphs[i] : null;
+              const clean = (t: string | null) => (t && t.startsWith("## ") ? t.slice(3) : t);
+              return isHeading ? (
+                <h2 key={i} className="reveal pt-4 font-headline-lg text-2xl font-extrabold tracking-tight text-on-surface">
+                  <L tr={clean(p) ?? ""} en={clean(en)} />
+                </h2>
+              ) : (
+                <p key={i} className="reveal font-body-lg text-lg leading-8 text-on-surface">
+                  <L tr={p} en={en} />
+                </p>
+              );
+            })}
           </div>
         ) : null}
       </article>

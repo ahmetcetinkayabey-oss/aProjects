@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FacilityDetails } from "@/components/facility-details";
 import { StayCta } from "@/components/stay-cta";
 import { L } from "@/components/t";
 import { FACILITIES_EN } from "@/lib/content-en";
@@ -116,6 +117,14 @@ export default async function FacilityDetailPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {facility.details?.trim() ? (
+        <section className="px-margin-mobile pb-12 md:px-margin md:pb-16">
+          <div className="mx-auto max-w-[900px]">
+            <FacilityDetails tr={facility.details} en={facility.detailsEn} />
+          </div>
+        </section>
+      ) : null}
 
       {gallery.length > 0 ? (
         <section className="px-margin-mobile pb-16 md:px-margin md:pb-24">

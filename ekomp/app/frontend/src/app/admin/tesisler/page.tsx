@@ -23,6 +23,7 @@ interface FormState {
   icon: string;
   badge: string;
   description: string;
+  details: string;
   footerLeft: string;
   footerRight: string;
   imageUrl: string;
@@ -31,6 +32,7 @@ interface FormState {
   categoryEn: string;
   titleEn: string;
   descriptionEn: string;
+  detailsEn: string;
   badgeEn: string;
   footerLeftEn: string;
   footerRightEn: string;
@@ -44,6 +46,7 @@ const EMPTY: FormState = {
   icon: "sports",
   badge: "",
   description: "",
+  details: "",
   footerLeft: "",
   footerRight: "",
   imageUrl: "",
@@ -52,6 +55,7 @@ const EMPTY: FormState = {
   categoryEn: "",
   titleEn: "",
   descriptionEn: "",
+  detailsEn: "",
   badgeEn: "",
   footerLeftEn: "",
   footerRightEn: "",
@@ -66,6 +70,7 @@ function toForm(f: AdminFacility): FormState {
     icon: f.icon,
     badge: f.badge,
     description: f.description,
+    details: f.details ?? "",
     footerLeft: f.footerLeft,
     footerRight: f.footerRight,
     imageUrl: f.imageUrl ?? "",
@@ -74,6 +79,7 @@ function toForm(f: AdminFacility): FormState {
     categoryEn: f.categoryEn ?? "",
     titleEn: f.titleEn ?? "",
     descriptionEn: f.descriptionEn ?? "",
+    detailsEn: f.detailsEn ?? "",
     badgeEn: f.badgeEn ?? "",
     footerLeftEn: f.footerLeftEn ?? "",
     footerRightEn: f.footerRightEn ?? "",
@@ -155,6 +161,8 @@ export default function FacilitiesAdminPage() {
       categoryEn: form.categoryEn.trim() || null,
       titleEn: form.titleEn.trim() || null,
       descriptionEn: form.descriptionEn.trim() || null,
+      details: form.details.trim() || null,
+      detailsEn: form.detailsEn.trim() || null,
       badgeEn: form.badgeEn.trim() || null,
       footerLeftEn: form.footerLeftEn.trim() || null,
       footerRightEn: form.footerRightEn.trim() || null,
@@ -266,6 +274,9 @@ export default function FacilitiesAdminPage() {
             <Field label="Açıklama">
               <textarea className={inputClass} rows={4} value={editing.form.description} required onChange={(e) => patch({ description: e.target.value })} />
             </Field>
+            <Field label="Ayrıntılı açıklama" hint="Tesis sayfasında kartın altında görünür. Her satır bir paragraf; ara başlık için satırı ‘## ’ ile başlatın.">
+              <textarea className={inputClass} rows={10} maxLength={12000} value={editing.form.details} onChange={(e) => patch({ details: e.target.value })} />
+            </Field>
             <div className="grid gap-space-md sm:grid-cols-2">
               <Field label="Alt bilgi (sol)">
                 <input className={inputClass} value={editing.form.footerLeft} onChange={(e) => patch({ footerLeft: e.target.value })} />
@@ -322,6 +333,9 @@ export default function FacilitiesAdminPage() {
               </div>
               <Field label="Description">
                 <textarea className={inputClass} rows={4} value={editing.form.descriptionEn} onChange={(e) => patch({ descriptionEn: e.target.value })} />
+              </Field>
+              <Field label="Detailed description" hint="One paragraph per line; start a line with ‘## ’ for a subheading.">
+                <textarea className={inputClass} rows={10} maxLength={12000} value={editing.form.detailsEn} onChange={(e) => patch({ detailsEn: e.target.value })} />
               </Field>
               <div className="grid gap-space-md sm:grid-cols-2">
                 <Field label="Footer (left)">

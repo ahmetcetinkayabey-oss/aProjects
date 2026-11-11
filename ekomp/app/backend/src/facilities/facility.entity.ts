@@ -26,6 +26,10 @@ export class Facility {
   @Column({ type: 'text' })
   description!: string;
 
+  /** Tesis sayfasında gösterilen uzun açıklama; paragraflar boş satırla ya da satır sonuyla ayrılır. */
+  @Column({ type: 'text', nullable: true })
+  details?: string | null;
+
   @Column()
   badge!: string;
 
@@ -53,6 +57,9 @@ export class Facility {
 
   @Column({ type: 'text', nullable: true })
   descriptionEn?: string | null;
+
+  @Column({ type: 'text', nullable: true })
+  detailsEn?: string | null;
 
   @Column({ type: 'varchar', nullable: true })
   badgeEn?: string | null;

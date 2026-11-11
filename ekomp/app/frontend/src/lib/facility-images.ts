@@ -11,7 +11,7 @@ const IMAGE_BY_SLUG: Record<string, string> = {
   "salon-sporlari": "/images/salon-erzurum.jpg",
   "judo-salonu": "/images/judo.jpg",
   "kayak-snowboard": "/images/kayak-palandoken.jpg",
-  "kayakla-atlama": "/images/kayakla-atlama.jpg",
+  "kayakla-atlama": "/images/atlama-kuleleri-kiremitlik.jpg",
   "buz-hokeyi-pateni": "/images/buz-arenasi-erzurum.jpg",
 };
 
@@ -33,6 +33,7 @@ const GALLERY_BY_SLUG: Record<string, string[]> = {
   "judo-salonu": ["/images/guresler-minder.jpg"],
   "kayak-snowboard": ["/images/kayak-merkezi.jpg", "/images/kayak-pist.jpg", "/images/palandoken-dag-yaz.jpg"],
   "kayakla-atlama": [
+    "/images/kayakla-atlama.jpg",
     "/images/atlama-kule-cikis.jpg",
     "/images/atlama-kuleleri-3.jpg",
     "/images/atlama-manzara.jpg",

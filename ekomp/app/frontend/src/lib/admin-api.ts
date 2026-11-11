@@ -140,6 +140,7 @@ export interface AdminFacility {
   icon: string;
   title: string;
   description: string;
+  details?: string | null;
   badge: string;
   imageUrl?: string | null;
   footerLeft: string;
@@ -148,6 +149,7 @@ export interface AdminFacility {
   categoryEn?: string | null;
   titleEn?: string | null;
   descriptionEn?: string | null;
+  detailsEn?: string | null;
   badgeEn?: string | null;
   footerLeftEn?: string | null;
   footerRightEn?: string | null;

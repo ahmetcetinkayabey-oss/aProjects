@@ -30,6 +30,7 @@ export class CreateFacilityDto {
   @IsString() @MinLength(2) icon!: string;
   @IsString() @MinLength(2) title!: string;
   @IsString() @MinLength(2) description!: string;
+  @IsOptional() @IsString() @MaxLength(12000) details?: string | null;
   @IsString() badge!: string;
   @IsString() footerLeft!: string;
   @IsString() footerRight!: string;
@@ -47,6 +48,7 @@ export class CreateFacilityDto {
   @IsOptional() @IsString() @MaxLength(100) categoryEn?: string | null;
   @IsOptional() @IsString() @MaxLength(300) titleEn?: string | null;
   @IsOptional() @IsString() @MaxLength(5000) descriptionEn?: string | null;
+  @IsOptional() @IsString() @MaxLength(12000) detailsEn?: string | null;
   @IsOptional() @IsString() @MaxLength(100) badgeEn?: string | null;
   @IsOptional() @IsString() @MaxLength(200) footerLeftEn?: string | null;
   @IsOptional() @IsString() @MaxLength(200) footerRightEn?: string | null;
@@ -71,6 +73,7 @@ export class UpdateFacilityDto {
   @IsOptional() @IsString() @MinLength(2) icon?: string;
   @IsOptional() @IsString() @MinLength(2) title?: string;
   @IsOptional() @IsString() @MinLength(2) description?: string;
+  @IsOptional() @IsString() @MaxLength(12000) details?: string | null;
   @IsOptional() @IsString() badge?: string;
   @IsOptional() @IsString() footerLeft?: string;
   @IsOptional() @IsString() footerRight?: string;
@@ -85,6 +88,7 @@ export class UpdateFacilityDto {
   @IsOptional() @IsString() @MaxLength(100) categoryEn?: string | null;
   @IsOptional() @IsString() @MaxLength(300) titleEn?: string | null;
   @IsOptional() @IsString() @MaxLength(5000) descriptionEn?: string | null;
+  @IsOptional() @IsString() @MaxLength(12000) detailsEn?: string | null;
   @IsOptional() @IsString() @MaxLength(100) badgeEn?: string | null;
   @IsOptional() @IsString() @MaxLength(200) footerLeftEn?: string | null;
   @IsOptional() @IsString() @MaxLength(200) footerRightEn?: string | null;

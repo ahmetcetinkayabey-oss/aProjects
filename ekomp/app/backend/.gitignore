@@ -26,3 +26,4 @@ npm-debug.log*
 
 # yüklenen görseller
 /uploads
+scripts/content/backup-before.json

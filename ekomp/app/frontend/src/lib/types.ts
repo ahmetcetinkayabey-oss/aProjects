@@ -5,6 +5,8 @@ export interface Facility {
   icon: string;
   title: string;
   description: string;
+  /** Uzun açıklama (paragraflar satır sonuyla; "## " ara başlık). */
+  details?: string | null;
   badge: string;
   imageUrl?: string | null;
   footerLeft: string;
@@ -14,6 +16,7 @@ export interface Facility {
   categoryEn?: string | null;
   titleEn?: string | null;
   descriptionEn?: string | null;
+  detailsEn?: string | null;
   badgeEn?: string | null;
   footerLeftEn?: string | null;
   footerRightEn?: string | null;
