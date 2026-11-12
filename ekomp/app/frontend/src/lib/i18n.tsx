@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { DICTIONARY, type DictKey, type Locale } from "./dictionary";
 import { CONTENT_FIELDS } from "./content-registry";
@@ -7,7 +8,27 @@ import { CONTENT_FIELDS } from "./content-registry";
 /** Yönetim panelinden değiştirilmiş metinler: anahtar -> { tr, en }. */
 export type ContentOverrides = Record<string, { tr: string; en: string | null }>;
 
-const STORAGE_KEY = "ekomp_locale";
+const EN_PREFIX = "/en";
+
+/** "/en/tesisler" -> "/tesisler"; "/en" -> "/". Önek yoksa yolu olduğu gibi döndürür. */
+export function stripLocalePrefix(path: string): string {
+  if (path === EN_PREFIX) return "/";
+  return path.startsWith(`${EN_PREFIX}/`) ? path.slice(EN_PREFIX.length) : path;
+}
+
+/** İngilizce görünümde site içi adreslere "/en" öneki ekler. Dış adres, yönetim paneli ve API'ye dokunmaz. */
+export function localizePath(locale: Locale, href: string): string {
+  if (locale !== "en" || !href.startsWith("/") || href.startsWith("//")) return href;
+  if (href === EN_PREFIX || href.startsWith(`${EN_PREFIX}/`) || href.startsWith("/admin") || href.startsWith("/api")) return href;
+  const m = /^([^?#]*)(.*)$/.exec(href);
+  const path = m?.[1] === "/" ? "" : (m?.[1] ?? "");
+  return `${EN_PREFIX}${path}${m?.[2] ?? ""}`;
+}
+
+/** Önek çıkarılmış geçerli yol: menü vurgusu ve yol karşılaştırmaları için. */
+export function usePlainPathname(): string {
+  return stripLocalePrefix(usePathname() ?? "/");
+}
 
 interface LocaleContextValue {
   locale: Locale;
@@ -19,41 +40,41 @@ interface LocaleContextValue {
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
-function readStored(): Locale | null {
-  try {
-    const value = window.localStorage.getItem(STORAGE_KEY);
-    return value === "tr" || value === "en" ? value : null;
-  } catch {
-    return null;
-  }
-}
-
 /**
- * TR/EN seçimi. Manuel seçim her zaman önceliklidir ve tarayıcıda saklanır;
- * ilk ziyarette tarayıcı dili "tr" ise Türkçe, değilse İngilizce açılır.
- * Dil değişimi yalnızca bağlamı günceller; sayfa yeniden yüklenmez, form/oturum bozulmaz.
+ * TR/EN: dil adresten gelir ("/en" ile başlayan adresler İngilizce). Sunucu, ilk çizim için dili proxy başlığından verir
+ * (initialLocale); sonraki sayfa geçişlerinde adres izlenir. Dil düğmesi aynı sayfanın diğer dil adresine gider.
  */
-export function LocaleProvider({ children, content = {} }: { children: ReactNode; content?: ContentOverrides }) {
-  const [locale, setLocaleState] = useState<Locale>("tr");
+export function LocaleProvider({
+  children,
+  content = {},
+  initialLocale = "tr",
+}: {
+  children: ReactNode;
+  content?: ContentOverrides;
+  initialLocale?: Locale;
+}) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
 
   useEffect(() => {
-    const initial = readStored() ?? (navigator.language?.toLowerCase().startsWith("tr") ? "tr" : "en");
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- tarayıcı dili yalnızca istemcide okunabilir
-    setLocaleState(initial);
-  }, []);
+    const fromPath: Locale = pathname === EN_PREFIX || pathname.startsWith(`${EN_PREFIX}/`) ? "en" : "tr";
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- dil, istemci tarafı sayfa geçişlerinde adresten okunur
+    setLocaleState(fromPath);
+  }, [pathname]);
 
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
 
-  const setLocale = useCallback((next: Locale) => {
-    setLocaleState(next);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, next);
-    } catch {
-      // yoksay
-    }
-  }, []);
+  const setLocale = useCallback(
+    (next: Locale) => {
+      const { pathname: current, search, hash } = window.location;
+      setLocaleState(next);
+      router.push(localizePath(next, stripLocalePrefix(current)) + search + hash);
+    },
+    [router],
+  );
 
   const value = useMemo<LocaleContextValue>(
     () => {
@@ -108,4 +129,10 @@ export function formatDay(locale: Locale, isoDay: string): string {
     dateStyle: "full",
     timeZone: "Europe/Istanbul",
   }).format(new Date(`${isoDay}T12:00:00+03:00`));
+}
+
+/** Site içi adresi geçerli dile göre döndürür (router.push gibi koddan yönlendirmeler için). */
+export function useLocalePath(): (href: string) => string {
+  const { locale } = useLocale();
+  return useCallback((href: string) => localizePath(locale, href), [locale]);
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePlainPathname } from "@/lib/i18n";
 import { useEffect, useState, type ReactNode } from "react";
 import { SiteFooter } from "./site-footer";
 import { SiteNavBar } from "./site-nav-bar";
@@ -8,7 +8,7 @@ import { TopBanner } from "./top-banner";
 
 /** Herkese açık sitenin ortak çerçevesi. Yönetim paneli (/admin) kendi düzenini kullanır. */
 export function SiteChrome({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
+  const pathname = usePlainPathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {

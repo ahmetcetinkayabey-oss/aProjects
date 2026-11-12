@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { assetUrl } from "@/lib/api";
 import { pick, useLocale } from "@/lib/i18n";
 import type { DictKey } from "@/lib/dictionary";

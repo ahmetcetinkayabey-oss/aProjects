@@ -5,18 +5,19 @@ import { useEffect, useState, type FormEvent } from "react";
 import { ErrorText, Section, buttonClass, fieldClass } from "@/components/forum/forum-ui";
 import type { DictKey } from "@/lib/dictionary";
 import { clearForumToken, forumFetch, getForumToken, ForumApiError, type OwnProfile } from "@/lib/forum-api";
-import { useLocale } from "@/lib/i18n";
+import { useLocale, useLocalePath } from "@/lib/i18n";
 
 export default function PanelPage() {
   const { t } = useLocale();
   const router = useRouter();
+  const lp = useLocalePath();
   const [profile, setProfile] = useState<OwnProfile | null>(null);
   const [error, setError] = useState<DictKey | null>(null);
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     if (!getForumToken()) {
-      router.replace("/forum/giris");
+      router.replace(lp("/forum/giris"));
       return;
     }
     forumFetch<OwnProfile>("/forum/me", {}, true)
@@ -24,10 +25,10 @@ export default function PanelPage() {
       .catch((e) => {
         if (e instanceof ForumApiError && e.status === 401) {
           clearForumToken();
-          router.replace("/forum/giris");
+          router.replace(lp("/forum/giris"));
         } else setError("common.loadError");
       });
-  }, [router]);
+  }, [router, lp]);
 
   if (!profile) {
     return (

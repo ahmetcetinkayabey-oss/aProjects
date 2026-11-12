@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/page-meta";
 import { L } from "@/components/t";
 import { PageTitle } from "@/components/page-title";
 
-export const metadata: Metadata = {
-  title: "Gizlilik ve Kişisel Verilerin Korunması | Erzurum Yüksek İrtifa Kamp Merkezi",
-  alternates: { canonical: "/gizlilik" },
-};
+export const generateMetadata = (): Promise<Metadata> =>
+  pageMeta({ title: "Gizlilik ve Kişisel Verilerin Korunması" }, { title: "Privacy and Personal Data Protection" });
 
 type Bi = { tr: string; en: string };
 interface Section {

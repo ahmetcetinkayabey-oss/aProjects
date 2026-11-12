@@ -1,22 +1,27 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { notFound } from "next/navigation";
 import { StayCta } from "@/components/stay-cta";
 import { L } from "@/components/t";
 import { NEWS_EN } from "@/lib/content-en";
 import { getNews } from "@/lib/api";
 import { OptImg } from "@/components/opt-img";
+import { getRequestLocale } from "@/lib/server-locale";
+import { SITE_NAME, SITE_NAME_EN } from "@/lib/site-url";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const item = (await getNews()).find((n) => n.slug === slug);
+  const isEn = (await getRequestLocale()) === "en";
+  const en = item ? NEWS_EN[item.slug] : undefined;
+  const title = item ? (isEn ? (item.titleEn ?? en?.title ?? item.title) : item.title) : "";
+  const description = item ? (isEn ? (item.summaryEn ?? en?.summary ?? item.summary) : item.summary) : undefined;
   return {
-    title: item ? `${item.title} | Erzurum Yüksek İrtifa Kamp Merkezi` : "Haber bulunamadı",
-    description: item?.summary,
-    alternates: item ? { canonical: `/haberler/${item.slug}` } : undefined,
-    openGraph: item ? { title: item.title, description: item.summary, images: [{ url: item.image }] } : undefined,
+    title: item ? `${title} | ${isEn ? SITE_NAME_EN : SITE_NAME}` : isEn ? "News not found" : "Haber bulunamadı",
+    description,
+    openGraph: item ? { title, description, images: [{ url: item.image }] } : undefined,
   };
 }
 

@@ -1,16 +1,17 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { ErrorText, Section, buttonClass, fieldClass } from "@/components/forum/forum-ui";
 import { ForumApiError, post, setForumToken } from "@/lib/forum-api";
 import type { DictKey } from "@/lib/dictionary";
-import { useLocale } from "@/lib/i18n";
+import { useLocale, useLocalePath } from "@/lib/i18n";
 
 export default function LoginPage() {
   const { t } = useLocale();
   const router = useRouter();
+  const lp = useLocalePath();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<DictKey | null>(null);
@@ -24,7 +25,7 @@ export default function LoginPage() {
     try {
       const { token } = await post<{ token: string }>("/forum/auth/login", { email, password });
       setForumToken(token);
-      router.push("/forum/panel");
+      router.push(lp("/forum/panel"));
     } catch (err) {
       const key = err instanceof ForumApiError ? err.key : "err.generic";
       setError(key === "notVerified" ? "login.notVerified" : key);

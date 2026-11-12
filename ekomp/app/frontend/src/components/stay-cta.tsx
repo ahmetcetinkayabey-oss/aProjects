@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "@/lib/i18n";
-import Link from "next/link";
+import Link from "@/components/locale-link";
 
 import { C, L } from "./t";
 import { OptImg } from "@/components/opt-img";

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { useState, type FormEvent } from "react";
 import { ErrorText, Section, buttonClass, fieldClass } from "@/components/forum/forum-ui";
 import type { DictKey } from "@/lib/dictionary";

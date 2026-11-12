@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { facilityImage } from "@/lib/facility-images";
 import type { Facility } from "@/lib/types";
 import { FACILITIES_EN } from "@/lib/content-en";

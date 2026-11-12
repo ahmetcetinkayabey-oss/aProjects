@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import Link from "next/link";
+import { pageMeta } from "@/lib/page-meta";
+import Link from "@/components/locale-link";
 import { FaqList } from "@/components/faq-list";
 import { OptImg } from "@/components/opt-img";
 import { PageTitle } from "@/components/page-title";
@@ -9,11 +10,11 @@ import { ReservationCta } from "@/components/reservation-cta";
 import { C, L } from "@/components/t";
 import { HOTELS, hotelCover } from "@/lib/hotels";
 
-export const metadata: Metadata = {
-  title: "Rezervasyon | Erzurum Yüksek İrtifa Kamp Merkezi",
-  description: "Anlaşmalı otel, ekipman kiralama, branş bazlı kamp ve masa rezervasyonu için talep oluşturun.",
-  alternates: { canonical: "/rezervasyon" },
-};
+export const generateMetadata = (): Promise<Metadata> =>
+  pageMeta(
+    { title: "Rezervasyon", description: "Anlaşmalı otel, ekipman kiralama, branş bazlı kamp ve masa rezervasyonu için talep oluşturun." },
+    { title: "Reservation", description: "Request accommodation at partner hotels, equipment rental, sport-specific camps and table bookings." },
+  );
 
 
 const EQUIPMENT = [

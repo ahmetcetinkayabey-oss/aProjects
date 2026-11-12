@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { SectionHeading } from "./section-heading";
 import { C, L } from "./t";
 import { OptImg } from "@/components/opt-img";

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { useEffect, useMemo, useState } from "react";
 import { DataView, Section, fieldClass } from "@/components/forum/forum-ui";
 import type { DictKey } from "@/lib/dictionary";

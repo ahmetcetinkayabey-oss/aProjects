@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import type { DictKey } from "@/lib/dictionary";
 import { useLocale } from "@/lib/i18n";
 import { OptImg } from "@/components/opt-img";

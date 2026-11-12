@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "@/components/locale-link";
+import { useRouter } from "next/navigation";
+import { useLocalePath, usePlainPathname } from "@/lib/i18n";
 import { useEffect, useState, type ReactNode } from "react";
 import { useLocale } from "@/lib/i18n";
 import { getForumToken, clearForumToken } from "@/lib/forum-api";
@@ -24,8 +25,9 @@ const LINKS: { href: string; key: DictKey }[] = [
 
 /** Forum bölümünün alt menüsü: kayıt, program ve katılımcı paneline en fazla bir tık. */
 export function ForumSubNav() {
-  const pathname = usePathname();
+  const pathname = usePlainPathname();
   const router = useRouter();
+  const lp = useLocalePath();
   const { t } = useLocale();
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -62,7 +64,7 @@ export function ForumSubNav() {
                 onClick={() => {
                   clearForumToken();
                   setLoggedIn(false);
-                  router.push("/forum");
+                  router.push(lp("/forum"));
                   router.refresh();
                 }}
               >

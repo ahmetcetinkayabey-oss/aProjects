@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { notFound } from "next/navigation";
 import { FacilityDetails } from "@/components/facility-details";
 import { StayCta } from "@/components/stay-cta";
@@ -9,6 +9,8 @@ import { getFacilities } from "@/lib/api";
 import { facilityGallery, facilityHeroCaption, facilityImage } from "@/lib/facility-images";
 import { FacilityPhotoGrid } from "@/components/facility-photo-grid";
 import { OptImg } from "@/components/opt-img";
+import { getRequestLocale } from "@/lib/server-locale";
+import { SITE_NAME, SITE_NAME_EN } from "@/lib/site-url";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -17,11 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const facility = (await getFacilities()).find((f) => f.slug === slug);
   if (!facility) return { title: "Tesis bulunamadı" };
   const image = facilityImage(facility);
+  const isEn = (await getRequestLocale()) === "en";
+  const en = FACILITIES_EN[facility.slug];
+  const title = isEn ? (facility.titleEn ?? en?.title ?? facility.title) : facility.title;
+  const description = isEn ? (facility.descriptionEn ?? en?.description ?? facility.description) : facility.description;
   return {
-    title: `${facility.title} | Erzurum Yüksek İrtifa Kamp Merkezi`,
-    description: facility.description,
-    alternates: { canonical: `/tesisler/${facility.slug}` },
-    openGraph: { title: facility.title, description: facility.description, images: image ? [{ url: image }] : undefined },
+    title: `${title} | ${isEn ? SITE_NAME_EN : SITE_NAME}`,
+    description,
+    openGraph: { title, description, images: image ? [{ url: image }] : undefined },
   };
 }
 

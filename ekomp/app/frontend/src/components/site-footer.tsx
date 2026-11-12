@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { C, L, T, useL } from "./t";
 import { NAV_LINKS } from "@/lib/site";
 import { OptImg } from "@/components/opt-img";

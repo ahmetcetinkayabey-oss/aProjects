@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from "@/components/locale-link";
+import { usePlainPathname } from "@/lib/i18n";
 import { useRef, useState } from "react";
 import { NAV_LINKS } from "@/lib/site";
 import { useLocale } from "@/lib/i18n";
@@ -116,7 +116,7 @@ function ForumDropdown({ active }: { active: boolean }) {
 
 /** Üst bilgi bandının hemen altında, kaydırınca da üstte kalan logo + menü çubuğu (xl ve üstünde yatay menü, altında hamburger). */
 export function SiteNavBar() {
-  const pathname = usePathname();
+  const pathname = usePlainPathname();
   const [open, setOpen] = useState(false);
   const { t, locale } = useLocale();
   const loginLabel = locale === "en" ? "Log in" : "Giriş Yap";

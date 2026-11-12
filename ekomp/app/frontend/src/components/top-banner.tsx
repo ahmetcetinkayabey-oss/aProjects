@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from "@/components/locale-link";
+import { usePlainPathname } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import type { DictKey } from "@/lib/dictionary";
 import { pick, useLocale } from "@/lib/i18n";
@@ -30,7 +30,7 @@ const SUB_TITLES: Record<string, string | DictKey> = {
 };
 
 export function TopBanner() {
-  const pathname = usePathname();
+  const pathname = usePlainPathname();
   const { t, c, locale } = useLocale();
   const isHome = pathname === "/";
   const [active, setActive] = useState(0);

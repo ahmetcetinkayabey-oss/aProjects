@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/page-meta";
 import { BestSection } from "@/components/best-section";
 import { FactsBand } from "@/components/facts-band";
 import { IntroSection } from "@/components/intro-section";
@@ -6,7 +7,7 @@ import { PageTitle } from "@/components/page-title";
 import { StayCta } from "@/components/stay-cta";
 import { C, L } from "@/components/t";
 
-export const metadata: Metadata = { title: "Hakkımızda | Erzurum Yüksek İrtifa Kamp Merkezi", alternates: { canonical: "/hakkimizda" } };
+export const generateMetadata = (): Promise<Metadata> => pageMeta({ title: "Hakkımızda" }, { title: "About us" });
 
 export default function AboutPage() {
   return (

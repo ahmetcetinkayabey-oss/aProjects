@@ -6,9 +6,6 @@ import { IntroSection } from "@/components/intro-section";
 import { NewsList } from "@/components/news-list";
 import { StayCta } from "@/components/stay-cta";
 import { getFacilities } from "@/lib/api";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default async function Home() {
   const facilities = await getFacilities();

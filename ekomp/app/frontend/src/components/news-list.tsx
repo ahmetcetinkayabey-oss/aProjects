@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { getNews } from "@/lib/api";
 import type { NewsItem } from "@/lib/site";
 import type { ReactNode } from "react";

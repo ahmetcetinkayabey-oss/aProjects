@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { createFeedback } from "@/lib/api";
 import { SectionHeading } from "./section-heading";
 import { useC, useL } from "./t";
-import Link from "next/link";
+import Link from "@/components/locale-link";
 
 const CATEGORIES = [
   { value: "Öneri", tr: "Öneri", en: "Suggestion" },

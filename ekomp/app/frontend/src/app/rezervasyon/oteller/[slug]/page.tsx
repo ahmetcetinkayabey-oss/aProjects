@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { notFound } from "next/navigation";
 import { FaqList } from "@/components/faq-list";
 import { OptImg } from "@/components/opt-img";
 import { C, L } from "@/components/t";
 import { hotelKey } from "@/lib/content-hotels";
 import { HOTELS, getHotel, hotelCover, type Hotel } from "@/lib/hotels";
+import { getRequestLocale } from "@/lib/server-locale";
+import { SITE_NAME, SITE_NAME_EN } from "@/lib/site-url";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,12 +18,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const hotel = getHotel(slug);
-  if (!hotel) return { title: "Otel bulunamadı" };
+  const isEn = (await getRequestLocale()) === "en";
+  if (!hotel) return { title: isEn ? "Hotel not found" : "Otel bulunamadı" };
+  const description = isEn ? hotel.tagline.en : hotel.tagline.tr;
   return {
-    title: `${hotel.name} | Anlaşmalı oteller | Erzurum Yüksek İrtifa Kamp Merkezi`,
-    description: hotel.tagline.tr,
-    alternates: { canonical: `/rezervasyon/oteller/${hotel.slug}` },
-    openGraph: { title: hotel.name, description: hotel.tagline.tr, images: [{ url: hotelCover(hotel.slug) }] },
+    title: `${hotel.name} | ${isEn ? "Partner hotels" : "Anlaşmalı oteller"} | ${isEn ? SITE_NAME_EN : SITE_NAME}`,
+    description,
+    openGraph: { title: hotel.name, description, images: [{ url: hotelCover(hotel.slug) }] },
   };
 }
 

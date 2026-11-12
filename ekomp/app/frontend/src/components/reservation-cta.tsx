@@ -4,7 +4,7 @@ import { Suspense, useState, type FormEvent } from "react";
 import { createReservation } from "@/lib/api";
 import { useC, useL } from "./t";
 import { OptImg } from "@/components/opt-img";
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { useSearchParams } from "next/navigation";
 
 const SPORT_BRANCHES = [

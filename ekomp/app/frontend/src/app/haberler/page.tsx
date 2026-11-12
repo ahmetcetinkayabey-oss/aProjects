@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/page-meta";
 import { NewsList } from "@/components/news-list";
 import { PageTitleL } from "@/components/i18n-headings";
 
-export const metadata: Metadata = { title: "Haberler | Erzurum Yüksek İrtifa Kamp Merkezi", alternates: { canonical: "/haberler" } };
+export const generateMetadata = (): Promise<Metadata> => pageMeta({ title: "Haberler" }, { title: "News" });
 
 export default function NewsPage() {
   return (
