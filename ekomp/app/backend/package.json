@@ -27,6 +27,7 @@
     "migration:revert": "nest build && typeorm migration:revert -d dist/data-source.js"
   },
   "dependencies": {
+    "@google/genai": "^3.2.0",
     "@nestjs/common": "^12.0.1",
     "@nestjs/config": "^12.0.1",
     "@nestjs/core": "^12.0.1",
