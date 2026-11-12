@@ -37,7 +37,7 @@ export const CONTENT_GROUPS: ContentGroup[] = [
       { key: "home.hero.badge", label: "Üst etiket", tr: "Palandöken, Erzurum", en: "Palandöken, Erzurum" },
       { key: "home.hero.title1", label: "Başlık (ilk bölüm)", tr: "Şampiyonların", en: "Home of", hint: "Başlık iki parçadır: ilk bölüm beyaz, ikinci bölüm vurgu renginde görünür." },
       { key: "home.hero.title2", label: "Başlık (vurgulu bölüm)", tr: "evi", en: "champions" },
-      { key: "home.hero.text", label: "Alt metin", tr: "2.100 metrede, takımlar için yıl boyu açık çok branşlı kamp merkezi.", en: "A year-round, multi-sport camp centre for teams at 2,100 metres.", multiline: true },
+      { key: "home.hero.text", label: "Alt metin", tr: "2.000 metrede, takımlar için yıl boyu açık çok branşlı kamp merkezi.", en: "A year-round, multi-sport camp centre for teams at 2,000 metres.", multiline: true },
       { key: "home.hero.btn1", label: "Birinci düğme", tr: "Kamp planla", en: "Plan your camp" },
       { key: "home.hero.btn2", label: "İkinci düğme", tr: "Tesisler", en: "Facilities" },
     ],
@@ -53,12 +53,12 @@ export const CONTENT_GROUPS: ContentGroup[] = [
       {
         key: "intro.text",
         label: "Açıklama",
-        tr: "Palandöken eteklerinde kurulu merkezimiz; kulüplere ve milli takımlara futbol, yüzme, kış sporları ve dövüş sporlarında kamp imkânı sunar.",
-        en: "Set on the slopes of Palandöken, our centre offers clubs and national teams camp facilities for football, swimming, winter sports and combat sports.",
+        tr: "Palandöken eteklerinde kurulu merkezimiz; kulüplere ve milli takımlara futbol, yüzme, atletizm, salon sporları, buz sporları, kış sporları ve dövüş sporlarında kamp imkânı sunar.",
+        en: "Set on the slopes of Palandöken, our centre offers clubs and national teams camp facilities for football, swimming, athletics, indoor sports, ice sports, winter sports and combat sports.",
         multiline: true,
       },
       { key: "intro.button", label: "Düğme", tr: "Tesisleri gör", en: "View facilities" },
-      { key: "intro.badge.value", label: "Fotoğraf üstü rozet (büyük)", tr: "2.100 m", en: "2,100 m" },
+      { key: "intro.badge.value", label: "Fotoğraf üstü rozet (büyük)", tr: "2.000 m", en: "2,000 m" },
       { key: "intro.badge.label", label: "Fotoğraf üstü rozet (alt yazı)", tr: "Yüksek irtifa", en: "High altitude" },
     ],
   },
@@ -81,7 +81,7 @@ export const CONTENT_GROUPS: ContentGroup[] = [
     path: "/#galeri",
     fields: [
       { key: "gallery.eyebrow", label: "Küçük başlık", tr: "Galeri", en: "Gallery" },
-      { key: "gallery.title", label: "Başlık", tr: "Sahadan kareler", en: "Moments from the pitch" },
+      { key: "gallery.title", label: "Başlık", tr: "Tesislerden kareler", en: "Moments from our facilities" },
     ],
   },
   {
@@ -200,7 +200,7 @@ export const CONTENT_GROUPS: ContentGroup[] = [
     fields: [
       { key: "cta.badge", label: "Etiket", tr: "Kamp talebi", en: "Camp request" },
       { key: "cta.title", label: "Başlık", tr: "Kampınızı birlikte planlayalım", en: "Let us plan your camp together" },
-      { key: "cta.text", label: "Açıklama", tr: "Formu doldurun, ekibimiz sizi arasın.", en: "Fill in the form and our team will call you." },
+      { key: "cta.text", label: "Açıklama", tr: "Formu doldurun, ekibimiz size dönüş yapsın.", en: "Fill in the form and our team will get back to you." },
       { key: "cta.success", label: "Gönderim sonrası mesaj", tr: "Talebiniz alındı. Ekibimiz en kısa sürede sizinle iletişime geçecek.", en: "Your request has been received. Our team will contact you shortly.", multiline: true },
     ],
   },
@@ -234,7 +234,7 @@ export const CONTENT_GROUPS: ContentGroup[] = [
     description: "Sitenin en altındaki alan.",
     path: "/#footer",
     fields: [
-      { key: "footer.desc", label: "Kuruluş tanımı", tr: "Palandöken'de 2.100 metrede çok branşlı kamp merkezi.", en: "A multi-sport camp centre at 2,100 metres in Palandöken.", multiline: true },
+      { key: "footer.desc", label: "Kuruluş tanımı", tr: "Palandöken'de 2.000 metrede çok branşlı kamp merkezi.", en: "A multi-sport camp centre at 2,000 metres in Palandöken.", multiline: true },
       { key: "footer.cta", label: "Düğme", tr: "Kamp talebi oluştur", en: "Request a camp" },
       { key: "footer.help", label: "Yardım sütunu başlığı", tr: "Yardıma mı ihtiyacınız var?", en: "Need assistance?" },
     ],

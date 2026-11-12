@@ -3,7 +3,7 @@ export type Locale = "tr" | "en";
 
 const tr = {
   // Genel çerçeve
-  "top.strip": "Kamp rezervasyonları açık · Herkese açık · Şampiyonlarla antrenman yapın",
+  "top.strip": "Kamp talepleri açık · Kulüp ve milli takımlar için · Yüksek irtifada antrenman yapın",
   "lang.label": "Dil seçimi",
   "nav.home": "Ana Sayfa",
   "nav.about": "Hakkımızda",
@@ -182,7 +182,7 @@ const tr = {
   "err.locked": "Çok fazla hatalı deneme. 15 dakika sonra tekrar deneyin.",
   "map.eyebrow": "Konum",
   "map.title": "Bizi Palandöken'de bulun",
-  "map.text": "Merkezimiz Erzurum'un Palandöken bölgesinde, 2.100 metre rakımda yer alır.",
+  "map.text": "Merkezimiz Erzurum'un Palandöken bölgesinde, 2.000 metre rakımda yer alır.",
   "map.directions": "Yol tarifi al",
   "map.frame": "Erzurum Yüksek İrtifa Kamp Merkezi konumu",
   "privacy.title": "Gizlilik ve KVKK",
@@ -192,7 +192,7 @@ const tr = {
 export type DictKey = keyof typeof tr;
 
 const en: Record<DictKey, string> = {
-  "top.strip": "Camp reservations open · Open to everyone · Train with champions",
+  "top.strip": "Camp requests open · For clubs and national teams · Train at high altitude",
   "lang.label": "Language",
   "nav.home": "Home",
   "nav.about": "About",
@@ -360,7 +360,7 @@ const en: Record<DictKey, string> = {
   "err.locked": "Too many failed attempts. Try again in 15 minutes.",
   "map.eyebrow": "Location",
   "map.title": "Find us in Palandöken",
-  "map.text": "Our centre is in the Palandöken area of Erzurum, at an altitude of 2,100 metres.",
+  "map.text": "Our centre is in the Palandöken area of Erzurum, at an altitude of 2,000 metres.",
   "map.directions": "Get directions",
   "map.frame": "Location of the Erzurum High Altitude Camp Centre",
   "privacy.title": "Privacy & data protection",

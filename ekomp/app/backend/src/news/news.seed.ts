@@ -3,9 +3,9 @@ export const NEWS_SEED = [
     slug: 'yuksek-irtifa-kampi-nasil-planlanir',
     title: 'Yüksek irtifa kampı nasıl planlanır?',
     summary:
-      'Kamp süresi, yüklenme planı ve toparlanma: 2.100 metrede verimli bir hazırlık dönemi için temel adımlar.',
+      'Kamp süresi, yüklenme planı ve toparlanma: 2.000 metrede verimli bir hazırlık dönemi için temel adımlar.',
     content:
-      'Yüksek irtifa kampları, sporcuların aerobik kapasitesini geliştirmek için dünya genelinde kullanılan bir hazırlık yöntemidir. Genel kabul gören yaklaşım, orta irtifada (yaklaşık 2.000–2.500 metre) birkaç hafta kalmak ve yüklenmeyi kademeli artırmaktır.\nİlk günlerde şiddeti düşük tutmak, vücudun ortama uyum sağlamasına yardımcı olur. Uyku, sıvı alımı ve beslenme düzeni bu dönemde antrenman kadar önemlidir.\nErzurum Yüksek İrtifa Kamp Merkezi 2.100 metrede yer alır. Kamp tarihleri, branş ve kafile büyüklüğü için rezervasyon formundan bize ulaşabilir, planı birlikte oluşturabilirsiniz.',
+      'Yüksek irtifa kampları, sporcuların aerobik kapasitesini geliştirmek için dünya genelinde kullanılan bir hazırlık yöntemidir. Genel kabul gören yaklaşım, orta irtifada (yaklaşık 2.000–2.500 metre) birkaç hafta kalmak ve yüklenmeyi kademeli artırmaktır.\nİlk günlerde şiddeti düşük tutmak, vücudun ortama uyum sağlamasına yardımcı olur. Uyku, sıvı alımı ve beslenme düzeni bu dönemde antrenman kadar önemlidir.\nErzurum Yüksek İrtifa Kamp Merkezi 2.000 metrede yer alır. Kamp tarihleri, branş ve kafile büyüklüğü için rezervasyon formundan bize ulaşabilir, planı birlikte oluşturabilirsiniz.',
     imageUrl: '/images/yuzme-havuzu.jpg',
     publishedAt: '2026-10-28',
     published: true,

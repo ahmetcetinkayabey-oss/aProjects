@@ -4,6 +4,7 @@ const j = (a) => a.join("\n");
 export const NEWS = {
   "yuksek-irtifa-kampi-nasil-planlanir": {
     titleEn: "How to plan a high-altitude camp",
+    summary: "Kamp süresi, yüklenme planı ve toparlanma: yaklaşık 2.000 metrede verimli bir hazırlık dönemi için temel adımlar.",
     summaryEn: "Camp length, load progression and recovery: the basic steps for an effective preparation period at altitude.",
     content: j([
       "Yüksek irtifa kampları, sporcuların aerobik kapasitesini geliştirmek için dünya genelinde kullanılan bir hazırlık yöntemidir. Rakım arttıkça havadaki oksijenin kısmi basıncı düşer; vücut buna solunum, dolaşım ve kan düzeyinde uyum sağlayarak yanıt verir. Bu uyumun hızı kişiden kişiye değiştiği için plan, sporcuya ve branşa göre yapılmalıdır.",

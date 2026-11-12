@@ -1,6 +1,6 @@
 import { L } from "./t";
 
-/** Palandöken yaklaşık konumu; sıcaklık kamp merkezinin rakımına (2.100 m) göre hesaplanır. */
+/** Palandöken yaklaşık konumu; sıcaklık kamp merkezinin rakımına (2.000 m) göre hesaplanır. */
 const URL =
   "https://api.open-meteo.com/v1/forecast?latitude=39.84&longitude=41.29&elevation=2100" +
   "&current=temperature_2m,weather_code,wind_speed_10m,snow_depth&wind_speed_unit=kmh&timezone=Europe%2FIstanbul";

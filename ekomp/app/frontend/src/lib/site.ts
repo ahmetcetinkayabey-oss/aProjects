@@ -68,7 +68,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     date: "28.10.2026",
     title: "Yüksek irtifa kampı nasıl planlanır?",
     summary:
-      "Kamp süresi, yüklenme planı ve toparlanma: 2.100 metrede verimli bir hazırlık dönemi için temel adımlar.",
+      "Kamp süresi, yüklenme planı ve toparlanma: 2.000 metrede verimli bir hazırlık dönemi için temel adımlar.",
     image: "/images/yuzme-havuzu.jpg",
   },
   {

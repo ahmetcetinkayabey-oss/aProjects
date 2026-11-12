@@ -1,7 +1,7 @@
 import { L } from "./t";
 
 const FACTS = [
-  { value: <L tr="2.100 m" en="2,100 m" />, label: <L tr="Rakım" en="Altitude" /> },
+  { value: <L tr="2.000 m" en="2,000 m" />, label: <L tr="Rakım" en="Altitude" /> },
   { value: "50 m", label: <L tr="Olimpik havuz" en="Olympic pool" /> },
   { value: "400 m", label: <L tr="Tartan pist" en="Tartan track" /> },
   { value: "5", label: <L tr="Curling pisti" en="Curling rinks" /> },

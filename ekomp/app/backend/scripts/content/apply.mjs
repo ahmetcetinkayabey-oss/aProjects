@@ -2,13 +2,16 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { FACILITIES } from "./facilities.mjs";
+import { FACILITIES as BASE_FACILITIES } from "./facilities.mjs";
+import { mergeExtra } from "./facilities-extra.mjs";
+import { CARDS } from "./cards.mjs";
 import { NEWS } from "./news.mjs";
 
 const API = process.env.API_URL ?? "http://localhost:3001/api";
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 if (!ADMIN_USERNAME || !ADMIN_PASSWORD) throw new Error("ADMIN_USERNAME ve ADMIN_PASSWORD ortam değişkenlerini verin.");
+const FACILITIES = mergeExtra(BASE_FACILITIES);
 const here = path.dirname(fileURLToPath(import.meta.url));
 
 async function call(method, url, body, token) {
@@ -29,13 +32,7 @@ fs.writeFileSync(path.join(here, "backup-before.json"), JSON.stringify({ facilit
 console.log("yedek alındı:", facilities.length, "tesis,", news.length, "haber");
 
 // Tesisler
-const extra = {
-  "kayak-snowboard": {
-    description:
-      "Yaklaşık 2.200 metreden 3.176 metreye uzanan rakım farkıyla Palandöken, kayak ve snowboard kampları için kış boyunca antrenman pistleri sunar. Merkez, Erzurum il merkezinin yaklaşık 7 km güneybatısındadır.",
-    footerRight: "2.200 – 3.176 m",
-  },
-};
+const extra = CARDS;
 for (const f of facilities) {
   const c = FACILITIES[f.slug];
   if (!c) { console.log("atlandı (metin yok):", f.slug); continue; }

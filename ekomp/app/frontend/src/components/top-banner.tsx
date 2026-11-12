@@ -15,7 +15,7 @@ const SLIDES = [
 ];
 
 const HIGHLIGHTS = [
-  { value: "2.100 m", valueEn: "2,100 m", label: "Rakım", labelEn: "Altitude" },
+  { value: "2.000 m", valueEn: "2,000 m", label: "Rakım", labelEn: "Altitude" },
   { value: "Çok branş", valueEn: "Multi-sport", label: "Kamp", labelEn: "Camp" },
   { value: "Yıl boyu", valueEn: "Year-round", label: "Açık", labelEn: "Open" },
 ];

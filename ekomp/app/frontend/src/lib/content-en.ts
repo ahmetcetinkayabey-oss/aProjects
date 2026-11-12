@@ -15,8 +15,8 @@ export const FACILITIES_EN: Record<string, FacilityEn> = {
     category: "SWIMMING & WATER SPORTS",
     title: "50m Indoor Olympic Swimming Pool",
     description:
-      "Turkey's only full-size indoor Olympic pool at high altitude. 10 lanes, OMEGA touchpad timing boards, underwater video-biomechanics recording and a lactate testing platform.",
-    badge: "2,100 M ALTITUDE",
+      "An indoor pool described as Turkey's only full-size Olympic pool at high altitude. 10 lanes, OMEGA touchpad timing boards, underwater video-biomechanics recording and a lactate testing platform.",
+    badge: "2,000 M ALTITUDE",
     footerLeft: "VO2 Max & Endurance Camp",
     footerRight: "10 Lanes / 50m",
   },
@@ -24,17 +24,17 @@ export const FACILITIES_EN: Record<string, FacilityEn> = {
     category: "FOOTBALL & GRASS PITCHES",
     title: "11+ FIFA Natural Grass Football Pitch",
     description:
-      "The main pre-season camp base for Süper Lig and UEFA teams at the foot of Palandöken. Automatic drainage, high-altitude moisture retention and LED floodlight systems.",
+      "A camp base at the foot of Palandöken that has hosted many teams, from the Süper Lig and lower leagues to foreign clubs. Natural grass pitches, automatic drainage and LED floodlighting.",
     badge: "11+ FIFA STANDARD",
     footerLeft: "Süper Lig & International Camps",
-    footerRight: "105 x 68 m Pitch Size",
+    footerRight: "105 × 68 m Pitch Size",
   },
   "buz-curling-arenasi": {
     category: "CURLING",
     title: "Curling Hall",
     description:
       "The curling hall in Palandöken: with 5 independent sheets and a capacity of 1,000 spectators, it is ready for curling camps and tournaments.",
-    badge: "ONLY ONE IN TURKEY",
+    badge: "TURKEY'S FIRST CURLING HALL",
     footerLeft: "Curling Camps & Tournaments",
     footerRight: "5 Independent Sheets",
   },
@@ -42,7 +42,7 @@ export const FACILITIES_EN: Record<string, FacilityEn> = {
     category: "COMBAT & WRESTLING CENTRE",
     title: "Combat Sports & TOHM Arena",
     description:
-      "6 international sprung tatami mats, ring modules and shock-absorbing floors for Wrestling (Freestyle/Greco-Roman), Boxing, Judo and Taekwondo.",
+      "Sprung tatami mats, ring modules and shock-absorbing floors for wrestling (freestyle/Greco-Roman), boxing, judo and taekwondo.",
     badge: "TOHM Erzurum",
     footerLeft: "National Team Camps",
     footerRight: "Integrated Sauna & Cold Plunge Pool",
@@ -68,7 +68,7 @@ export const FACILITIES_EN: Record<string, FacilityEn> = {
     category: "INDOOR SPORTS",
     title: "3,000-Seat Multi-Purpose Hall",
     description:
-      "Solid hardwood parquet flooring to FIBA and FIVB standards. Conditioning, scoreboard and live broadcast equipment for Volleyball, Basketball and Handball national teams.",
+      "Solid hardwood parquet flooring to FIBA and FIVB standards. Conditioning, scoreboard and live broadcast equipment for volleyball, basketball and handball national teams.",
     badge: "Recep Tayyip Erdoğan & Atatürk",
     footerLeft: "Volleyball / Basketball Camps",
     footerRight: "Integrated Strength & Weight Room",
@@ -97,12 +97,12 @@ export const FACILITIES_EN: Record<string, FacilityEn> = {
   },
   "kayak-snowboard": {
     category: "SKIING & SNOWBOARD",
-    title: "Palandöken Ski Centre",
+    title: "Palandöken Ski Centre EJDER 3200",
     description:
-      "With an altitude range from 2,000 metres to 3,176 metres, Palandöken offers training slopes for ski and snowboard camps throughout the winter. It is just a few minutes from the camp centre.",
+      "From about 2,200 metres up to 3,176 metres, Palandöken offers training slopes for ski and snowboard camps throughout the winter. The resort is about 7 km south-west of Erzurum city centre.",
     badge: "3,176 M SUMMIT",
     footerLeft: "Ski & Snowboard Camps",
-    footerRight: "2,000 – 3,176 m",
+    footerRight: "2,200 – 3,176 m",
   },
   "kayakla-atlama": {
     category: "SKI JUMPING",
@@ -128,9 +128,9 @@ export const NEWS_EN: Record<string, NewsEn> = {
   "yuksek-irtifa-kampi-nasil-planlanir": {
     title: "How to plan a high-altitude camp",
     summary:
-      "Camp duration, training load and recovery: the key steps for an effective preparation period at 2,100 metres.",
+      "Camp duration, training load and recovery: the key steps for an effective preparation period at 2,000 metres.",
     content:
-      "High-altitude camps are a preparation method used worldwide to improve athletes' aerobic capacity. The generally accepted approach is to stay at moderate altitude (roughly 2,000–2,500 metres) for several weeks and to increase the training load gradually.\nKeeping intensity low in the first days helps the body adapt to the environment. Sleep, fluid intake and nutrition are as important as training during this period.\nThe Erzurum High Altitude Camp Centre is located at 2,100 metres. You can contact us through the reservation form about camp dates, discipline and group size, and we can build the plan together.",
+      "High-altitude camps are a preparation method used worldwide to improve athletes' aerobic capacity. The generally accepted approach is to stay at moderate altitude (roughly 2,000–2,500 metres) for several weeks and to increase the training load gradually.\nKeeping intensity low in the first days helps the body adapt to the environment. Sleep, fluid intake and nutrition are as important as training during this period.\nThe Erzurum High Altitude Camp Centre is located at 2,000 metres. You can contact us through the reservation form about camp dates, discipline and group size, and we can build the plan together.",
   },
   "curling-nedir": {
     title: "What is curling? A short guide for beginners",
@@ -153,9 +153,9 @@ export const NEWS_EN: Record<string, NewsEn> = {
   },
   "palandoken-kis-sporlari-kamplari": {
     title: "Winter sports camps in Palandöken",
-    summary: "A long season for skiing and snowboarding, with an altitude range between 2,000 and 3,176 metres.",
+    summary: "A long season for skiing and snowboarding, with an elevation range from about 2,200 to 3,176 metres.",
     content:
-      "With an altitude range from 2,000 metres to 3,176 metres, Palandöken offers training opportunities for ski and snowboard camps throughout the winter. Being only a few minutes from the camp centre makes the daily schedule easier for groups.\nIf you would like to plan a camp for skiing, snowboarding, ski jumping or Nordic disciplines, you can use the reservation form.",
+      "With an elevation range from about 2,200 to 3,176 metres, Palandöken offers training opportunities for ski and snowboard camps throughout the winter. Its location about 7 km from Erzurum city centre keeps daily travel simple for groups.\nIf you would like to plan a camp for skiing, snowboarding, ski jumping or Nordic disciplines, you can use the reservation form.",
   },
   "erzurumspor-hazirlik-maci": {
     title: "Erzurumspor Friendly Match",
