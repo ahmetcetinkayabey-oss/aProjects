@@ -6,7 +6,8 @@ import { StayCta } from "@/components/stay-cta";
 import { L } from "@/components/t";
 import { FACILITIES_EN } from "@/lib/content-en";
 import { getFacilities } from "@/lib/api";
-import { facilityGallery, facilityImage } from "@/lib/facility-images";
+import { facilityGallery, facilityHeroCaption, facilityImage } from "@/lib/facility-images";
+import { FacilityPhotoGrid } from "@/components/facility-photo-grid";
 import { OptImg } from "@/components/opt-img";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -33,6 +34,7 @@ export default async function FacilityDetailPage({ params }: Props) {
   const facility = facilities[index];
   const image = facilityImage(facility);
   const gallery = facilityGallery(facility);
+  const heroCaption = facilityHeroCaption(facility);
   const prev = facilities[(index - 1 + facilities.length) % facilities.length];
   const next = facilities[(index + 1) % facilities.length];
   const others = facilities.filter((f) => f.slug !== slug).slice(0, 3);
@@ -77,6 +79,11 @@ export default async function FacilityDetailPage({ params }: Props) {
             <span className="absolute top-5 left-5 rounded-full bg-primary-container px-4 py-1.5 font-label-caps text-label-caps text-on-primary-container uppercase">
               <L tr={facility.badge} en={facility.badgeEn ?? en?.badge} />
             </span>
+            {heroCaption ? (
+              <p className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent px-5 pt-12 pb-4 text-sm font-semibold text-white">
+                <L tr={heroCaption.tr} en={heroCaption.en} />
+              </p>
+            ) : null}
           </div>
 
           <div className="reveal-right">
@@ -132,21 +139,10 @@ export default async function FacilityDetailPage({ params }: Props) {
             <h2 className="reveal font-headline-lg text-[28px] font-extrabold tracking-tight text-on-surface md:text-4xl">
               <L tr="Fotoğraflar" en="Photos" />
             </h2>
-            <div className="stagger mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {gallery.map((src, i) => (
-                <figure key={src} className="reveal-zoom overflow-hidden rounded-2xl bg-surface-container">
-                  <OptImg
-                    loading="lazy"
-                    decoding="async"
-                    sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
-                    src={src}
-                    alt={`${facility.title} – ${i + 2}`}
-                    altEn={`${facility.titleEn ?? en?.title ?? facility.title} – ${i + 2}`}
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                </figure>
-              ))}
-            </div>
+            <p className="mt-2 text-sm text-on-surface-variant">
+              <L tr="Büyütmek için bir fotoğrafa tıklayın." en="Click a photo to enlarge it." />
+            </p>
+            <FacilityPhotoGrid images={gallery} title={facility.title} titleEn={facility.titleEn ?? en?.title} />
           </div>
         </section>
       ) : null}

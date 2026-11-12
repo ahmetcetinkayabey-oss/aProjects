@@ -219,6 +219,7 @@ export const SUPPORTED_ICONS = [
   "wifi",
   "work",
   "workspace_premium",
+  "zoom_in",
 ] as const;
 
 /** Google Fonts simge yazı tipi adresi: yalnızca listedeki simgeler ve "dolgu" ekseni (puan yıldızları için). */
