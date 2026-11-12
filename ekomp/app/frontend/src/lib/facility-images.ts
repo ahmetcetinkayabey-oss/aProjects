@@ -11,7 +11,7 @@ const IMAGE_BY_SLUG: Record<string, string> = {
   "salon-sporlari": "/images/salon-erzurum.jpg",
   "judo-salonu": "/images/judo.jpg",
   "kayak-snowboard": "/images/kayak-palandoken.jpg",
-  "kayakla-atlama": "/images/atlama-kuleleri-kiremitlik.jpg",
+  "kayakla-atlama": "/images/atlama-kuleleri-kis.jpg",
   "buz-hokeyi-pateni": "/images/buz-arenasi-erzurum.jpg",
 };
 
@@ -44,11 +44,15 @@ const GALLERY_BY_SLUG: Record<string, GalleryImage[]> = {
     { src: "/images/guresler-minder.jpg", tr: "Minder üzerinde güreş müsabakası", en: "A wrestling bout on the mat" },
   ],
   "kayak-snowboard": [
+    { src: "/images/kayak-teleferik-pist.jpg", tr: "Teleferik hattı ve kayakçılarla dolu pistler", en: "The gondola line and slopes full of skiers" },
+    { src: "/images/kayak-pist-istasyon.jpg", tr: "Telesiyej istasyonu ve pist başı", en: "Chairlift station and the foot of the slopes" },
     { src: "/images/kayak-merkezi.jpg", tr: "Pist başındaki konaklama ve hizmet binaları", en: "Lodging and service buildings at the foot of the slopes" },
     { src: "/images/kayak-pist.jpg", tr: "Karla kaplı yamaçlar ve çam ağaçları", en: "Snow-covered slopes and pine trees" },
-    { src: "/images/palandoken-dag-yaz.jpg", tr: "Palandöken dağı, yaz görünümü", en: "Mount Palandöken in summer" },
+    { src: "/images/palandoken-yaz-teleferik.jpg", tr: "Yazın Palandöken: teleferik hattı ve vadi", en: "Palandöken in summer: the gondola line and valley" },
+    { src: "/images/palandoken-yaz-vadi.jpg", tr: "Yazın Palandöken: yamaçlar ve pist başındaki binalar", en: "Palandöken in summer: the slopes and buildings at the foot of the runs" },
   ],
   "kayakla-atlama": [
+    { src: "/images/atlama-kuleleri-kiremitlik.jpg", tr: "Atlama kuleleri ve rampa, yaz görünümü", en: "Ski jumping towers and in-run, summer view" },
     { src: "/images/kayakla-atlama.jpg", tr: "Atlama kulesi, rampa ve gözetleme platformları", en: "Jumping hill, in-run and viewing platforms" },
     { src: "/images/atlama-kule-cikis.jpg", tr: "Kuleden aşağıya bakış: rampa ve iniş alanı", en: "Looking down from the tower: in-run and landing area" },
     { src: "/images/haber-atlama-kuleleri.jpg", tr: "Atlama tesisi, yüksek noktadan genel görünüm", en: "Ski jumping complex seen from a high vantage point" },
@@ -76,7 +80,7 @@ const HERO_CAPTION: Record<string, { tr: string; en: string }> = {
   "salon-sporlari": { tr: "Çok amaçlı spor salonu", en: "Multi-purpose sports hall" },
   "judo-salonu": { tr: "Judo müsabakasından bir an", en: "A moment from a judo match" },
   "kayak-snowboard": { tr: "Palandöken'de teleferik hattı ve pistler", en: "Gondola line and slopes at Palandöken" },
-  "kayakla-atlama": { tr: "Kiremitliktepe kayakla atlama kuleleri", en: "Kiremitliktepe ski jumping towers" },
+  "kayakla-atlama": { tr: "Karla kaplı Kiremitliktepe kayakla atlama kuleleri", en: "Snow-covered Kiremitliktepe ski jumping towers" },
   "buz-hokeyi-pateni": { tr: "Buz pateni ve hokey arenasının içi", en: "Inside the ice skating and hockey arena" },
 };
 
