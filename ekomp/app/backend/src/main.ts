@@ -22,6 +22,11 @@ async function bootstrap() {
       res.setHeader('X-Content-Type-Options', 'nosniff');
       res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
       res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin'); // görseller farklı alan adından (frontend) yüklenir
+      // API yanıtları ve yüklenen dosyalar sayfa değildir: doğrudan açılırlarsa hiçbir betik çalışamaz, çerçeveye alınamaz.
+      res.setHeader('Content-Security-Policy', "default-src 'none'; frame-ancestors 'none'");
+      res.setHeader('X-Frame-Options', 'DENY');
+      res.setHeader('Strict-Transport-Security', 'max-age=15552000');
+      res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
       next();
     },
   );
