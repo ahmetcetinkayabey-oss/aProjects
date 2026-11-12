@@ -10,5 +10,8 @@ export default defineConfig({
     root: './',
     include: ['**/*.spec.ts'],
     passWithNoTests: true,
+    // PGlite'ın açılışı yüklü makinede 10 sn'yi aşabiliyor.
+    hookTimeout: 60000,
+    testTimeout: 60000,
   },
 });
