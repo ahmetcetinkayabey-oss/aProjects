@@ -14,6 +14,7 @@ import {
 } from "@/components/admin/admin-ui";
 import { assetUrl } from "@/lib/api";
 import { SUPPORTED_ICONS } from "@/lib/icons";
+import { AiAssist } from "@/components/admin/ai-assist";
 import { adminFetch, slugify, type AdminFacility } from "@/lib/admin-api";
 
 interface FormState {
@@ -274,9 +275,11 @@ export default function FacilitiesAdminPage() {
             <Field label="Açıklama">
               <textarea className={inputClass} rows={4} value={editing.form.description} required onChange={(e) => patch({ description: e.target.value })} />
             </Field>
+            <AiAssist actions={[{ action: "polish", label: "Akıcılaştır" }, { action: "shorten", label: "Kısalt" }]} source={editing.form.description} onResult={(text) => patch({ description: text })} />
             <Field label="Ayrıntılı açıklama" hint="Tesis sayfasında kartın altında görünür. Her satır bir paragraf; ara başlık için satırı ‘## ’ ile başlatın.">
               <textarea className={inputClass} rows={10} maxLength={12000} value={editing.form.details} onChange={(e) => patch({ details: e.target.value })} />
             </Field>
+            <AiAssist actions={[{ action: "polish", label: "Akıcılaştır" }, { action: "shorten", label: "Kısalt" }]} source={editing.form.details} onResult={(text) => patch({ details: text })} />
             <div className="grid gap-space-md sm:grid-cols-2">
               <Field label="Alt bilgi (sol)">
                 <input className={inputClass} value={editing.form.footerLeft} onChange={(e) => patch({ footerLeft: e.target.value })} />
@@ -334,9 +337,11 @@ export default function FacilitiesAdminPage() {
               <Field label="Description">
                 <textarea className={inputClass} rows={4} value={editing.form.descriptionEn} onChange={(e) => patch({ descriptionEn: e.target.value })} />
               </Field>
+              <AiAssist actions={[{ action: "translate-en", label: "Türkçeden çevir" }]} source={editing.form.description} onResult={(text) => patch({ descriptionEn: text })} />
               <Field label="Detailed description" hint="One paragraph per line; start a line with ‘## ’ for a subheading.">
                 <textarea className={inputClass} rows={10} maxLength={12000} value={editing.form.detailsEn} onChange={(e) => patch({ detailsEn: e.target.value })} />
               </Field>
+              <AiAssist actions={[{ action: "translate-en", label: "Türkçeden çevir" }]} source={editing.form.details} onResult={(text) => patch({ detailsEn: text })} />
               <div className="grid gap-space-md sm:grid-cols-2">
                 <Field label="Footer (left)">
                   <input className={inputClass} value={editing.form.footerLeftEn} onChange={(e) => patch({ footerLeftEn: e.target.value })} />

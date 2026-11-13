@@ -1,4 +1,4 @@
-import { IsEmail, IsEnum, IsOptional, IsString, Matches, MaxLength, MinLength, ValidateIf } from 'class-validator';
+import { IsEmail, IsEnum, IsIn, IsOptional, IsString, Matches, MaxLength, MinLength, ValidateIf } from 'class-validator';
 import { ReservationStatus } from '../reservations/reservation.entity.js';
 
 export class LoginDto {
@@ -47,4 +47,14 @@ export class MailSettingsDto {
   @ValidateIf((o: MailSettingsDto) => !!o.notifyTo)
   @IsEmail({}, { message: 'Bildirim adresi geçerli bir e-posta olmalı.' })
   notifyTo?: string;
+}
+
+export class AiTextDto {
+  @IsIn(['translate-en', 'translate-tr', 'polish', 'shorten'])
+  action!: 'translate-en' | 'translate-tr' | 'polish' | 'shorten';
+
+  @IsString()
+  @MinLength(1)
+  @MaxLength(12000)
+  text!: string;
 }

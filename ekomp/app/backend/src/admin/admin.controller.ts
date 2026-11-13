@@ -24,6 +24,7 @@ import { AdminAuthService } from './admin-auth.service.js';
 import { AdminGuard } from './admin.guard.js';
 import {
   ChangePasswordDto,
+  AiTextDto,
   LoginDto,
   MailSettingsDto,
   MailTestDto,
@@ -40,6 +41,7 @@ import { ReservationsService } from '../reservations/reservations.service.js';
 import { NotificationsService } from '../notifications/notifications.service.js';
 import { ContentService } from '../content/content.service.js';
 import { UpsertContentDto } from '../content/content.dto.js';
+import { AiService } from '../ai/ai.service.js';
 import { FeedbackService } from '../feedback/feedback.service.js';
 import { UpdateFeedbackDto } from '../feedback/feedback.dto.js';
 import {
@@ -70,6 +72,7 @@ export class AdminController {
     private readonly feedback: FeedbackService,
     private readonly content: ContentService,
     private readonly notifications: NotificationsService,
+    private readonly ai: AiService,
   ) {}
 
   @Post('login')
@@ -87,6 +90,13 @@ export class AdminController {
       dto.currentPassword,
       dto.newPassword,
     );
+  }
+
+  @Post('ai/text')
+  @UseGuards(AdminGuard)
+  @HttpCode(200)
+  async aiText(@Body() dto: AiTextDto) {
+    return { text: await this.ai.transform(dto.action, dto.text) };
   }
 
   @Get('me')
