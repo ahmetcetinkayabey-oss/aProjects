@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Notice, PageHeading, btnGhost, btnPrimary, inputClass } from "@/components/admin/admin-ui";
+import { AiAssist } from "@/components/admin/ai-assist";
 import { adminFetch, getToken } from "@/lib/admin-api";
 import { HOTEL_CONTENT_GROUPS } from "@/lib/content-hotels";
 import { CONTENT_GROUPS as SITE_GROUPS, type ContentField } from "@/lib/content-registry";
@@ -228,6 +229,16 @@ export default function ContentPage() {
                           )}
                         </label>
                       </div>
+                      <AiAssist
+                        actions={[{ action: "translate-en", label: "Türkçe → İngilizce" }]}
+                        source={v.tr}
+                        onResult={(text) => edit(f, "en", text)}
+                      />
+                      <AiAssist
+                        actions={[{ action: "translate-tr", label: "İngilizce → Türkçe" }]}
+                        source={v.en}
+                        onResult={(text) => edit(f, "tr", text)}
+                      />
                     </div>
                   );
                 })}

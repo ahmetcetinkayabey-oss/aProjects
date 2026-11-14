@@ -12,6 +12,7 @@ import {
   btnPrimary,
   inputClass,
 } from "@/components/admin/admin-ui";
+import { AiAssist } from "@/components/admin/ai-assist";
 import { adminFetch, slugify, type AdminNews } from "@/lib/admin-api";
 
 interface FormState {
@@ -245,12 +246,15 @@ export default function NewsAdminPage() {
               <Field label="Title">
                 <input className={inputClass} value={editing.form.titleEn} onChange={(e) => patch({ titleEn: e.target.value })} />
               </Field>
+              <AiAssist actions={[{ action: "translate-en", label: "Türkçeden çevir" }]} source={editing.form.title} onResult={(text) => patch({ titleEn: text })} />
               <Field label="Short summary">
                 <textarea className={inputClass} rows={2} value={editing.form.summaryEn} onChange={(e) => patch({ summaryEn: e.target.value })} />
               </Field>
+              <AiAssist actions={[{ action: "translate-en", label: "Türkçeden çevir" }]} source={editing.form.summary} onResult={(text) => patch({ summaryEn: text })} />
               <Field label="Article text">
                 <textarea className={inputClass} rows={6} value={editing.form.contentEn} onChange={(e) => patch({ contentEn: e.target.value })} />
               </Field>
+              <AiAssist actions={[{ action: "translate-en", label: "Türkçeden çevir" }]} source={editing.form.content} onResult={(text) => patch({ contentEn: text })} />
               <div className="grid gap-space-md sm:grid-cols-2">
                 <Field label="Source name">
                   <input className={inputClass} value={editing.form.sourceNameEn} onChange={(e) => patch({ sourceNameEn: e.target.value })} />
