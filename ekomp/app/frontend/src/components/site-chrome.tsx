@@ -2,6 +2,7 @@
 
 import { usePlainPathname } from "@/lib/i18n";
 import { useEffect, useState, type ReactNode } from "react";
+import { ChatWidget } from "./chat-widget";
 import { SiteFooter } from "./site-footer";
 import { SiteNavBar } from "./site-nav-bar";
 import { TopBanner } from "./top-banner";
@@ -38,6 +39,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <TopBanner />
       {children}
       <SiteFooter />
+      <ChatWidget />
     </>
   );
 }

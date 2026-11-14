@@ -26,14 +26,19 @@ export class AiService {
   }
 
   async transform(action: AiAction, text: string): Promise<string> {
+    return this.generate(INSTRUCTIONS[action], text);
+  }
+
+  /** Gemini'ye tek bir istek gönderir; anahtar/kota/servis hatalarını kullanıcıya uygun hatalara çevirir. */
+  async generate(system: string, input: string): Promise<string> {
     const key = process.env.GEMINI_API_KEY;
     if (!key) throw new ServiceUnavailableException('Yapay zekâ anahtarı tanımlı değil.');
-    this.client ??= new GoogleGenAI({ apiKey: key });
+    this.client ??= new GoogleGenAI({ apiKey: key, httpOptions: { timeout: 30000 } });
     try {
       const r = await this.client.interactions.create({
         model: process.env.GEMINI_MODEL || 'gemini-3.8-flash',
-        system_instruction: INSTRUCTIONS[action],
-        input: text,
+        system_instruction: system,
+        input,
       });
       const out = (r.steps ?? [])
         .flatMap((s) => (s.type === 'model_output' ? (s.content ?? []) : []))
