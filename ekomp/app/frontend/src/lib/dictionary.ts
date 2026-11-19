@@ -11,6 +11,7 @@ const tr = {
   "nav.news": "Haberler",
   "nav.contact": "İletişim",
   "nav.forum": "Forum 2027",
+  "nav.atf": "ATF World",
   "nav.reserve": "Rezervasyon",
   "nav.menuToggle": "Menüyü aç/kapat",
 
@@ -200,6 +201,7 @@ const en: Record<DictKey, string> = {
   "nav.news": "News",
   "nav.contact": "Contact",
   "nav.forum": "Forum 2027",
+  "nav.atf": "ATF World",
   "nav.reserve": "Reservation",
   "nav.menuToggle": "Toggle menu",
 

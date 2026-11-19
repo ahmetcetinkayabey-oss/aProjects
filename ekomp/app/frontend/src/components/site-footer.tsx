@@ -81,9 +81,6 @@ export function SiteFooter() {
                 <T k={link.key} />
               </Link>
             ))}
-            <Link href="/atf" className={LINK}>
-              <L tr="Antalya Turizm Fuarı (ATF)" en="Antalya Tourism Fair (ATF)" />
-            </Link>
           </nav>
 
           {/* Rezervasyon kısayolları */}
