@@ -3,7 +3,7 @@ import { getFacilities, getNews } from "@/lib/api";
 import { HOTELS } from "@/lib/hotels";
 import { localizedUrls } from "@/lib/site-url";
 
-const STATIC_PAGES = ["", "/hakkimizda", "/tesisler", "/haberler", "/rezervasyon", "/forum", "/forum/program", "/forum/konusmacilar", "/gizlilik"];
+const STATIC_PAGES = ["", "/hakkimizda", "/tesisler", "/haberler", "/rezervasyon", "/atf", "/forum", "/forum/program", "/forum/konusmacilar", "/gizlilik"];
 
 type Entry = MetadataRoute.Sitemap[number];
 

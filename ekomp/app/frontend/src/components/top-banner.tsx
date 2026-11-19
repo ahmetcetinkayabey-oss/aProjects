@@ -27,6 +27,7 @@ const SUB_TITLES: Record<string, string | DictKey> = {
   "/tesisler": "nav.facilities",
   "/haberler": "nav.news",
   "/rezervasyon": "nav.reserve",
+  "/atf": "ATF",
 };
 
 export function TopBanner() {
