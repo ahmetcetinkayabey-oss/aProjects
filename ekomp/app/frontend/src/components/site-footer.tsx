@@ -49,9 +49,9 @@ export function SiteFooter() {
               <OptImg
                 widths={[128, 256]}
                 sizes="96px"
-                src="/logo-light.png"
+                src="/logo.jpg"
                 alt={l("Erzurum Yüksek İrtifa Kamp Merkezi", "Erzurum High Altitude Camp Centre")}
-                className="h-20 w-auto object-contain"
+                className="h-24 w-auto rounded-xl bg-white object-contain p-1.5"
               />
             </Link>
             <p className="mt-5 font-headline-md text-lg leading-snug font-bold">
