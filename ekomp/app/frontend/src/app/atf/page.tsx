@@ -29,7 +29,7 @@ const FACTS = [
 const ADVANTAGES = [
   {
     icon: "ac_unit",
-    img: "/images/kayak-gondol-manzara.jpg",
+    img: "/images/kayak-merkezi.jpg",
     trTitle: "Palandöken kış sporları",
     enTitle: "Palandöken winter sports",
     tr: "Erzurum'un kayak merkezi, kayak ve snowboard için uzun sezon ve geniş pist çeşitliliği sunar. Kayak merkezi bilgileri Tesisler sayfasındaki güncel metinlerle aynıdır.",
