@@ -131,9 +131,9 @@ export function SiteNavBar() {
           onClick={() => setOpen(false)}
         >
           <OptImg priority widths={[96, 128, 256, 384]} sizes="130px"
-            src="/logo.jpg"
+            src="/logo-light.png"
             alt={brandName}
-            className="h-[84px] w-auto rounded-xl bg-white object-contain p-1.5 md:h-[102px]"
+            className="h-[60px] w-auto object-contain md:h-[72px]"
           />
           <span className="hidden md:block">
             <span className="block text-[17px] leading-tight font-extrabold tracking-wide whitespace-nowrap text-white">

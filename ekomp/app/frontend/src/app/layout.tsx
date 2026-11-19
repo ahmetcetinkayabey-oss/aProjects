@@ -48,7 +48,7 @@ const JSON_LD = {
   name: SITE_NAME,
   description: SITE_DESCRIPTION,
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.jpg`,
+  logo: `${SITE_URL}/logo.png`,
   image: `${SITE_URL}/images/hero-palandoken.jpg`,
   address: { "@type": "PostalAddress", addressLocality: "Palandöken, Erzurum", addressCountry: "TR" },
 };

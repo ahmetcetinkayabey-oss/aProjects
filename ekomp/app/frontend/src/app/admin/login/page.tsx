@@ -39,7 +39,7 @@ export default function AdminLoginPage() {
       <form onSubmit={onSubmit} className="w-full max-w-sm space-y-space-md bg-white p-space-xl">
         <div className="text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.jpg" alt="Kamp Merkezi" className="mx-auto h-32 w-auto" />
+          <img src="/logo.png" alt="Kamp Merkezi" className="mx-auto h-32 w-auto" />
           <h1 className="mt-space-sm font-headline-md text-headline-md text-on-surface">
             Yönetim Paneli
           </h1>
