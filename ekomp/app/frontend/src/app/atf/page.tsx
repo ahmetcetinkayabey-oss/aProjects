@@ -53,6 +53,42 @@ const ADVANTAGES = [
   },
 ] as const;
 
+/** Yalnızca kaynaklarda doğrulanan edisyon bilgileri. 2027 tarihi açıklanınca buraya eklenir. */
+const EDITIONS = [
+  {
+    trWhen: "2019",
+    enWhen: "2019",
+    trTitle: "İlk ATF",
+    enTitle: "First ATF",
+    tr: "GMT Fuarcılık fuarı Antalya'da başlattı.",
+    en: "GMT Fairs launched the fair in Antalya.",
+  },
+  {
+    trWhen: "Ekim 2024",
+    enWhen: "October 2024",
+    trTitle: "ATF24",
+    enTitle: "ATF24",
+    tr: "Basın, fuarın rekor ziyaretçiyle tamamlandığını bildirdi. Spor ve sağlık turizmi katılımcıları için ayrı bilgilendirme yapıldı.",
+    en: "The press reported record attendance. Sports and health tourism exhibitors received separate guidance.",
+  },
+  {
+    trWhen: "22–24 Ekim 2025",
+    enWhen: "22–24 October 2025",
+    trTitle: "ATF25",
+    enTitle: "ATF25",
+    tr: "42.758 profesyonel ziyaretçi, 1.018 katılımcı, 109 ülke. UFI üyeliği ve bakanlık desteği öne çıktı.",
+    en: "42,758 professional visitors, 1,018 participants, 109 countries. UFI membership and ministerial support stood out.",
+  },
+  {
+    trWhen: "26–28 Ekim 2026",
+    enWhen: "26–28 October 2026",
+    trTitle: "ATF26 (8. edisyon)",
+    enTitle: "ATF26 (8th edition)",
+    tr: "ANFAŞ'ta düzenlendi. Kesinleşmiş sonuç raporu henüz bulunamadı.",
+    en: "Held at ANFAŞ. A final results report has not been found yet.",
+  },
+] as const;
+
 export default function AtfPage() {
   return (
     <main className="w-full bg-surface">
@@ -152,6 +188,85 @@ export default function AtfPage() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-margin-mobile pb-12 md:px-margin md:pb-16">
+        <div className="mx-auto max-w-[1400px]">
+          <h2 className="font-headline-lg text-3xl font-extrabold tracking-tight">
+            <L tr="ATF geçmişi" en="ATF timeline" />
+          </h2>
+          <ol className="mt-8 grid gap-4 md:grid-cols-4">
+            {EDITIONS.map((e) => (
+              <li key={e.trWhen} className="rounded-2xl bg-surface-container p-6">
+                <p className="font-label-caps text-label-caps text-primary uppercase">
+                  <L tr={e.trWhen} en={e.enWhen} />
+                </p>
+                <h3 className="mt-2 text-lg font-extrabold">
+                  <L tr={e.trTitle} en={e.enTitle} />
+                </h3>
+                <p className="mt-2 text-sm text-on-surface-variant">
+                  <L tr={e.tr} en={e.en} />
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="kayit" className="scroll-mt-6 px-margin-mobile pb-12 md:px-margin md:pb-16">
+        <div className="mx-auto grid max-w-[1400px] gap-6 md:grid-cols-2">
+          <div className="rounded-3xl bg-ink p-8 text-white md:p-10">
+            <span className="material-symbols-outlined text-primary-container" aria-hidden>
+              edit_calendar
+            </span>
+            <h2 className="mt-3 text-2xl font-extrabold">
+              <L tr="Ön görüşme ve kayıt" en="Pre-meeting and registration" />
+            </h2>
+            <p className="mt-3 text-white/80">
+              <L
+                tr="Fuar kapsamında kamp, konaklama ve tesis kullanımı hakkında görüşmek isteyen kurumlar için talep formunu kullanın. Talebiniz yönetim paneline düşer ve ekibimiz e-postayla dönüş yapar."
+                en="If you want to discuss camps, accommodation and facility use in the context of the fair, use the request form. Your request goes to our admin panel and our team replies by email."
+              />
+            </p>
+            <Link
+              href={`/rezervasyon?${new URLSearchParams({ konu: "ATF – ön görüşme / kamp talebi" }).toString()}#rezervasyon`}
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary-container px-8 py-4 font-label-caps text-label-caps text-on-primary-container uppercase"
+            >
+              <L tr="Talep formuna git" en="Go to the request form" />
+              <span className="material-symbols-outlined text-[18px]" aria-hidden>
+                arrow_forward
+              </span>
+            </Link>
+          </div>
+          <div className="rounded-3xl bg-surface-container p-8 md:p-10">
+            <span className="material-symbols-outlined text-primary" aria-hidden>
+              how_to_reg
+            </span>
+            <h2 className="mt-3 text-2xl font-extrabold">
+              <L tr="Forum 2027 kaydı ve görüşleriniz" en="Forum 2027 registration and your feedback" />
+            </h2>
+            <p className="mt-3 text-on-surface-variant">
+              <L
+                tr="Palandöken Uluslararası Yüksek İrtifa ve Kış Turizmi Forumu 16–17 Nisan 2027'de yapılır. Foruma kayıt olabilir, sayfa altındaki formla ATF ve fuarlarla ilgili görüş ve önerilerinizi iletebilirsiniz."
+                en="The Palandöken International High Altitude & Winter Tourism Forum takes place on 16–17 April 2027. You can register for the forum and send your views and suggestions about ATF and trade fairs using the form at the bottom of the page."
+              />
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/forum/kayit"
+                className="inline-flex items-center rounded-full bg-ink px-8 py-4 font-label-caps text-label-caps text-white uppercase"
+              >
+                <L tr="Foruma kayıt ol" en="Register for the forum" />
+              </Link>
+              <a
+                href="#geri-bildirim"
+                className="inline-flex items-center rounded-full border border-ink px-8 py-4 font-label-caps text-label-caps uppercase"
+              >
+                <L tr="Görüş bildir" en="Send feedback" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
